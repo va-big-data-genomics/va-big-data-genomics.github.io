@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Sustaining bioinformatics infrastructure: lessons from PBOT"
+title:  Sustaining bioinformatics infrastructure lessons from PBOT
 date:   2023-01-12 15:10:02 -0800
 author: Paul Billing-Ross
 categories: jekyll update
