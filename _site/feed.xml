@@ -1,4 +1,53 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/blog/" rel="alternate" type="text/html" /><updated>2023-01-12T18:42:41-08:00</updated><id>http://localhost:4000/blog/feed.xml</id><title type="html">VA Big Data Genomics Blog</title><subtitle>Designing cloud based solutions to manage and analyze big genomic data.</subtitle><entry><title type="html">Sustaining bioinformatics infrastructure: lessons from PBOT</title><link href="http://localhost:4000/blog/jekyll/update/2023/01/12/infrastructure-lessons-from-pbot.html" rel="alternate" type="text/html" title="Sustaining bioinformatics infrastructure: lessons from PBOT" /><published>2023-01-12T15:10:02-08:00</published><updated>2023-01-12T15:10:02-08:00</updated><id>http://localhost:4000/blog/jekyll/update/2023/01/12/infrastructure-lessons-from-pbot</id><content type="html" xml:base="http://localhost:4000/blog/jekyll/update/2023/01/12/infrastructure-lessons-from-pbot.html">&lt;p&gt;&lt;img src=&quot;https://images.unsplash.com/photo-1590866249433-0310439fdab9?ixlib=rb-4.0.3&amp;amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;amp;auto=format&amp;amp;fit=crop&amp;amp;w=1170&amp;amp;q=80&quot; alt=&quot;Hawthorne Bridge in Portland&quot; /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-01-13T12:50:03-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">VA Big Data Genomics Blog</title><subtitle>Designing cloud based solutions to manage and analyze big genomic data.</subtitle><entry><title type="html">Paul’s monthly roundup: January 2023</title><link href="http://localhost:4000/jekyll/update/2023/01/13/paul-roundup-january.html" rel="alternate" type="text/html" title="Paul’s monthly roundup: January 2023" /><published>2023-01-13T10:10:02-08:00</published><updated>2023-01-13T10:10:02-08:00</updated><id>http://localhost:4000/jekyll/update/2023/01/13/paul-roundup-january</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/01/13/paul-roundup-january.html">&lt;h2 id=&quot;happy-new-year&quot;&gt;&lt;strong&gt;Happy new year!&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;By my count, I’ve created and presented over 90 slide decks in this group alone. So, with a new year we are going to mix it up and try a &lt;a href=&quot;https://github.com/va-big-data-genomics/general-practices/blob/main/group-meetings.md&quot;&gt;new meeting structure&lt;/a&gt;! We are all remote, don’t bother containing your excitement. Instead of presenting slide decks, updates will be provided in the form of written reports like this, so that the bulk of the meeting can be dedicated to discussion. Rather than writing an entire document for each meeting, the idea is that group members will be continually creating documentation in the form of Jupyter notebooks and markdown documents as well as GitHub commits, pull requests, and issues. This report will be act as a summary of all those activities to provide some context and a narrative throughline for readers. Now, let’s get to the rest of the updates!&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;img src=&quot;https://med.stanford.edu/gbsc/projects/vapahcs/_jcr_content/sidebar-top/panel_builder_919821219/panel_0/accordion/accordion_content1/image.img.320.high.jpg/joseph-sarro.jpg&quot; /&gt;
+&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Congratulations to &lt;a href=&quot;https://www.linkedin.com/in/joseph-sarro-m-s-ph-d-61422b6b/&quot;&gt;Joe Sarro&lt;/a&gt;&lt;/strong&gt;, who was our outstanding performer of 2022. Joe joined us at the beginning of 2022 and immediately hit the ground running learning a slew of new technologies and science related to whole genome sequencing. He expanded and improved the aggregation and quality control pipeline pioneered by &lt;a href=&quot;https://www.linkedin.com/in/jina-song-55820827/&quot;&gt;Jina Song&lt;/a&gt; and then took the lead in expanding our aggregation capability by an order of magnitude. He’s now putting the finishes touches on a dataset of over 100,000 whole genomes that we are excited to release in early 2023.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;New blog&lt;/strong&gt; Meeting updates will be posted on our new &lt;a href=&quot;https://va-big-data-genomics.github.io/&quot;&gt;blog&lt;/a&gt;, hosted on GitHub Pages. This is it! You are on it! Wow. It uses &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; to generate the site, which means we can write all the content in &lt;strong&gt;markdown&lt;/strong&gt;. This is great because 1) nobody has to learn HTML or Javascript and 2) content generated for the blog can be easily translated to other mediums (PDFs, slide decks, other sites). Check out this &lt;a href=&quot;https://github.com/va-big-data-genomics/va-big-data-genomics.github.io/issues/1&quot;&gt;issue&lt;/a&gt; if you are interested in the trials and tribulations I went through to get it live. It actually wasn’t that bad, but it did reinforce my opinion of Ruby as the worst programming language.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;New post&lt;/strong&gt; To celebrate the launch of our new blog, I wrote a &lt;a href=&quot;https://va-big-data-genomics.github.io/jekyll/update/2023/01/12/infrastructure-lessons-from-pbot.html&quot;&gt;post&lt;/a&gt; examining the physical infrastructure challenges of my local Portland Bureau of Transportation and what lessons from them we can apply to building and maintaining digital infrastructure.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;2022: Exploration&lt;/strong&gt; Last year we spent a lot of time exploring methods for storing, sharing, and using information: GitHub, Jupyter notebooks, markdown, presentation methods.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;2023: Structure&lt;/strong&gt; This year, I want to distill the knowledge we gained last year and start applying structure to it in terms of standard practices and specifications.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Use &lt;a href=&quot;https://github.com/va-big-data-genomics&quot;&gt;GitHub&lt;/a&gt; as our primary information repository&lt;/strong&gt; In the past, we’ve split information between Google Drive and GitHub, and Drive was mostly used for slide decks. In transitioning away from slide deck presentations, I think we can also move away from Drive.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Lessons from Amazon&lt;/strong&gt; The new meeting structure is partly inspired by a 2020, Kristen Bahler article describing what goes on “&lt;a href=&quot;https://money.com/amazon-meetings-no-powerpoint/&quot;&gt;Inside Amazon’s Very Weird (But Very Efficient) Staff Meetings&lt;/a&gt;” at published on money.com. &lt;a href=&quot;https://www.linkedin.com/in/daniel-cotter-45762096/&quot;&gt;Daniel&lt;/a&gt; brought up their meeting style months ago and I was initially skeptical of it, mainly because of the 6 page document, but now I’m more amenable . Here’s some things I liked and didn’t like from the article.&lt;/p&gt;
+
+    &lt;p&gt;What I like:&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Fostering a “culture of writing”. I’m firmly of the view that writing is the best way to capture and distribute knowledge.&lt;/li&gt;
+      &lt;li&gt;Getting more people involved in discussions&lt;/li&gt;
+      &lt;li&gt;No PowerPoint&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;What I didn’t like:&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Writing a 6 page document for single use in a meeting. My goal for documentation is that it becomes integrated with everyone’s daily workflow, rather than being a separate burdensome task.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Turn your camera off&lt;/strong&gt; An &lt;a href=&quot;https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0247655&quot;&gt;article&lt;/a&gt; published in PLOS ONE indicates that turning your camera off might improve communication during teleconferencing. Let’s try it!&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Paul Billing-Ross</name></author><category term="jekyll" /><category term="update" /><summary type="html">Happy new year!</summary></entry><entry><title type="html">Sustaining bioinformatics infrastructure: lessons from PBOT</title><link href="http://localhost:4000/jekyll/update/2023/01/12/infrastructure-lessons-from-pbot.html" rel="alternate" type="text/html" title="Sustaining bioinformatics infrastructure: lessons from PBOT" /><published>2023-01-12T15:10:02-08:00</published><updated>2023-01-12T15:10:02-08:00</updated><id>http://localhost:4000/jekyll/update/2023/01/12/infrastructure-lessons-from-pbot</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2023/01/12/infrastructure-lessons-from-pbot.html">&lt;p&gt;&lt;img src=&quot;https://images.unsplash.com/photo-1590866249433-0310439fdab9?ixlib=rb-4.0.3&amp;amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;amp;auto=format&amp;amp;fit=crop&amp;amp;w=1170&amp;amp;q=80&quot; alt=&quot;Hawthorne Bridge in Portland&quot; /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;font size=&quot;3&quot;&gt;
 Photo of the Hawthorne Bridge in Portland by Ryan Manwiller on &lt;a href=&quot;https://unsplash.com/photos/he5iQ3hgbv8&quot;&gt;Unsplash&lt;/a&gt;.
