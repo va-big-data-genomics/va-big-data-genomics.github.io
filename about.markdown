@@ -4,15 +4,8 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+The VA Big Data Genomics group is a collaboration between the [Stanford Genetics Bioinformatics Service Center](https://med.stanford.edu/gbsc.html), Palo Alto Veterans Institute for Research (PAVIR), and Department of Veterans Affairs. Our group uses cloud technologies to identify and implement effective practices for managing, characterizing, and analyzing large genomic datasets. We are currently focussed on variant calling, aggregation, quality control, and distribution of 100,000+ genomes sequenced as part of the [VA Million Veteran Program](https://www.research.va.gov/mvp).
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+You can find more information at our GitHub:
+[VA Big Data Genomics](https://github.com/va-big-data-genomics)
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
