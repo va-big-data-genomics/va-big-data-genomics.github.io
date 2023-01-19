@@ -12,6 +12,8 @@ categories: jekyll update
 
 Using the Hail version of king proved useful for our ten thousand sample set in data release 1. Jina provided some coherence checks by [showing](https://docs.google.com/presentation/d/11X0ySTsABSgYfcNUc43zN3vIDFIvBPwh7yLFIIJWUps/edit?pli=1#slide=id.g10fc22f8ba8_0_0) that all but one set of sample duplicates were indicated as twins, with the outlier as the highest-ranking first-degree sample. New checks were implemented by Paul and myself for this release. I [presented](https://docs.google.com/presentation/d/1zgPUBy573McIu7BgLnogfq0duimKlmNG9uxy82kAk-8/edit#slide=id.g1b8c720df8c_0_10) a histogram a few months ago showing a clear separation between first degree samples and twins. While the histogram showed this distinction, many of the twins contained a phi score slightly below that which would indicate it as a twin. 
 
+![Fig 1. Histogram showing distinct groups within first degree relationships](assets/2023-01-20/fig1-twins-labelled-first-degree.png)
+
 A possible solution that we set in motion was to add additional variant filtering before performing kinship analysis.  Our strategy for kinship in data release 1 was to perform kinship analysis immediately before population-based QC. By performing kinship analysis after population-based QC, we hypothesized more accurate results would be obtained. This strategy showed promising results, with all duplicates now within the twin phi score range.  However, using this strategy provided an unusually high number of second-degree relationships at 1,838,755,722.
 
 ## New Strategies Moving Forward
