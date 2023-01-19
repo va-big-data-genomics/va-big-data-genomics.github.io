@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "January 2023 Data Release 2 Update"
-date:   2023-01-19 10:10:02 -0800
+date:   2023-01-20 06:10:02 -0800
 author: Joe Sarro
 categories: jekyll update
 ---
