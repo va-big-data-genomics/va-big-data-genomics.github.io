@@ -14,7 +14,7 @@ Using the Hail version of king proved useful for our ten thousand sample set in 
 
 A possible solution that we set in motion was to add additional variant filtering before performing kinship analysis.  Our strategy for kinship in data release 1 was to perform kinship analysis immediately before population-based QC. By performing kinship analysis after population-based QC, we hypothesized more accurate results would be obtained. This strategy showed promising results, with all duplicates now within the twin phi score range.  However, using this strategy provided an unusually high number of second-degree relationships at 1,838,755,722 [(Fig 2)](https://docs.google.com/presentation/d/1HYg9H8I8scEK50UgxU06-hQ-XyC9sc8Hdywlw7HiPWM/edit#slide=id.p).
 
-![Fig 2. Histogram showing twins and 2nd degree relationships post QC](/assets/2023-01-20/fig2-twins-and-2nd-degree-postqc.png)
+![Fig 2. Histogram showing twins and 1st degree relationships post QC](/assets/2023-01-20/fig2-twins-labelled-after-qc.png)
 
 ## New Strategies Moving Forward
 
