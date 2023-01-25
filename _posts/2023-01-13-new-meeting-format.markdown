@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Paul's monthly roundup: January 2023"
+title:  "New year, new meeting format"
 date:   2023-01-13 10:10:02 -0800
 author: Paul Billing-Ross
 categories: jekyll update
