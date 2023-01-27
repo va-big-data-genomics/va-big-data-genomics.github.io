@@ -1,4 +1,10 @@
-# Weekly Briefing for 01/27/2023
+---
+layout: post
+title:  "Data Release 2 Weekly Briefing"
+date:   2023-01-27 06:10:02 -0800
+author: Joe Sarro
+categories: jekyll update
+---
 
 I am currently generating a list of tasks, implemented as issues, that can be found on our git repository. Each task will be populated with a detailed description, a team member assigned, and any perquisites needed to complete the task. A workflow of these tasks is described in Fig. 1. 
 
