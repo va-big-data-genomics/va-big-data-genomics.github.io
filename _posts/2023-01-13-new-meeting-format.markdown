@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "New year, new meeting format"
+title:  "#2 New year, new meeting format"
 date:   2023-01-13 10:10:02 -0800
 author: Paul Billing-Ross
 categories: jekyll update
