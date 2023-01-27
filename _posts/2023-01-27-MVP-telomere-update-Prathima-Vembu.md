@@ -13,7 +13,7 @@ categories: jekyll update
 ## Project Plan 
 Telseq implementation on GCP has 4 main steps <br> 
 
-* [Read length](https://github.com/va-big-data-genomics/mvp-telomere-analysis/blob/main/scripts/read-length-estimation.txt) (r) estimation followed by setting the telomere repeat length (k) for MVP samples. From the TopMed study, for a read length of 150 the telomere repeat length has been set as 12. 
+* [Read length](https://github.com/va-big-data-genomics/mvp-telomere-analysis/blob/main/scripts/read-length-estimation.txt) (r) estimation followed by setting the telomere repeat length (k) for MVP samples. From the [TopMed study](https://www.sciencedirect.com/science/article/pii/S2666979X21001051), for a read length of 150 the telomere repeat length has been set as 12. 
 
 * [Telseq script](https://github.com/va-big-data-genomics/mvp-telomere-analysis/blob/main/scripts/telseq-script.sh) creation : This script will take the converted ```.bam``` and provide it to telseq which then estimates the telomere length which is then stored in the output text file <br>
 
