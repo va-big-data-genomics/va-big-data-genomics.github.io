@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Telomere length estimation for MVP Samples"
+title:  "Telomere length estimation for MVP samples"
 date:   2023-01-27 06:10:02 -0800
 author: Prathima Vembu 
 categories: jekyll update
