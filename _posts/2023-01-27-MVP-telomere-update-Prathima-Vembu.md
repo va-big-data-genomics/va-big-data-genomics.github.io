@@ -46,3 +46,6 @@ Telseq implementation on GCP has 4 main steps <br>
 * Perform quality checks 
 * Scale up for production 
  
+---
+
+**Discuss** this update on our [GitHub](https://github.com/orgs/va-big-data-genomics/discussions/2)!
