@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "#6 Data Release 2 Weekly Briefing 2"
-date:   2023-02-02 10:10:02 -0800
+date:   2023-02-03 10:10:02 -0800
 author: Joe Sarro 
 categories: jekyll update
 ---
@@ -9,14 +9,16 @@ categories: jekyll update
 
 We have received updated kinship results from the Boston team. I have written a notebook to process this table and generate a list of first- and second-degree relationships (currently in a pull request). It was noticed during processing that some kinship comparisons were not grouping into a degree relationship. Looking at the [king manual](https://www.kingrelatedness.com/manual.shtml), the coefficient ranges for first and second degree relationships are ambiguous. The manual includes coefficients between [0.177, 0.354]as first degree, [0.0884, 0.177] as second degree, and [0.0442, 0.0884] as third degree. This creates an overlap for 0.177 in first- and second-degree groupings and 0.0884 in second- and third-degree relationships. Our Rel1 methodology used the following cutoffs:
 
-first degree: > 0.177<br>
-second degree: <=0.177  | >0.0884<br>
+* first degree: > 0.177<br>
+* second degree: <=0.177  | >0.0884<br>
+
 It should be noted that twin samples [ >0.354] are grouped with first degree samples in our dataset.
 
 By changing the cutoffs to:
 
-first degree: >=0.177<br>
-second degree: <0.177 | >= 0.0884<br>
+* first degree: >=0.177<br>
+* second degree: <0.177 | >= 0.0884<br>
+
 All Boston data was able to be grouped.
 
 # X and Y Chromosomes
