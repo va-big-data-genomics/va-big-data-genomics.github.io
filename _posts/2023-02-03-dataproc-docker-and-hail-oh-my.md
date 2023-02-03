@@ -121,3 +121,5 @@ The burden testing code that Jina Song produced uses a combination of these tech
 
 **Aggregation**
 - has lots of methods - some generic (min, max, sum, any, all, etc.), others genomics-specific (call_stats, inbreeding, hardy_weinberg_test, etc.)
+
+**Discuss** this update on our [GitHub](https://github.com/orgs/va-big-data-genomics/discussions/5)!

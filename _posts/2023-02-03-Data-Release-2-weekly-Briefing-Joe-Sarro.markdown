@@ -30,3 +30,5 @@ As noted in [git issue 42](https://github.com/va-big-data-genomics/mvp-wgs-snp-i
 # Release Progress
 
 We are currently tracking Data Release 2 progress through [git](https://github.com/orgs/va-big-data-genomics/projects/4/views/1). A number of the assigned tasks require a final matrix table to proceed. We are hoping to generate this table by the end of next week, as I will be going on leave after that.
+
+**Discuss** this update on our [GitHub](https://github.com/orgs/va-big-data-genomics/discussions/4)!
