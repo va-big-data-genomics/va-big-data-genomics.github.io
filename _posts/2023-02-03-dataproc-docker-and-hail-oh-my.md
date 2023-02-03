@@ -4,7 +4,9 @@ title:  "#7 Dataproc, Docker, and Hail - oh my!"
 date:   2023-02-03 10:11:02 -0800
 author: Daniel Cotter 
 categories: jekyll update
+mathjax: true
 ---
+
 This post is a quick rundown of some computing tools we're using to do genomic analysis.
 
 # Dataproc
