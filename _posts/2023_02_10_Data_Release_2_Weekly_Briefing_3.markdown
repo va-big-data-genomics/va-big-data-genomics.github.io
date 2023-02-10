@@ -1,5 +1,10 @@
-# Data Release 2 Weekly Briefing 3 for 02-10-2023
-
+---
+layout: post
+title:  "#9 Data Release 2 Weekly Briefing 3"
+date:   2023-02-10 10:11:02 -0800
+author: Joe Sarro 
+categories: jekyll update
+---
 ## Current updates 
 
 I have been investigating the issue involving high missingness rates on the X chromosome. I have succeeded in creating a plot that will show missingness per variant for individual chromosomes. Alternative methods outside of Hail may be needed to generate additional plots that show missingness for all chromosomes, as shown in Bryan’s [box and whisker plot]( https://github.com/va-big-data-genomics/mvp-wgs-snp-indel-release/blob/main/SNPs-Indels/data_release_2023/WGS_Release2_Missingness_By_Chromosome.pdf), due to the limited plotting tools build in Hail.
