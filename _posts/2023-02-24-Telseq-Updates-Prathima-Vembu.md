@@ -19,7 +19,7 @@ After the previous discussion regarding the the read group, it was decided that 
 
 - Remove ```<RG>``` all together : Through this [script](https://github.com/va-big-data-genomics/mvp-telomere-analysis/blob/main/scripts/telseq-script-remove-RG.sh), we remove the ```<RG>``` tag from the CRAM files because of which telseq is unable to identify read groups and hence all reads are treated as if they were from the same bam file. <br> 
 
-In order to ensure that the outputs obtained from both the runs are the same, I performed a comparison as shown in this [notebook](https://github.com/va-big-data-genomics/mvp-telomere-analysis/blob/main/scripts/mvp-telomere-study.ipynb). Since the outputs look the same, either flag can be used when scaling up the pipeline for 100 MVP samples.  
+In order to ensure that the outputs obtained from both the runs are the same, I performed a comparison as shown in the first part of this [notebook](https://github.com/va-big-data-genomics/mvp-telomere-analysis/blob/main/scripts/mvp-telomere-analysis.ipynb)). Since the outputs look the same, either flag can be used when scaling up the pipeline for 100 MVP samples.  
 
 ## Estimating cost and runtime for telseq runs 
 ![Image](https://github.com/va-big-data-genomics/mvp-telomere-analysis/blob/main/images/Runtime-comparison-telseq%20copy.png)
