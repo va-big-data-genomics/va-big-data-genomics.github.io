@@ -10,7 +10,7 @@ categories: jekyll update
 ## Compare telseq results from GCP and stanadlone runs   
 - Telomere length estimation has been completed for the subset of 10 CRAMS. We compared the results with the standalone study perfomed by Kruthika as a validation step. The results were the same for all 10 CRAMS between both runs. 
 
-- We also looked at the [runtime taken to run telseq on GCP vs standalone](https://github.com/va-big-data-genomics/mvp-telomere-analysis/blob/main/images/GCPvsSGC_runtime_comparison.png) which was consistent between studies. 
+- We also looked at the [runtime taken to run telseq on GCP vs standalone](https://github.com/va-big-data-genomics/va-big-data-genomics.github.io/blob/main/assets/GCPvsSGC_runtime_comparison.png) which was consistent between studies. 
 
 ## Running telseq with different parameters 
 After the previous discussion regarding the the read group, it was decided that telseq will be run using two different parameters. For both the runs the *telseq.sh* script was altered as required. All other parameters were kept the same when submitting the dsub job. 
@@ -22,10 +22,10 @@ After the previous discussion regarding the the read group, it was decided that 
 In order to ensure that the outputs obtained from both the runs are the same, I performed a comparison as shown in the first part of this [notebook](https://github.com/va-big-data-genomics/mvp-telomere-analysis/blob/main/scripts/mvp-telomere-analysis.ipynb)). Since the outputs look the same, either flag can be used when scaling up the pipeline for 100 MVP samples.  
 
 ## Estimating cost and runtime for telseq runs 
-![Image](https://github.com/va-big-data-genomics/mvp-telomere-analysis/blob/main/images/Runtime-comparison-telseq%20copy.png)
+![Runtime comparison](https://github.com/va-big-data-genomics/va-big-data-genomics.github.io/blob/main/assets/Runtime-comparison-telseq%20copy.png)
 
 
-![Image](https://github.com/va-big-data-genomics/mvp-telomere-analysis/blob/main/images/Cost-estimate-comparison-telseq%20copy.png)
+![Cost estimate](https://github.com/va-big-data-genomics/va-big-data-genomics.github.io/blob/main/assets/Cost-estimate-comparison-telseq%20copy.png)
 
 The runtime and cost are more or less the same for both telseq flags. For the next round, which is to scale up the pipeline for 100 MVP samples we will be using the ```-u``` flag. 
 
