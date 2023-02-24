@@ -65,4 +65,8 @@ gs://PATH/TO/Sn.cram	gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapi
 ## Analysing telseq output 
 Before scaling up the pipeline it would be ideal if we could understand and characterise the telseq output. In this [notebook](https://github.com/va-big-data-genomics/mvp-telomere-analysis/blob/main/scripts/mvp-telomere-analysis.ipynb), I have visualized and represented a few values for the initial 10 samples that we have. I am still working on investigasting other methods of analysis/visualizations. 
 
-Currently all of the methods have been implemented on a set of 10 CRAMS. Once the whole pipeline is ready it will be scaled up to 100 CRAMS 
+Currently all of the methods have been implemented on a set of 10 CRAMS. Once the whole pipeline is ready it will be scaled up to 100 CRAMS
+
+---
+# Discussion
+**Discuss** this update on our [GitHub](https://github.com/orgs/va-big-data-genomics/discussions/8) 
