@@ -7,10 +7,10 @@ categories: jekyll update
 ---
 # Updates on running telseq and developing analysis methods
 
-## Compare telseq results from GCP and stanadlone runs   
+## Compare telseq results from GCP and SCG cluster   
 - Telomere length estimation has been completed for the subset of 10 CRAMS. We compared the results with the standalone study perfomed by Kruthika as a validation step. The results were the same for all 10 CRAMS between both runs. 
 
-- We also looked at the runtime taken to run telseq on GCP vs standalone studies. ![runtime](/assets/GCPvsSGC_runtime_comparison.png)
+- We also looked at the runtime taken to run telseq on GCP vs SCG cluster. ![runtime](/assets/GCPvsSGC_runtime_comparison.png)
 
 ## Running telseq with different parameters 
 After the previous discussion regarding the the read group, it was decided that telseq will be run using two different parameters. For both the runs the *telseq.sh* script was altered as required. All other parameters were kept the same when submitting the dsub job. 
