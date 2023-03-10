@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Intro to Consortia and Biobanks"
+title: "#11 Intro to Consortia and Biobanks"
 date: 2023-03-03 15:00:00 -0500
 author: Jenny Huffman
 categories: genetics studies
