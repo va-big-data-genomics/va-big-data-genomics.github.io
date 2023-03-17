@@ -1,0 +1,76 @@
+---
+layout: post
+title:  "OMOP & FHIR"
+date:   2023-03-17 12:30:00
+author: Daniel Cotter
+categories: jekyll update
+---
+
+Health interoperability is a broad topic that spans many technologies and protocols. Today I will 
+be discussing two of those that are related but different.
+
+# OMOP
+
+OMOP (Observational Medical Outcomes Partnership) is a common data model (CDM) 
+established by the National Institutes of Health (NIH) through the Observational Health Data 
+Sciences and Informatics (OHDSI) collaborative, intended to standardize the structure and 
+content of observational data. Standardization allows data to flow in from disparate sources, 
+such as different electronic medical record systems (EMRs) ? Epic, Cerner, Allscripts, and so on, 
+but also homegrown EMRs such as that of the Veteran?s Administration. In this sense, OMOP is 
+not unlike a clinical data warehouse (CDW) ? it plays the role of a lingua franca among database 
+systems ? although the intent of OMOP is to facilitate studies across multiple clinical cohorts, 
+whereas a CDW would more likely be used for operational reporting.
+
+Electronic medical records (EMRs) are intended to support clinical practice at the point of care 
+and are not necessarily structured in such a way as to facilitate analysis. Two ways in which they 
+do not always support analysis are the database structure and the terminologies used. The 
+database structure of a transactional system (i.e., a system in which the unit of information is a 
+single record, be that a patient, a visit, an order, or something else) is fundamentally different 
+from that of an analytical system, in which the unit of information is many records, which will be 
+used in an aggregation such as counting or summing.
+
+Another noteworthy feature of OMOP is that the data structures in OMOP are delineated at the 
+logical level, and their physical implementation, i.e., on a specific database platform, is left to 
+the user. This is not uncommon when the physical implementation of the data model is 
+expected to take place on a variety of different database systems (for a private-industry 
+example, take IBM?s Unified Data Model for Healthcare), but it contrasts with most EMRs, which 
+are intended to run on one and only one platform (such as Allscripts running only on Windows).
+
+Stanford Medicine began implementing OMOP in 2019 (arxiv manuscript) in their STARR system 
+(?STAnford medicine Research data Repository,? a bit of a reach as acronyms go, but easier to 
+say than SMRDR), and it has since been used in several papers. The data is anonymized to 
+preserve patient privacy and is in a separate database system from that used by clinicians.
+
+# FHIR
+FHIR (?Fast Health Interoperability Resources?) is a data exchange standard for that specifies a 
+set of application protocols, messaging formats, types of resources, and rules for use. The 
+company that developed it, Health Level Seven, developed the industry-standard protocols HL7, 
+whose various versions have been used for thirty years for exchanging health information 
+between clinical systems, albeit in a terse, cryptic, closed-standard way that requires specialized 
+training to interpret, configure, or troubleshoot.
+
+FHIR is a radical break from that paradigm ? the emphasis with FHIR is on openness and 
+interoperability not just among clinical systems but with the broader technological landscape 
+and the skills of the engineers who make the systems work. For application protocols, it adopts 
+the ubiquitous HTTP (Hypertext Transfer Protocol) for data transfer and high-level application 
+control and REST (Representative State Transfer) for more granular operations on the payload of 
+the request, such as the familiar create / read / update / delete (CRUD) operations. For 
+messaging formats, FHIR uses the familiar JSON (JavaScript Object Notation) and XML 
+(eXtensible Markup Language) formats, as well as the less common RDF (Resource Description 
+Framework) format. For types of resources, FHIR specifies over one hundred possible types, 
+ranging from the clinical (Patient, Observation, Medication) to the financial (Claim, Coverage, 
+PaymentNotice) to the ontological (CodeSystem) and technical (Bundle). These resource types 
+are generic templates to be filled in with the specifics as chosen by the implementer.
+
+FHIR also uses open standards for clinical information, such as SNOMED-CT (Systematic 
+Nomenclature of Medicine), ICD (International Classification of Disease), LOINC (Logical 
+Observation Identifiers Names and Codes), and so on. For usage rules, FHIR allows users to 
+specify profiles that restrict the specific content of the entities being exchanged, for example, 
+limiting observations to those recognized by LOINC (Logical Observation Identifiers Names and 
+Codes).
+
+# Summary
+FHIR and OMOP overlap in that they both provide ways of representing typical entities 
+encountered in clinical practice, but they differ in their intents. OMOP is not a standard for data 
+exchange among clinical systems, and FHIR is not a logical database model, but they are 
+sometimes coerced into each other?s roles, with mixed results.
