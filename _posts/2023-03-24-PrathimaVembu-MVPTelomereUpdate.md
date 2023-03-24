@@ -15,11 +15,11 @@ Compared the runtime and cost incurred when running telseq on different machine 
 
 
 **Figure 1 - Per unit runtime across machine types:** <br>
-![](/assets/Per_unit_runtime_across_machine_types.png)
+![](/assets/2023-03-24-PV/Per_unit_runtime_across_machine_types.png)
 
 
 **Figure 2 - Per unit cost across machine types:** <br>
-![](/assets/Per_unit_cost_across_machine_types.png)
+![](/assets/2023-03-24-PV/Per_unit_cost_across_machine_types.png)
 
 The cost incurred per unit run is the relatively low for n1-standard1 although the runtime is higher than other machine types. For the next round of telseq on 100 samples the n1-standard1 machine type was used. 
 
