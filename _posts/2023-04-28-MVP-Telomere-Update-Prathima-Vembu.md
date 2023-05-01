@@ -11,3 +11,7 @@ categories: jekyll update
 - Latest updates for telseq analysis of ~79k MVP samples can be found [here](https://github.com/va-big-data-genomics/mvp-telomere-analysis/blob/main/analysis-pipeline/85K-MVP-telseq-analysis-pipeline.ipynb) 
 
 - All the figures can be found [here](https://github.com/va-big-data-genomics/mvp-telomere-analysis/tree/main/analysis-pipeline/85K-MVP-telseq-analysis-pipeline_files/figure-html) 
+
+
+# Discuss
+Join the discussion on our <ins>[GitHub](https://github.com/orgs/va-big-data-genomics/discussions/21)</ins>!
