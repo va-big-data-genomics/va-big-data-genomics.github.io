@@ -38,20 +38,13 @@ graph TD;
     C-->D;
 </div>
 
-```{mermaid}
+<div class="mermaid">
     sequenceDiagram
     parse[parse-study-participants] ->> dbquery[db-query]: QueryRequest
     dbquery ->> dbtriggers[db-triggers]: QueryResponse
     dbtriggers -) dbquery: QueryRequest
-```
+</div>
 
-```mermaid
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
-```
 
 ### Order of database queries
 
