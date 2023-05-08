@@ -28,6 +28,14 @@ Reference: https://dev.to/mkaranasou/python-yaml-configuration-with-environment-
     dbtriggers -) dbquery: QueryRequest
 ```
 
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
+
 ### Order of database queries
 
 - Create study node
