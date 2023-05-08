@@ -27,7 +27,9 @@ layout: default
       {%- if page.mathjax -%}
         {%- include mathjax.html -%}
       {%- endif -%}
-
+      {% if page.mermaid %}
+        {% include mermaid.html %}
+      {% endif %}
         
   </header>
 

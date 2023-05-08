@@ -30,6 +30,14 @@ graph LR
     B-->D(Sad);
 </div>
 
+<div class="mermaid">
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+</div>
+
 ```{mermaid}
     sequenceDiagram
     parse[parse-study-participants] ->> dbquery[db-query]: QueryRequest
