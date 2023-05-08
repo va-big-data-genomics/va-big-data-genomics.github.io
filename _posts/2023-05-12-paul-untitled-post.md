@@ -4,6 +4,8 @@ title:  "# (n) pbilling untitled"
 date:   2023-05-8 10:10:00 -0800
 author: Paul Billing-Ross 
 categories: jekyll update
+tags: [Mermaid]
+mermaid: true
 ---
 
 # Modelling studies in Neo4j
@@ -20,6 +22,13 @@ A primary motivation for us to model workflow data as graphs was to capture the 
 Reference: https://dev.to/mkaranasou/python-yaml-configuration-with-environment-variables-parsing-2ha6
 
 ### New model architecture
+
+<div class="mermaid">
+graph LR
+    A --- B
+    B-->C[Happy]
+    B-->D(Sad);
+</div>
 
 ```{mermaid}
     sequenceDiagram
