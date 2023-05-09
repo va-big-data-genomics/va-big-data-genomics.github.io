@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "# (n) pbilling untitled"
-date:   2023-05-8 10:10:00 -0800
+date:   2023-05-12 10:10:00 -0800
 author: Paul Billing-Ross 
 categories: jekyll update
 tags: [Mermaid]
@@ -21,36 +21,88 @@ A primary motivation for us to model workflow data as graphs was to capture the 
 
 Reference: https://dev.to/mkaranasou/python-yaml-configuration-with-environment-variables-parsing-2ha6
 
-### New model architecture
+## New model architecture
+
+A cloud function named "add-study-participants" will listen for new objects added to a "trellis-studies" bucket. When a new object named "*-trellis-study.yaml" is added, it will read the study configuration file in order to add the study information to the Trellis Neo4j metadata store. When users want to add a study to the database they will upload the YAML file as well as a CSV file with the relevant metadata for each study participant. This will include a "sample" column which will be used to map the (:Participant) nodes to their corresponding (:Sample) and (:Person) nodes.
+
+Architecture diagram of relevant Trellis resources:
 
 <div class="mermaid">
-graph LR
-    A --- B
-    B-->C[Happy]
-    B-->D(Sad);
+    graph TD
+        gcs(Cloud Storage) -- CloudEvent --> add-study-participants
+        add-study-participants -- QueryRequest --> db-query
+        db-query -- QueryResponse --> db-triggers
+        db-triggers -- QueryRequest --> db-query
+        db-query -- Cypher --> neo4j((Neo4j DB))
+        neo4j --> neo4j.Result --> db-query
 </div>
 
-<div class="mermaid">
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
-</div>
+Example study configuration object:
+
+```
+--- !Study
+required_fields:
+    name: WgsTelseqPilot
+    type: Pilot
+    lead: "Prathima Vembu"
+--- !Participants
+csv_path: telseq_results.csv
+required_fields:
+    sample: 0
+```
+
+I want to be able to populate the (:Study) and (:Participant) nodes with metadata fields that are custom to each study, while still using (TODO: ADD LINK READTHEDOCS) parameterized queries, so instead of using a predefined query, the function will dynamically generate a parameterized query similar to as is done by the create-blob-node function (TODO: ADD LINK TO READTHEDOCS). All queries will be processed by the Trellis `db-query` function.
+
+First, it will send a query to create study node that will look like the following.
+
+```
+MERGE (study:Study {name: $name})
+SET study.notes = $notes, 
+    study.type = $type, 
+    study.lead = $lead 
+RETURN study
+```
+
+Then, it will send a set of queries to create the participant nodes. If I am understanding the <ins>[Pub/Sub documentation](https://cloud.google.com/pubsub/quotas)</ins> correctly, the maximum size of a Pub/Sub message is 10MB. Because we want this function to be scalable, the function will split the data from the CSV into multiple query request messages if it exceeds a predefined threshold (e.g. 9MB).
+
+Example query to add study participants to database:
+
+```
+UNWIND $data AS participant_entry
+MERGE (participant:Participant {
+        study: $studyName,
+        sample: participant_entry.sample
+})
+SET participant.telomereLengthEstimate = toFloat(participant_entry.lengthEstimate
+RETURN len(participant)
+```
+
+The result of the participants query will trigger a query request to connect the (:Participant) nodes to their corresponding (:Sample) and (:Person) nodes, using the "sample" field. 
 
 <div class="mermaid">
     sequenceDiagram
-    parse[parse-study-participants] ->> dbquery[db-query]: QueryRequest
-    dbquery ->> dbtriggers[db-triggers]: QueryResponse
-    dbtriggers -) dbquery: QueryRequest
+    add-study-participants ->> db-query: QueryRequest: createStudyNode
+    db-query ->> db-triggers: QueryResponse: createStudyNode
+    add-study-participants ->> db-query: QueryRequest: createParticipantNodes
+    db-query ->> db-triggers: QueryResponse: createParticipantNodes
+    db-triggers ->> db-query: QueryRequest: relateParticipantsToSamples
+    db-query ->> db-triggers: QueryResponse: relateParticipantsToSamples
+    db-triggers ->> db-query: QueryRequest: addStudyParticipantCount
 </div>
 
+## Implementation roadmap
+- Create a GitHub project
+- Create an `add-study-participants` Trellis function
+- Write queries
+  - createStudyNode
+  - createParticipantNodes
+  - relateParticipantsToSamples
+  - addStudyParticipantCount
+- Write methods to dynamically generate queries
+- Add classes to trellisdata so can read from YAML
+  - Study
+  - Participant
 
-### Order of database queries
-
-- Create study node
-- Create participant nodes
-- Relate participant nodes to study node & update study node with participant count
 
 # Philosophy for releasing data
 
