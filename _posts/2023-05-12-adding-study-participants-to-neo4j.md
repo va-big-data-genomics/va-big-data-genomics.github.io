@@ -88,7 +88,7 @@ RETURN len(participant)
 ```
 
 ### Relate Participant relationships
-The result of the participants query will trigger a query request to connect the `Participant` nodes to their corresponding `Sample` and `Person` nodes, using the "sample" field. 
+The result of the participants query will trigger (2) sets of query requests. The first to connect the `Participant` nodes to the `Study` and the second to connect `Participant` nodes to their corresponding `Sample` and `Person` nodes, using the "sample" field. 
 
 <div class="mermaid">
     sequenceDiagram
@@ -96,6 +96,8 @@ The result of the participants query will trigger a query request to connect the
     db-query ->> db-triggers: QueryResponse: createStudyNode
     add-study-participants ->> db-query: QueryRequest: createParticipantNodes
     db-query ->> db-triggers: QueryResponse: createParticipantNodes
+    db-triggers ->> db-query: QueryRequest: relateParticipantsToStudy
+    db-query ->> db-triggers: QueryResponse: relateParticipantsToStudy
     db-triggers ->> db-query: QueryRequest: relateParticipantsToSamples
     db-query ->> db-triggers: QueryResponse: relateParticipantsToSamples
     db-triggers ->> db-query: QueryRequest: addStudyParticipantCount
@@ -170,7 +172,7 @@ We see 99.9% overlap between Data Release 1 & 2. This difference could be the re
 
 ## WGS Telseq Pilot
 
-Almost 90% of the samples in the Telseq pilot are also included in Data Release 2.
+Almost 90% of the samples in the Telseq pilot are also included in Data Release 2. Lists of Telseq analyzed samples that overlap with Data Release 1 &2 are available in the telomere collaboration bucket.
 
 | Description | Sample count |
 | ----------- | ------------ |
@@ -193,11 +195,11 @@ As we start to get a handle on the technical challenges of releasing large datas
 - What kinds of data should we deliver?
 - Should different kinds of data be delivered separately or together?
 
-## Style guide: study naming conventions
+## Brief thought: naming conventions
 
 Instead of naming things based on the number of elements, I recommend naming things based on iterations (e.g. "wgs-data-release-1", "telomere-pilot", "telomere-study-2"), starting from (1), where a "pilot" indicates that the purpose of the study is research and development rather than releasing data to MVP researchers.
 
 A core tenet of "big data" is scalability and a resource that is named according to how many samples it is designed for is inherently **not** scalable. Every production resource you create should be designed to scale down to 1 and scale up to 1 million. If not, then you are just going to have to remake it every time we want to add more samples, which is always.
 
 # Discuss
-Join the discussion on our <ins>[GitHub](https://github.com/orgs/va-big-data-genomics/discussions/19)</ins>!
+Join the discussion on our <ins>[GitHub](https://github.com/orgs/va-big-data-genomics/discussions/23)</ins>!
