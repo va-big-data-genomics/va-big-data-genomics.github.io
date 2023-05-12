@@ -195,6 +195,8 @@ As we start to get a handle on the technical challenges of releasing large datas
 - What kinds of data should we deliver?
 - Should different kinds of data be delivered separately or together?
 
+This is also something the folks at All of Us are thinking about and you can find their Data Roadmap here: [https://www.researchallofus.org/data-tools/data-sources/](https://www.researchallofus.org/data-tools/data-sources/).
+
 ## Brief thought: naming conventions
 
 Instead of naming things based on the number of elements, I recommend naming things based on iterations (e.g. "wgs-data-release-1", "telomere-pilot", "telomere-study-2"), starting from (1), where a "pilot" indicates that the purpose of the study is research and development rather than releasing data to MVP researchers.
