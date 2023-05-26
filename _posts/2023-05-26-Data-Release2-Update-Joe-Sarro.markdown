@@ -1,5 +1,10 @@
-# #20 Data Release 2 Status Update
-May 26, 2023 • Joe Sarro
+---
+layout: post
+title:  "#21 Data Release 2 Status Update"
+date:   2023-05-26 10:10:00 -0800
+author: Joe Sarro 
+categories: jekyll update
+---
 
 ## Where are we?
 Current data release progress can be tracked on [our board](https://github.com/orgs/va-big-data-genomics/projects/4/views/1?filterQuery=s).
@@ -32,3 +37,6 @@ Current data release progress can be tracked on [our board](https://github.com/o
  ## Data formatting for slide deck
  
  I am currently gathering all the data we have generated into a slide deck much like the one Jina had [presented](https://drive.google.com/file/d/1K2RFd1jgjBjV91J_8YTYF01_Pu8K_vKK/view?pli=1) for Data Release 1. The current slides can be found [here](https://docs.google.com/presentation/d/1_Juq0AJYsRBIRHocOnLeeTBSx6ejAOHqC1hj4d1UBZY/edit#slide=id.g245fd3f6fbc_0_2287).
+
+# Discuss
+Join the discussion on our <ins>[GitHub](https://github.com/orgs/va-big-data-genomics/discussions/25)</ins>!
