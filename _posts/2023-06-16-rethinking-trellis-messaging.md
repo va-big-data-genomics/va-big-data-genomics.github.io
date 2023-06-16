@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "#24 (Re)thinking Trellis messaging"
-date:   2023-06-016 10:00:00 -0800
+date:   2023-06-16 10:00:00 -0800
 author: Paul Billing-Ross
 categories: jekyll update
 tags: [Mermaid]
