@@ -13,8 +13,8 @@ Trellis is a distributed system of serverless functions, operating independently
 
 <div class="mermaid">
     graph TD
-        gcs[Cloud Storage] --> create{{create-blob-node}}
-        create --> db-query{{db-query}}
+        gcs[Cloud Storage] --> create-blob-node{{create-blob-node}}
+        create-blob-node --> db-query{{db-query}}
         db-query --> check-triggers{{check-triggers}}
         check-triggers --> db-query
         db-query <--> neo4j[(Neo4j database)]
