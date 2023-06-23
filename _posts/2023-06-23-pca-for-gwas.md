@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "##25 PCA for GWAS"
+title:  "#25 PCA for GWAS"
 date:   2023-06-23 10:00:00 -0800
 author: Joe Sarro
 categories: jekyll update
