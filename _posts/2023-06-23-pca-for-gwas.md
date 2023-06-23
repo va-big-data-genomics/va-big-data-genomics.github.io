@@ -31,7 +31,21 @@ The methods for ancestry prediction in Data Release 1 incorporated a pipeline th
 
 The preceding methods were implemented and 160883 variants remained. PCA was then run on the filtered dataset with success. Steps were then duplicated for each ancestry group to generate a PCs for all groups, i.e., the matrix table was filtered to include only people of Asian descent and then filtered with the 5 steps above.
 
-With PCs now at hand, I was able to begin testing Jina's height GWAS pipeline. Early results did not show high correlation between theoretical and observed distributions when generating a QQ plot ([Fig. 1](https://docs.google.com/presentation/d/12UwoONpU9ay4_eP-ZmrccsET9cJw_8rpy4BM9wn_R7Y/edit#slide=id.g2543810223e_0_115)). While we are still waiting on age and BMI covariate data, the possibility that my PCA pipeline may need to be revised also exists. While the QQ plot is discouraging, a scatterplot ([Fig. 2](https://docs.google.com/presentation/d/12UwoONpU9ay4_eP-ZmrccsET9cJw_8rpy4BM9wn_R7Y/edit#slide=id.g2543810223e_0_100)) clustering ethnicities based on the first two PCs looks encouraging, and indicates the PCA methodolgy may be valid. A comparison to Jina's methods (below) will be made when complete. Additionally, a QQ plot within only Asian populations shows a much better correlation ([Fig. 3](https://docs.google.com/presentation/d/12UwoONpU9ay4_eP-ZmrccsET9cJw_8rpy4BM9wn_R7Y/edit#slide=id.g2543810223e_0_105)), even without the missing covariates. Further investigation is also being done to determine the results of the Manhattan plot ([Fig. 4](https://docs.google.com/presentation/d/12UwoONpU9ay4_eP-ZmrccsET9cJw_8rpy4BM9wn_R7Y/edit#slide=id.g2543810223e_0_110)). While the top genes found in Data Release 1 where primarily found on chromosome 7, many of the top results currently found in Rel 2 are on chromosome 20. There is one overlap for top 10 sites at Pos chr20:35437976.
+With PCs now at hand, I was able to begin testing Jina's height GWAS pipeline. Early results did not show high correlation between theoretical and observed distributions when generating a QQ plot (Fig. 1).
+
+![Fig. 1](/assets/2023-06-23/fig1.png) 
+
+While we are still waiting on age and BMI covariate data, the possibility that my PCA pipeline may need to be revised also exists. While the QQ plot is discouraging, a scatterplot clustering ethnicities based on the first two PCs looks encouraging, and indicates the PCA methodolgy may be valid (Fig. 2). 
+
+![Fig. 2](/assets/2023-06-23/fig2.png)
+
+A comparison to Jina's methods (below) will be made when complete. Additionally, a QQ plot within only Asian populations shows a much better correlation, even without the missing covariates (Fig. 3).
+
+![Fig 3.](/assets/2023-06-23/fig3.png)
+
+Further investigation is also being done to determine the results of the Manhattan plot (Fig. 4). While the top genes found in Data Release 1 where primarily found on chromosome 7, many of the top results currently found in Rel 2 are on chromosome 20. There is one overlap for top 10 sites at Pos chr20:35437976.
+
+![Fig. 4](/assets/2023-06-23/fig4.png)
 
 ### Alternate filtering methods for PCA
 
