@@ -60,4 +60,4 @@ The resulting filters produced a matrix table with roughly 1.5 million variants 
 
 ### Discuss
 
-Join the discussion on our [GutHub](https://github.com/orgs/va-big-data-genomics/discussions/28)
+Join the discussion on our [GitHub](https://github.com/orgs/va-big-data-genomics/discussions/28)
