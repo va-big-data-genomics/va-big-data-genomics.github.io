@@ -10,7 +10,7 @@ mermaid: true
 
 ### Background 
 
-Now that we have finalized our matrix table, The final step before releasing our second data release is validating our data with GWAS analysis based on height. In my [last blog](), I mentioned that we were missing some data needed to run GWAS. These included some covariate data, that we are currently waiting for from the VA, and principle components (PCs) generated from PCA analysis. For Data Release 1, PCs were provided by the Boston team. To achieve a more streamlined and automated release process, we set out to implement a PCA pipeline for our final matrix table. 
+Now that we have finalized our matrix table, the final step before releasing our second data release is validating our data with GWAS analysis based on height. In my [last blog](https://va-big-data-genomics.github.io/jekyll/update/2023/05/26/Data-Release2-Update-Joe-Sarro.html) I mentioned that we were missing some data needed to run GWAS. These included some covariate data, that we are currently waiting for from the VA, and principle components (PCs) generated from PCA analysis. For Data Release 1, PCs were provided by the Boston team. To achieve a more streamlined and automated release process, we set out to implement a PCA pipeline for our final matrix table. 
 
 
 ### Initial PCA testing for Data Release 1
@@ -19,7 +19,7 @@ Although the PC's used in GWAS analysis for Data Release 1 were not generated in
 
 ### Establising a PCA pipeline for GWAS
 
-Over the past few weeks I have worked to develop a PCA pipeline for GWAS, based on the information I learned in Jina's slide deck. I began by testing the Hail function hwe_normalized_pca to get an idea of how it worked and how to best apply the output to our GWAS methods. In the first test, I tried running PCA on our final matrix table. This resulted in an error that is documented [here](https://discuss.hail.is/t/py4jerror-an-error-occurred-while-calling-o1-pypersisttable-when-running-hl-hwe-normalized-pca/3414/3). The Hail team suggested filtering our matrix table for common variants, indicating that between 5,000-10,000 variants might be ideal for running the function. 
+Over the past few weeks I have worked to develop a PCA pipeline for GWAS, based on the information I learned in Jina's slide deck. I began by testing the Hail function hwe_normalized_pca to get an idea of how it worked and how to best apply the output to our GWAS methods. In the first test I tried running PCA on our final matrix table. This resulted in an error that is documented [here](https://discuss.hail.is/t/py4jerror-an-error-occurred-while-calling-o1-pypersisttable-when-running-hl-hwe-normalized-pca/3414/3). The Hail team suggested filtering our matrix table for common variants, indicating that between 5,000-10,000 variants might be ideal for running the function. 
 
 The methods for ancestry prediction in Data Release 1 incorporated a pipeline that filtered for common variants and then further filtered variants. The steps involved in this pipeline are as follows.
 
