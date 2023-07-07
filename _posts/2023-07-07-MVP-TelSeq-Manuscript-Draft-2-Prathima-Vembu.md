@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "#26 Manuscript - MVP telomere pilot study "
+title:  "#26 MVP telomere manuscript - Draft 2 "
 date:   2023-07-07 10:10:02 -0800
 author: Prathima Vembu 
 categories: jekyll update
