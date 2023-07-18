@@ -9,7 +9,7 @@ mermaid: true
 ---
 
 ## Background
-Trellis is a distributed system of serverless functions, operating independently to automate variant calling and quality control procedures. Because each function is independent, a robust messaging system is essential to keep functions synchronized with each other and ensure the health of the system as is is developed.
+[Trellis](https://www.nature.com/articles/s41598-021-02569-5) is a distributed system of serverless functions, operating independently to automate variant calling and quality control procedures. Because each function is independent, a robust messaging system is essential to keep functions synchronized with each other and ensure the health of the system as is is developed.
 
 <div class="mermaid">
     graph TD
