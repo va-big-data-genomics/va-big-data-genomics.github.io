@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "#27 Burden testing progress update 2"
-date:   2023-07-21 12:25:00 -0800
+date:   2023-07-21 12:25:00 -0700
 author: Daniel Cotter 
 categories: jekyll update
 ---
