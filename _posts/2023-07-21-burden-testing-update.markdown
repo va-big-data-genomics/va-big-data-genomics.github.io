@@ -57,10 +57,30 @@ The algorithm was still taking a long time to run, so I moved all the row-filter
 
 Python:
 ```
-genomes_mt = genomes_mt.filter_rows( hl.is_missing( genomes_mt.gene ), keep=False )
-genomes_mt = genomes_mt.select_rows( genomes_mt.gene )
-genomes_mt = genomes_mt.select_cols( genomes_mt.super_pop )
-genomes_mt = genomes_mt.select_entries( genomes_mt.GT )
+>>> genomes_mt = genomes_mt.filter_rows( hl.is_missing( genomes_mt.gene ), keep=False )
+>>> genomes_mt = genomes_mt.select_rows( genomes_mt.gene )
+>>> genomes_mt = genomes_mt.select_cols( genomes_mt.super_pop )
+>>> genomes_mt = genomes_mt.select_entries( genomes_mt.GT )
+>>> genome_mt.describe()
+----------------------------------------
+Global fields:
+
+----------------------------------------
+Column fields:
+    's': str
+    'super_pop': str
+----------------------------------------
+Row fields:
+    'locus': locus<grch38>
+    'alleles': array<str>
+    'gene': array<str>
+----------------------------------------
+Entry fields:
+    'GT': call
+----------------------------------------
+Column key: ['s']
+Row key: [['locus', 'alleles']]
+----------------------------------------
 ```
 
 Shell:
@@ -70,5 +90,43 @@ Shell:
 ```
 
 ### Results
+I ran the algorithm again on the 10k dataset, with the following results:
 
+| gene     |     n |    sum_x | y_transpose_x |      beta | standard_error |    t_stat |  p_value |
+|----------|-------|----------|---------------|-----------|----------------|-----------|----------|
+| "CPNE6"  | 10371 | 3.50e+01 |      2.50e+03 |  1.99e+00 |       4.55e-01 |  4.36e+00 | 1.29e-05 |
+| "ADAP1"  | 10371 | 1.44e+02 |      9.91e+03 | -9.61e-01 |       2.24e-01 | -4.29e+00 | 1.78e-05 |
+| "CYTH4"  | 10371 | 4.00e+00 |      3.02e+02 |  5.59e+00 |       1.34e+00 |  4.16e+00 | 3.17e-05 |
+| "DEPDC4" | 10371 | 2.30e+01 |      1.55e+03 | -2.33e+00 |       5.61e-01 | -4.16e+00 | 3.23e-05 |
+| "FBXO22" | 10371 | 1.00e+00 |      8.07e+01 |  1.08e+01 |       2.69e+00 |  4.01e+00 | 6.03e-05 |
+| "CUL4A"  | 10371 | 1.30e+01 |      8.67e+02 | -2.89e+00 |       7.46e-01 | -3.87e+00 | 1.08e-04 |
+| "ECHDC3" | 10371 | 3.00e+00 |      1.92e+02 | -5.94e+00 |       1.55e+00 | -3.83e+00 | 1.29e-04 |
+| "ASPH"   | 10371 | 1.50e+01 |      1.00e+03 | -2.60e+00 |       6.95e-01 | -3.74e+00 | 1.82e-04 |
+| "MFN1"   | 10371 | 2.00e+00 |      1.26e+02 | -7.11e+00 |       1.90e+00 | -3.74e+00 | 1.86e-04 |
+| "GPR78"  | 10371 | 4.30e+01 |      2.93e+03 | -1.52e+00 |       4.11e-01 | -3.71e+00 | 2.09e-04 |
 
+These do not match Genebass's "[pLoF gene burden associations with height male custom](https://app.genebass.org/gene/undefined/phenotype/continuous-height_male_custom-males--custom?resultIndex=gene-manhattan&resultLayout=full)". They also do not match Bryan's top ten:
+
+| ID                          | LOG10P     |
+| --------------------------- | ---------- |
+| NOC2L.Mask1.0.01            | 2.79E-07   |
+| HSPA9.Mask1.0.01            | 4.39E-05   |
+| SIRPD.Mask1.singleton       | 6.55E-05   |
+| KIAA1549L.Mask1.singleton   | 8.63E-05   |
+| SYTL2.Mask1.0.01            | 9.26E-05   |
+| POLA2.Mask1.0.01            | 0.00010398 |
+| DTX3L.Mask1.0.01            | 0.00011631 |
+| DSPP.Mask1.singleton        | 0.00013719 |
+| FGGY.Mask1.0.01             | 0.00014164 |
+| PPY.Mask1.0.01              | 0.00015847 |
+
+### Next steps
+- Rerun tests by ethnicity
+- Characterize test results:
+    - Produce QQ plots for each group
+    - Count of how many individuals had a non-zero amount of variants for that gene
+    - Distribution of variant counts per gene- Compare results with Bryan's and genebass's
+- Inline PCA computation based on Broad's RV analysis notebook
+- Run test on full dataset (100k + 10k)
+
+[Discuss](https://github.com/orgs/va-big-data-genomics/discussions/27)
