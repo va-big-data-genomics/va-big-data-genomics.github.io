@@ -129,4 +129,4 @@ These do not match Genebass's "[pLoF gene burden associations with height male c
 - Inline PCA computation based on Broad's RV analysis notebook
 - Run test on full dataset (100k + 10k)
 
-[Discuss](https://github.com/orgs/va-big-data-genomics/discussions/27)
+[Discuss](https://github.com/orgs/va-big-data-genomics/discussions/29)
