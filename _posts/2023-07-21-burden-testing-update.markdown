@@ -121,12 +121,14 @@ These do not match Genebass's "[pLoF gene burden associations with height male c
 | PPY.Mask1.0.01              | 0.00015847 |
 
 ### Next steps
-- Rerun tests by ethnicity
+- Use filtered datasets listed in Joe's YAML file instead of doing the filtering myself
+- Inline PCA computation based on Broad's rare-variant analysis notebook and make sure it works on DR1 dataset
+- Put code on GitHub
+- Run burden tests on DR2 dataset (~105k genomes) by ethnicity
 - Characterize test results:
     - Produce QQ plots for each group
-    - Count of how many individuals had a non-zero amount of variants for that gene
-    - Distribution of variant counts per gene- Compare results with Bryan's and genebass's
-- Inline PCA computation based on Broad's RV analysis notebook
-- Run test on full dataset (100k + 10k)
+    - Count how many individuals had a non-zero amount of variants for each gene
+    - Produce distribution of variant counts per gene
+- Compare results with Bryan's and genebass's (need Bryan's code and list of pLoF variants)
 
 [Discuss](https://github.com/orgs/va-big-data-genomics/discussions/29)
