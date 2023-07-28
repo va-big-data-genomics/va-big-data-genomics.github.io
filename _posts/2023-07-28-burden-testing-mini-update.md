@@ -22,6 +22,8 @@ Since last time, I reran the burden test on the entire DR2 population and all su
 | "GHSR"                    | 72152 | 1.00e+01 | 6.62e+02      | -3.07e+00 | 8.31e-01       | -3.69e+00 | 2.25e-04 | NA              |
 | "ZNF385C"                 | 72152 | 1.90e+01 | 1.36e+03      | 2.21e+00  | 6.03e-01       | 3.66e+00  | 2.54e-04 | 15163           |
 
+![European QQ plot](/assets/EUR-qq-plot.png)
+
 ### Hispanic subpopulation
 | gene        | n    | sum_x    | y_transpose_x | beta      | standard_error | t_stat    | p_value  |
 |-------------|------|----------|---------------|-----------|----------------|-----------|----------|
@@ -35,6 +37,8 @@ Since last time, I reran the burden test on the entire DR2 population and all su
 | "LINC02210" | 5511 | 2.50e+01 | 1.73e+03      | 1.90e+00  | 5.27e-01       | 3.61e+00  | 3.04e-04 |
 | "SNN"       | 5511 | 1.06e+02 | 7.09e+03      | -9.23e-01 | 2.62e-01       | -3.53e+00 | 4.23e-04 |
 | "BCL11A"    | 5511 | 3.90e+01 | 2.71e+03      | 1.46e+00  | 4.22e-01       | 3.45e+00  | 5.67e-04 |
+
+![Hispanic QQ plot](/assets/HIS-qq-plot.png)
 
 ### Asian subpopulation
 | gene       | n   | sum_x    | y_transpose_x | beta      | standard_error | t_stat  | p_value  |
@@ -50,6 +54,8 @@ Since last time, I reran the burden test on the entire DR2 population and all su
 | "MMP19"    | 674 | 4.00e+00 | 2.83e+02      | 4.47e+00  | 1.27e+00       | .52e+00 | 4.53e-04 |
 | "MUC5AC"   | 674 | 2.00e+00 | 1.44e+02      | 6.30e+00  | 1.80e+00       | .49e+00 | 5.07e-04 |
 
+![Asian QQ plot](/assets/ASN-qq-plot.png)
+
 ### African subpopulation
 | gene        | n     | sum_x    | y_transpose_x | beta      | standard_error | t_stat    | p_value  |
 |-------------|-------|----------|---------------|-----------|----------------|-----------|----------|
@@ -63,6 +69,8 @@ Since last time, I reran the burden test on the entire DR2 population and all su
 | "CCNP"      | 24528 | 2.70e+01 | 1.92e+03      | 1.91e+00  | 5.33e-01       | 3.58e+00  | 3.41e-04 |
 | "ZNF692"    | 24528 | 8.80e+01 | 6.21e+03      | 1.06e+00  | 2.95e-01       | 3.58e+00  | 3.50e-04 |
 | "TRMT1L"    | 24528 | 1.30e+01 | 9.47e+02      | 2.70e+00  | 7.67e-01       | 3.52e+00  | 4.37e-04 |
+
+![African QQ plot](/assets/AFR-qq-plot.png)
 
 ### Entire population
 | gene     | n      | sum_x    | y_transpose_x | beta      | standard_error | t_stat    | p_value  |
@@ -78,3 +86,4 @@ Since last time, I reran the burden test on the entire DR2 population and all su
 | "GABBR1" | 103972 | 6.56e+02 | 4.50e+04      | -6.35e-01 | 1.05e-01       | -6.03e+00 | 1.62e-09 |
 | "RHEX"   | 103972 | 6.49e+02 | 4.47e+04      | -6.05e-01 | 1.06e-01       | -5.71e+00 | 1.12e-08 |
 
+![Entire population QQ plot](/assets/ALL-qq-plot.png)
