@@ -9,6 +9,7 @@ categories: jekyll update
 Since last time, I reran the burden test on the entire DR2 population and all subpopulations, using whole-population and per-ethnicity PCA scores, respectively. The results still do not match Bryan's (I only compared against my European results against his, because Genebass didn't provide a way to filter by subpopulation).
  
 ### European subpopulation
+
 | gene                      | n     | sum_x    | y_transpose_x | beta      | standard_error | t_stat    | p_value  | bryan_gene_rank |
 |---------------------------|-------|----------|---------------|-----------|----------------|-----------|----------|-----------------|
 | "HBB"                     | 72152 | 6.10e+01 | 4.12e+03      | -1.52e+00 | 3.37e-01       | -4.52e+00 | 6.24e-06 | 3016            |
@@ -25,6 +26,7 @@ Since last time, I reran the burden test on the entire DR2 population and all su
 ![European QQ plot](/assets/EUR-qq-plot.png)
 
 ### Hispanic subpopulation
+
 | gene        | n    | sum_x    | y_transpose_x | beta      | standard_error | t_stat    | p_value  |
 |-------------|------|----------|---------------|-----------|----------------|-----------|----------|
 | "LINC01607" | 5511 | 1.00e+00 | 5.60e+01      | -1.24e+01 | 2.63e+00       | -4.72e+00 | 2.43e-06 |
@@ -41,6 +43,7 @@ Since last time, I reran the burden test on the entire DR2 population and all su
 ![Hispanic QQ plot](/assets/HIS-qq-plot.png)
 
 ### Asian subpopulation
+
 | gene       | n   | sum_x    | y_transpose_x | beta      | standard_error | t_stat  | p_value  |
 |------------|-----|----------|---------------|-----------|----------------|---------|----------|
 | "GRIK2"    | 674 | 1.00e+00 | 7.69e+01      | 1.02e+01  | 2.53e+00       | .02e+00 | 6.40e-05 |
@@ -57,6 +60,7 @@ Since last time, I reran the burden test on the entire DR2 population and all su
 ![Asian QQ plot](/assets/ASN-qq-plot.png)
 
 ### African subpopulation
+
 | gene        | n     | sum_x    | y_transpose_x | beta      | standard_error | t_stat    | p_value  |
 |-------------|-------|----------|---------------|-----------|----------------|-----------|----------|
 | "BRF1"      | 24528 | 2.10e+01 | 1.51e+03      | 2.39e+00  | 6.04e-01       | 3.95e+00  | 7.76e-05 |
@@ -73,6 +77,7 @@ Since last time, I reran the burden test on the entire DR2 population and all su
 ![African QQ plot](/assets/AFR-qq-plot.png)
 
 ### Entire population
+
 | gene     | n      | sum_x    | y_transpose_x | beta      | standard_error | t_stat    | p_value  |
 |----------|--------|----------|---------------|-----------|----------------|-----------|----------|
 | "HMMR"   | 103972 | 4.27e+02 | 2.93e+04      | -1.00e+00 | 1.30e-01       | -7.69e+00 | 1.44e-14 |
