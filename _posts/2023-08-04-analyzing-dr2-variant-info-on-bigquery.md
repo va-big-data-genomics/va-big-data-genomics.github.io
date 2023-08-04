@@ -5,20 +5,20 @@ date:   2023-08-04 06:00:00 -0700
 author: Paul Billing-Ross
 categories: jekyll update
 ---
-
-# Hail variant information
+# Introduction 
+## Hail variant information
 As we approach releasing our second set of whole genome sequencing variant data, researchers will be interested in understanding which variants are included in our dataset. The rows table of our Hail matrix table includes metadata and summary statistics for each variant, generated using the Hail `variant_qc()` method. While the entire matrix table is almost 200 terabytes, the rows table is only a fraction of that size at 200 gigabytes. Sharing this information with users or potential users can allow them to better understand the dataset before trying to apply it to their research question.
 
-# BigQuery
+## Using BigQuery as a variant store
 One option for sharing variant information is BigQuery, a high performance columnar database available on Google Cloud Platform.
 
-## Advantages
+### Advantages
 - **Fast queries**. BigQuery scales compute resources to match the size of our data and run queries quickly.
 - **Serverless**. The infrastructure for running BigQuery is maintained by Google so you don't have to set up, maintain, or configure any compute resources. And, it's always available.
 - **Shareable**. BigQuery allows you to share tables publicly as well as control which columns within a table are made public. In addition to sharing your own datasets, you can also your tables with existing public tables with datasets including [gnomAD](console.cloud.google.com/bigquery?ws=!1m4!1m3!3m2!1sbigquery-public-data!2sgnomAD), (dbSNP)[console.cloud.google.com/bigquery?ws=!1m5!1m4!4m3!1sbigquery-public-data!2shuman_variant_annotation!3sncbi_dbsnp_hg38_20180418], and (ClinVar)[console.cloud.google.com/bigquery?ws=!1m5!1m4!4m3!1sbigquery-public-data!2shuman_variant_annotation!3sncbi_clinvar_hg38_20180701].
 - **Machine learning**. The new BigQuery ML library promises to run machine learning algorithms through SQL queries, though I've never used.
 
-## Obstacles
+### Obstacles
 - **Cost**. Every query costs money and users need to be associated with a Google Cloud billing account to get started.
 - **Access**. Users access BigQuery through the Google Cloud Platform web portal an must have a Google account associated with a billing account, to get started. For Million Veteran Program researchers, this could be a challenge.
 - **SQL**. BigQuery uses the standard SQL query language and seems to have some BigQuery specific language quirks.
