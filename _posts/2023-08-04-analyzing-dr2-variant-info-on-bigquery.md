@@ -27,6 +27,34 @@ For our data, I think the ability to share variant data publicly is particularly
 
 # Importing variant data into BigQuery
 
+## Get the variant information table
+Joe had already exported the variant rows table from the Data Release 2 matrix table and stored it on cloud storage. The path to the file is stored as `FINAL_VAR_INFO_PATH` in the `file_key.yaml` object. I created a virtual machine (e2-medium) with 2TB of memory to do the transformation. The compressed rows object is only ~30 GB, but uncompressed it is 200 GB. I copied the compressed object to my virtual machine and then decompressed it for import into BigQuery.
+
+> **NOTE:** The decompression turned out to be time consuming and unnecessary. I initially thought I was going to directly import the table into BigQuery, but instead opted to convert to JSONL format and then import. In the future, I would use the `gzip` library to read the compressed table, perform transformations, and then write to JSONL.
+
+## Transform TSV formatted table to JSONL
+The rows table is natively stored as a tab-separated values file. I initially tried importing a subset of the table directly into BigQuery but ran into problems, particularly trying to import array fields. Instead, I opted to convert the TSV rows table to JSON Lines format (JSONL) which generates larger input file(s) but I found to be easier and more reliable for importing data because it provides more explicit structure.
+
+In addition to converting from TSV to JSONL, I also performed the following data transformations:
+
+1. **Replace '.' character in column names/keys with '_'.** Conform to BigQuery naming conventions.
+2. **Split the `locus` field into additional `contig` and `position` columns.** An example locus value looks like this: `chr1:13047`. I imagine users will want to query and merge this table based on chromosome and base pair position. I think concatenating them like this makes it difficult to do that.
+3. **Convert array values from strings to arrays/repeated values**. This should make it easier to parse array data and match values across columns (i.e. allele count for the first alternate allele).
+
+I used a Python script to convert the entire 200 GB TSV to a 600 GB JSONL file, using a single processor. It took several days. Thinking about how to speed up this process, my initial thought was that I could shard the TSV file and then perform the TSV to JSONL conversion in parallel, but as I mentioned above, I would rather not have to decompress the TSV in the first place. So, I'm not sure. Anyway, I ended up just letting it run over the weekend, so it didn't end up being that big a deal.
+
+After generating a single very large JSONL, I used another Python script to split it into 600 1 GB shards. My thinking there was that BigQuery would be able to parallelize the upload if data was split across objects, but I wasn't sure it would do that if all the data was stored in a single file (and I'm still not).
+ 
+## Import JSONL shards into BigQuery
+Once I had the JSONL shards on my virtual machine, I transferred them to cloud storage and then used the `bq` command line tool to import them into a BigQuery dataset. Copying the data to cloud storage took less than an hour and importing the entire dataset into BigQuery took about a minute.
+
+Another convenient thing about using JSONL format is that I didn't have to define the schema since it was able to automatically detect it. Though, it probably wouldn't hurt to explicitly define a schema to ensure consistency with future releases.
+
+### BigQuery import command:
+```
+bq load --autodetect --source_format=NEWLINE_DELIMITED_JSON wgs_data_release_2.hail_variant_info gs://{wgs-data-release-2-bucket}/gvcf_aggregation_100k/release_20230505/rel2_100k_variant_jsonl_shards/shard_*.jsonl
+```
+
 # Analyzing variant data in BigQuery
 With the Data Release 2 variant data in BigQuery, I ran some SQL queries to explore the data and also try replicating results Joe had generated with Hail.
 
