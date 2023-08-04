@@ -250,4 +250,5 @@ OR variant_qc_AC[1] = 1
 335,112,487 of 663,351,127 (50%) variants are only present in a single individual.
 
 # Future directions
-  
+- Join our variant table with functional information from other public BigQuery tables to functionally characterize Data Release 2 variants.
+- Explore options for importing additional annotation resources into BigQuery.
