@@ -10,7 +10,7 @@ categories: jekyll update
 As we approach releasing our second set of whole genome sequencing variant data, researchers will be interested in understanding which variants are included in our dataset. The rows table of our Hail matrix table includes metadata and summary statistics for each variant, generated using the Hail `variant_qc()` method. While the entire matrix table is almost 200 terabytes, the rows table is only a fraction of that size at 200 gigabytes. Sharing this information with users or potential users can allow them to better understand the dataset before trying to apply it to their research question.
 
 # BigQuery
-BigQuery is a high performance columnar database available on Google Cloud Platform.
+One option for sharing variant information is BigQuery, a high performance columnar database available on Google Cloud Platform.
 
 ## Advantages
 - **Fast queries**. BigQuery scales compute resources to match the size of our data and run queries quickly.
@@ -30,12 +30,11 @@ For our data, I think the ability to share variant data publicly is particularly
 # Analyzing variant data in BigQuery
 With the Data Release 2 variant data in BigQuery, I ran some SQL queries to explore the data and also try replicating results Joe had generated with Hail.
 
-## How many variants are included in DR2?
+## How many variants are in the dataset?
 
 ```
 SELECT COUNT(1) AS variant_count
 FROM `{mvp-project}.wgs_data_release_2.hail_variant_info` 
-LIMIT 1000
 ```
 
 ### Result
@@ -44,15 +43,14 @@ LIMIT 1000
 | ----------- | ----------- |
 | 1      | 663351127      |
 
-663,351,127
+663,351,127 variants.
 
-## How many singletons are in DR2?
+## How many variants are singletons?
 
 ```
 SELECT COUNT(1) AS singleton_count
 FROM `{mvp-project}.wgs_data_release_2.hail_variant_info` 
 WHERE variant_qc_AC[1] = 1
-LIMIT 1000
 ```
 
 ### Result
@@ -61,6 +59,7 @@ LIMIT 1000
 | ----------- | ----------- |
 | 1      | 318687479       |
 
+318,687,479 of 663,351,127 (48%) variants are singletons.
 
 ## For how many variants are there no alternate alleles in the dataset?
 
@@ -79,14 +78,13 @@ LIMIT 1000
 
 There are 8,436,397 variants without alternate alleles present.
 
-## How many rare variants (MVP allele frequency <0.1%) are present in DR2?
+## How many rare variants are present?
 
 ```
 SELECT COUNT(1) AS rare_variants
 FROM `{mvp-project}.wgs_data_release_2.hail_variant_info`
 WHERE variant_qc_AF[1] < 0.001
 AND variant_qc_AF[1] > 0
-LIMIT 1000
 ```
 
 ### Result
@@ -95,16 +93,15 @@ LIMIT 1000
 | ----------- | ----------- |
 | 1      | 627219244    |
 
-627,219,244 of 663,351,127 (94.5%) variants are rare.
+627,219,244 of 663,351,127 (94.5%) variants are rare (MVP allele frequency <0.1%).
 
-## How many uncommon variants are present in DR2?
+## How many variants are uncommon?
 
 ```
 SELECT COUNT(1) AS uncommon_variants
 FROM `{mvp-project}.wgs_data_release_2.hail_variant_info` 
 WHERE variant_qc_AF[1] < .01
 AND variant_qc_AF[1] > 0.001
-LIMIT 1000
 ```
 
 ### Result
@@ -113,25 +110,23 @@ LIMIT 1000
 | ----------- | ----------- |
 | 1      | 14516901    |
 
-14,516,901 of 663,351,127 (2%) variants are uncommon.
+14,516,901 of 663,351,127 (2%) variants are uncommon (MVP allele frequency: .01% < x < 1%).
 
-## How many common variants are present?
+# How many variant alternate alleles are common?
 
 ```
 SELECT COUNT(1) AS common_variants
 FROM `{mvp-project}.wgs_data_release_2.hail_variant_info` 
 WHERE variant_qc_AF[1] > .01
-AND variant_qc_AF[1] > 0.5
-LIMIT 1000
 ```
 
-### Result
+## Result
 
 | Row      | common_variants |
 | ----------- | ----------- |
-| 1      | 2032976   |
+| 1      | 13178510   |
 
-2,032,976 of 663,351,127 (0.3%) variants are common.
+13,178,510 of 663,351,127 (1.9%) variant alleles are common.
 
 ## Get variant counts by chromosome
 
