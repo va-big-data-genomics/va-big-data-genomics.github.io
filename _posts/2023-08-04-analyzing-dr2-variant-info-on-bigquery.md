@@ -138,7 +138,7 @@ AND variant_qc_AF[1] > 0.001
 | ----------- | ----------- |
 | 1      | 14516901    |
 
-14,516,901 of 663,351,127 (2%) variants are uncommon (MVP allele frequency: .01% < x < 1%).
+14,516,901 of 663,351,127 (2%) variants are uncommon (MVP allele frequency between .01% and 1%).
 
 ### How many variant alternate alleles are common?
 
