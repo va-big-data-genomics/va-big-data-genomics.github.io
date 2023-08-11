@@ -253,3 +253,6 @@ OR variant_qc_AC[1] = 1
 - Join our variant table with functional information from other public BigQuery tables to functionally characterize Data Release 2 variants.
 - Explore options for importing additional annotation resources into BigQuery.
 - Consider whether it is worth making this information public, given the high probability of being able to [reidentify individuals](https://academic.oup.com/bioinformatics/article/35/3/365/5056754) who have been sequenced.
+
+## Discuss
+Join the discussion of this post on [GitHub](https://github.com/orgs/va-big-data-genomics/discussions/31)!
