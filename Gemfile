@@ -18,6 +18,10 @@ group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.12"
 end
 
+# Jekyll Sitemap Generator Plugin
+# https://github.com/jekyll/jekyll-sitemap
+gem 'jekyll-sitemap'
+
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
 # and associated library.
 platforms :mingw, :x64_mingw, :mswin, :jruby do
