@@ -16,7 +16,7 @@ In my [last blog post](https://va-big-data-genomics.github.io/jekyll/update/2023
 
 ### GWAS
 
-GWAS analysis, against a height phenotype, was run across all four population groups, in addition to the entire sample set. QQ Plots for the full sample set(Fig. 1) as well as the four population subsets(Fig. 2) show an increased lambda as the total number of samples increases. 
+GWAS analysis, against a height phenotype, was run across all four population groups, in addition to the entire sample set. QQ Plots for the full sample set(Fig. 1), as well as the four population subsets(Fig. 2), show an increased lambda as the total number of samples increases. 
 
 ![Fig. 1](/assets/2023-08-18/fig1b.png)
 
@@ -35,7 +35,7 @@ The analysis of the top ten loci in both the full dataset and the European popul
 
 In my last blog I also discussed the early stages of comparing the GWAS results across Data Release 1 and 2. Initially, I filtered GWAS results for Data Release 2 to only include samples in common with the first release. This method resulted in very little correlation between the two datasets. I have since changed my strategy by filtering common samples prior to running GWAS, which has resulted in much better overlap. Filtering of dataset 2 resulted in 10,385 samples and 663,351,127 variants. This is in comparison to 10,390 samples and 187,790,701 variants in Data Release 1. 
 
-When testing overlapping variants, both datasets indicate high correlation. This is indicated by a Pearson correlation score of 0.958587(Fig. 5) I also observed high overlap between significant loci for both the full data set and the European population group, using a cutoff of 5e-8 (Fig. 5, [Table. 2](https://docs.google.com/spreadsheets/d/1NagHVPlDAO9Y040fYxPBDrlRRn8cKWyibJS1LAG2eqs/edit#gid=1660895783), & [Table. 3](https://docs.google.com/spreadsheets/d/1NagHVPlDAO9Y040fYxPBDrlRRn8cKWyibJS1LAG2eqs/edit#gid=1315028666)). These results indicate that the aggregation and filtering methods used in data generation as well as the PCA methodology implemented are valid.
+When testing overlapping variants, both datasets indicate high correlation. This is indicated by a Pearson correlation score of 0.958587(Fig. 5) I also observed high overlap between significant loci for both the full data set and the European population group, using a cutoff of 5e-8 (Fig. 5, [Table. 2](https://docs.google.com/spreadsheets/d/1NagHVPlDAO9Y040fYxPBDrlRRn8cKWyibJS1LAG2eqs/edit#gid=1660895783), & [Table. 3](https://docs.google.com/spreadsheets/d/1NagHVPlDAO9Y040fYxPBDrlRRn8cKWyibJS1LAG2eqs/edit#gid=1315028666)). These results indicate that the aggregation and filtering methods used in data generation, as well as the PCA methodology implemented, are valid.
 
 ![Fig. 5](/assets/2023-08-18/fig5.png) 
 
