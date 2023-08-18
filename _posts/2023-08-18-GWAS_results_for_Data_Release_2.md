@@ -29,7 +29,7 @@ A P-value of 5e-8 was implemented as a cutoff for significant loci. This cutoff 
 
 The full dataset and European subset showed an extremely high number of significant loci. Upon seeing this, I implemented a more stringent cutoff for these two groups.  Increasing the cutoff to 5e-9 resulted in a count of 13,049 and 11,467 significant loci for the full dataset and European population, respectively.  These numbers remain high and may require further exploration. 
 
-The analysis of the top ten loci in both the full dataset and the European population groups results in multiple hits to genes UQCC1 and GDF5([Table. 1](https://docs.google.com/spreadsheets/d/1NagHVPlDAO9Y040fYxPBDrlRRn8cKWyibJS1LAG2eqs/edit#gid=68284918)), both of which are implicated in regulation of height. 
+Analysis of the top ten loci in both the full dataset and the European population groups show multiple hits to genes UQCC1 and GDF5([Table. 1](https://docs.google.com/spreadsheets/d/1NagHVPlDAO9Y040fYxPBDrlRRn8cKWyibJS1LAG2eqs/edit#gid=68284918)), both of which are implicated in regulation of height. 
 
 ### Comparison between Data Release 1 and Data Release 2
 
