@@ -20,7 +20,7 @@ GWAS analysis, against a height phenotype, was run across all four population gr
 
 ![Fig. 1](/assets/2023-08-18/fig1b.png)
 
-![Fig. 2](/assets/2023-08-18/fig2c.png) 
+![Fig. 2](/assets/2023-08-18/fig2c.fig.png) 
 A P-value of 5e-8 was implemented as a cutoff for significant loci. This cutoff resulted in 17,738, 15,587, 541, 33, and 3 loci for the total sample set, European, African, Hispanic, and Asian populations, respectively(Fig. 3-4). 
 
 ![Fig. 3](/assets/2023-08-18/fig3.png) 
