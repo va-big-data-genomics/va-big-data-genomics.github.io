@@ -12,7 +12,7 @@ mermaid: true
 
 ### Background 
 
-In my [last blog post](https://va-big-data-genomics.github.io/jekyll/update/2023/06/23/pca-for-gwas.html) I showed the methods devised to run PCA analysis in order to use PCs as covariates in GWAS analysis. Preliminary GWAS results for all combined samples and the European population were also described, in addition to early stages of GWAS comparisons across Data Releases 1 and 2. In the subsequent sections, I will present the results of the progress for GWAS within all populations and the correlation between both data releases.
+In my [last blog post](https://va-big-data-genomics.github.io/jekyll/update/2023/06/23/pca-for-gwas.html) I showed the methods devised to run PCA analysis in order to generate PCs to be used as covariates in GWAS analysis. Preliminary GWAS results for all combined samples and the European population were also described, in addition to early stages of GWAS comparisons across Data Releases 1 and 2. In the subsequent sections, I will present the results of the progress for GWAS within all populations and the correlation between both data releases.
 
 ### GWAS
 
