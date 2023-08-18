@@ -16,11 +16,11 @@ In my [last blog post](https://va-big-data-genomics.github.io/jekyll/update/2023
 
 ### GWAS
 
-GWAS analysis, against a height phenotype, was run across all four population groups, in addition to the entire sample set. QQ Plots for the full sample set(Fig. 1), as well as the four population subsets(Fig. 2), show an increased lambda as the total number of samples increases. 
+GWAS analysis, against a height phenotype, was run across all four population groups, in addition to the entire sample set. QQ Plots for the full sample set(Fig. 1), as well as the four population subsets(Fig. 2), show an increased lambda as the total number of samples increases above a certain threshold. 
 
 ![Fig. 1](/assets/2023-08-18/fig1b.png)
 
-![Fig. 2](/assets/2023-08-18/fig2b.png) 
+![Fig. 2](/assets/2023-08-18/fig2c.png) 
 A P-value of 5e-8 was implemented as a cutoff for significant loci. This cutoff resulted in 17,738, 15,587, 541, 33, and 3 loci for the total sample set, European, African, Hispanic, and Asian populations, respectively(Fig. 3-4). 
 
 ![Fig. 3](/assets/2023-08-18/fig3.png) 
