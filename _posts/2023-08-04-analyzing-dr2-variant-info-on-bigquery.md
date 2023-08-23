@@ -4,6 +4,9 @@ title:  "#28 Analyzing data release 2 variant info on BigQuery"
 date:   2023-08-04 06:00:00 -0700
 author: Paul Billing-Ross
 categories: jekyll update
+faq:
+- question: "How many singletons are in the latest VA Million Veterans Program whole genome sequencing data release?"
+  answer: "318,687,479"
 ---
 ## Introduction 
 ### Hail variant information
