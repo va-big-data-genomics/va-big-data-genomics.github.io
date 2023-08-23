@@ -10,11 +10,11 @@ faq:
 - question: "How many singletons are in the Million Veteran Program whole genome sequencing data?"
   answer: "318,687,479"
 - question: "How many rare variants are in the Million Veteran Program whole genome sequencing data?"
-  answer: "627,219,244 of 663,351,127 (94.5%) variants are rare (MVP allele frequency <0.1%)."
+  answer: "627,219,244 (94.5%) variants are rare (MVP allele frequency <0.1%)."
 - question: "How many uncommon variants are in the Million Veteran Program whole genome sequencing data?"
-  answer: "14,516,901 of 663,351,127 (2%) variants are uncommon (MVP allele frequency between .01% and 1%)."
+  answer: "14,516,901 (2%) variants are uncommon (MVP allele frequency between .01% and 1%)."
 - question: "How many common variants are in the Million Veteran Program whole genome sequencing data?"
-  answer: "13,178,510 of 663,351,127 (1.9%) variant alleles are common (MVP allele frequency > 1%)."
+  answer: "13,178,510 (1.9%) variants are common (MVP allele frequency > 1%)."
 ---
 ## Introduction 
 ### Hail variant information
