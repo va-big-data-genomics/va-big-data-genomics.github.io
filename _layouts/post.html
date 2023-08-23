@@ -30,7 +30,22 @@ layout: default
       {% if page.mermaid %}
         {% include mermaid.html %}
       {% endif %}
-        
+      
+      {% if page.faq %}
+        <script type="application/ld+json">
+          {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+            {% for item in page.faq %}
+              {"@type":"Question","name":"{{item.question}}","acceptedAnswer":{"@type":"Answer","text":"{{item.answer}}"}}
+              {% if forloop.last == false %},
+              {% else %}]}
+                </script>
+              {% endif %}
+            {% endfor %}
+      {% endif %}
+      {% if page.faq %}
+        {% include faq-schema-content.html %}
+      {% endif %}
+  
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
