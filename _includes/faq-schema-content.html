@@ -1,6 +1,9 @@
 <hr>
 <h2>Frequently Asked Questions</h2>
-{% for item in page.faq %}
-  <h3>{{item.question}}</h3>
-  <p>{{item.answer}}</p>
-{% endfor %}
+<div class="accordion">
+  {% for item in page.faq %}
+    <div class="accordion-item">
+      <div class="accordion-header">{{item.question}}</div>
+      <div class="accordion-content">{{item.answer}}</div>
+  {% endfor %}
+</div>
