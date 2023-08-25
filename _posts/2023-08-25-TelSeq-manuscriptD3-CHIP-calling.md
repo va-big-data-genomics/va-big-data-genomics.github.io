@@ -12,7 +12,7 @@ categories: jekyll update
 
 # CHIP calling on MVP WGS 
 
-## Overview
+### Overview
 
 Clonal hematopoiesis of uncertain potential (CHIP) is a prevalent type of somatic mosaicism linked to notable morbidity and mortality in relation to aging. CHIP mutations may be identified from peripheral blood samples through whole-genomes, whole-exome or targeted sequencing techniques. In this [study](https://pubmed.ncbi.nlm.nih.gov/36652671/) a step wise mechanism to call CHIP calls in ~550,000 individuals from the UK Biobank complete whole-exome cohort and the All of Us Research Program initial whole genome release cohort, has been developed. 
 
@@ -21,9 +21,9 @@ CHIP driver genes are specific genes that have undergone changes or mutations in
 Mutect2 is a part of the Broad Institute GATK suite of tools that calls somatic nucleotide (SNVs) and insertions and deletions (INDELS) via local assembly of haplotypes. The pipeline was benchmarked on Google Cloud Platform (GCP) by Cuiping Pan and the initial CHIP calling was implemented on Stanford Abdominal Aortic Aneurysm (AAA) genomes and MVP Genomes (processed by Bina Technologies) using a list of CHIP sites of interest and a list of Panel of Normal SNPs. 
 
 
-## Plan of action
+### Plan of action
 
-### Phase 1
+#### Phase 1
 
 **Step 1: Establishing project infrastructure**
 
@@ -59,20 +59,20 @@ Mutect2 is a part of the Broad Institute GATK suite of tools that calls somatic 
 
 * Update GitHub repository with results, analysis notebook and methods document 
 
-### Phase 2
+#### Phase 2
 
 * Dockerize Mutect2 
 * Rerun with Phase1 CRAM (10) to confirm execution and results
 * Scale up the pipeline for 1000 samples 
 * Complete Step 3, 4 and 5 as in Phase 1 
 
-### Phase 3
+#### Phase 3
 
 * Run pipeline in parallel for ~78k samples (Should we include the remaining ~30k which is a part of Data Release 2?)
 * Complete Step 3, 4 and 5 as in Phase 1 
 
 
-## Required files
+### Required files
 
 1. --input : sample BAM/CRAM files
 2. --red-index : BAI/CRAI files 
@@ -85,7 +85,7 @@ Mutect2 is a part of the Broad Institute GATK suite of tools that calls somatic 
 9. --germline-resource -  Population VCF of germline sequencing containing allele fractions 
 
 
-## Next steps
+### Next steps
 
 1. Gather all reference files 
 2. Create a working script for Mutect2 with updated parameters and files - Confirm Mutect2 script with Alex and Cuiping 
