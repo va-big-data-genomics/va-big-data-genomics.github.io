@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "#30 Updates on Telomere Length Estimation Manuscript and CHIP Calling on MVP WGS "
-date:   2023-08-25 10:00:00 -0800
+date:   2023-08-25 06:00:00 -0700
 author: Prathima Vembu 
 categories: jekyll update
 ---
