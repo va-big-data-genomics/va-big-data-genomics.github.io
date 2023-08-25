@@ -91,3 +91,6 @@ Mutect2 is a part of the Broad Institute GATK suite of tools that calls somatic 
 2. Create a working script for Mutect2 with updated parameters and files - Confirm Mutect2 script with Alex and Cuiping 
 3. Run Mutect2 on GCP with the GATK Docker image 
 
+---
+
+Join the discussion on our [GitHub](https://github.com/orgs/va-big-data-genomics/discussions/33)
