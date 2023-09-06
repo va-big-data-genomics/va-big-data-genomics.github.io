@@ -1,3 +1,11 @@
+---
+layout: post
+title:  "#31 Public Genomics Resources"
+date:   2023-09-01 10:00:00 -0800
+author: Daniel Cotter
+categories: jekyll update
+---
+
 # Resources
 
 ### All of Us Data Browser
