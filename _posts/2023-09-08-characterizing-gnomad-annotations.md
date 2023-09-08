@@ -908,7 +908,7 @@ So ~1 allele per locus.
 **How many misses?**
 ```
 genomes_mt.filter_rows( hl.is_missing( genomes_mt.gene )).key_rows_by('locus','alleles').distinct_by_row().count()
-
+# 663,141,939
 ```
 
 **What proportion of variants in the MVP genomes are represented in gnomAD?**
