@@ -15,7 +15,7 @@ Genebass's results, nor Bryan Gorman's. The post is a bit code-heavy, but
 hopefully easy to grasp. I've tried to write each snippet so that it will run
 independently of the others; the logic in each snippet is likewise self-contained.
 
-[discuss]([url](https://github.com/orgs/va-big-data-genomics/discussions/35))
+[discuss](https://github.com/orgs/va-big-data-genomics/discussions/35)
 
 # Before annotating:
 
