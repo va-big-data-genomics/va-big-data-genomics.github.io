@@ -147,7 +147,44 @@ All of Us - Mayo Clinic in Rochester, Minnesota
 # Organizations
 
 - Genome Reference Consortium (GRC)
-- National Center for Biotechnology Information (NCBI) 
-- National Human Genome Research Institute (NHGRI) (under NIH)
-- National Heart, Lung and Blood Institute (NHLBI) (under NIH)
+- 
+- (under NIH)
+-  (under NIH)
 - Centers for Common Disease Genomics (CCDG) (under NHGRI)
+
+# Summary of organizations and resources
+```
+European Molecular Biology Laboratory (EMBL)
+└── European Bioinformatics Institute (EBI)
+    └── Ensembl
+        ├── Annotations
+        └── Variant effect predictor (VEP)
+        
+United Kingdom Research and Innovation (UKRI)
+└── Medical Research Council (MRC)
+    └── UK Biobank
+        └── Genebass
+        
+Department of Health and Human Services (HHS)
+├── National Institutes of Health (NIH)
+│   └── National Human Genome Research Institute (NHGRI)
+│       ├── Centers for Common Disease Genomics (CCDG)
+│       └── Human Genome Project (HGP)
+├── National Heart, Lung and Blood Institute (NHLBI)
+│   └── Trans-Omics for Precision Medicine (TOPMed) Consortium
+│       ├── Data on dbGaP (database of Genotypes and Phenotypes)
+│       └── Bravo variant browser
+└── National Library of Medicine (NLM)
+    └── National Center for Biotechnology Information (NCBI)
+        ├── GenBank sequence database
+        ├── Single Nucleotide Polymorphism Database (dbSNP)
+        ├── Online Mendelian Inheritance in Man (OMIM)
+        └── PubMed
+        
+University of Washington
+└── Combined Annotation Dependent Depletion (CADD)
+
+Broad Institute
+├── Genome Aggregation Database (gnomaD)
+└── Hail
+```
