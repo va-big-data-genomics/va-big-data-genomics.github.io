@@ -1,3 +1,13 @@
+---
+layout: post
+title:  "#32 Characterizing MVP genomes and Genebass and gnomAD annotations databases"
+date:   2023-09-08 10:00:00 -0800
+author: Daniel Cotter
+categories: jekyll update
+---
+
+# Characterizing MVP genomes and Genebass and gnomAD annotations databases
+
 This post is a continuation of the characterization work I've been doing on our
 data and the publicly available annotations databases. This was motivated by
 the unexpected results we were seeing in our burden testing – they did not match
@@ -5,7 +15,7 @@ Genebass's results, nor Bryan Gorman's. The post is a bit code-heavy, but
 hopefully easy to grasp. I've tried to write each snippet so that it will run
 independently of the others; the logic in each snippet is likewise self-contained.
 
-discuss
+[discuss]([url](https://github.com/orgs/va-big-data-genomics/discussions/35))
 
 # Before annotating:
 
