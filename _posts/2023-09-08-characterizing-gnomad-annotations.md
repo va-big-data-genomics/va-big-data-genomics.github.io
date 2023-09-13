@@ -17,6 +17,10 @@ independently of the others; the logic in each snippet is likewise self-containe
 
 [discuss](https://github.com/orgs/va-big-data-genomics/discussions/35)
 
+
+
+
+
 # Before annotating:
 
 **What does the slimmed-down table look like?**
@@ -27,7 +31,6 @@ import hail as hl
 hl.init()
 
 # Load genomes table (rows - variant loci and alleles, cols - samples, entries - genotypes)
-genomes_mt_path = 'gbsc-gcp-project-mvp-wgs-data-release-2/gvcf_aggregation_100k/release_20230505/rel2_100k_gt.mt'
 genomes_mt = hl.read_matrix_table( f'gs://{genomes_mt_path}' )
 genomes_mt.describe()
 
@@ -63,7 +66,7 @@ genomes_mt.distinct_by_row().count()
 ```
 >>> alleles_by_chr = genomes_mt.group_rows_by( contig = genomes_mt.locus.contig ).aggregate( n_alleles = hl.agg.count())
 +---------+-------------------------+-------------------------+-------------------------+
-| contig  | 'SHIP5297471'.n_alleles | 'SHIP5508159'.n_alleles | 'SHIP5466675'.n_alleles |
+| contig  | 'SHIPXXXXXXX'.n_alleles | 'SHIPYYYYYYY'.n_alleles | 'SHIPZZZZZZZ'.n_alleles |
 +---------+-------------------------+-------------------------+-------------------------+
 | "chr1"  |                50052394 |                50063518 |                50134425 |
 | "chr2"  |                54959918 |                54984604 |                55044193 |
@@ -105,7 +108,6 @@ genomes_mt.distinct_by_row().count()
 
 **How many alleles are there per sample? (average count of non-missing alleles per sample)**
 ```
->>> final_mt_path = 'gbsc-gcp-project-mvp-wgs-data-release-2/gvcf_aggregation_100k/release_20230505/rel2_100k_QCed_final.MT'
 >>> final_mt = hl.read_matrix_table( f'gs://{final_mt_path}' )
 >>> final_mt.describe()
 ----------------------------------------
@@ -348,7 +350,6 @@ genebass_mt = genebass_mt.select_entries( ) # 'Pvalue_Burden'
 # | "ENSG00000187634" | "SAMD11"    | chr1:926005   | ["TC","T"]    | "height_custom" |
 
 # Load genomes table (rows - variant loci and alleles, cols - samples, entries - genotypes)
-genomes_mt_path = 'gbsc-gcp-project-mvp-wgs-data-release-2/gvcf_aggregation_100k/release_20230505/rel2_100k_gt.mt'
 genomes_mt = hl.read_matrix_table( f'gs://{genomes_mt_path}' )
 
 # Annotate our variants with Genebass's gene symbols
@@ -389,7 +390,6 @@ So for 104,923 samples, we found 123,175 putative loss of function alleles at 12
 genebass_mt_path = 'ukbb-exome-public/500k/results/results.mt'
 genebass_mt = hl.read_matrix_table( f'gs://{genebass_mt_path}' )
 
-genomes_mt_path = 'gbsc-gcp-project-mvp-wgs-data-release-2/gvcf_aggregation_100k/release_20230505/rel2_100k_gt.mt'
 genomes_mt = hl.read_matrix_table( f'gs://{genomes_mt_path}' )
 
 genebass_mt = genebass_mt.key_rows_by('interval')
@@ -400,7 +400,6 @@ genebass_matches_mt = genomes_mt.filter_rows( hl.is_defined( genebass_mt.rows()[
 **How many of the pLoF variants in Genebass are found in the MVP genomes?**
 ```
 # Join Genebass's variants to ours to see how many match
-genomes_mt_path = 'gbsc-gcp-project-mvp-wgs-data-release-2/gvcf_aggregation_100k/release_20230505/rel2_100k_gt.mt'
 genomes_mt = hl.read_matrix_table( f'gs://{genomes_mt_path}' )
 
 genebass_mt.filter_rows( genebass_mt.annotation == 'pLoF').rows().join( genomes_mt.rows() ).count()
@@ -875,7 +874,6 @@ gnomad_ht = gnomad_ht.transmute( gene_id = gnomad_ht.transcript_consequences.gen
 gnomad_ht = gnomad_ht.select_globals()
 
 # Load MVP genomes table (rows - variant loci and alleles, cols - samples, entries - genotypes)
-genomes_mt_path = 'gbsc-gcp-project-mvp-wgs-data-release-2/gvcf_aggregation_100k/release_20230505/rel2_100k_gt.mt'
 genomes_mt = hl.read_matrix_table( f'gs://{genomes_mt_path}' )
 
 # Annotate our variants with gnomAD's gene symbols
