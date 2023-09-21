@@ -8,7 +8,7 @@ categories: jekyll update
 ## Introduction 
 After uploading the variant information to BigQuery for Data Release 2 of the Million Veteran Program whole genome sequencing initiative, I wanted 
 
-As part of Data Release 2 of the Million Veteran program whole genome sequencing initiative, Joe created a variant table from Hail, with metadata describing all of the variants we observed. In my last post, I uploaded this table to BigQuery and generated some basic summary statistics. Here, I'll describe how I've continued that effort by uploading gene annotations from Ensembl and doing some preliminary comparative analyses between our dataset and others like [1000 Genomes](https://www.internationalgenome.org/). 
+As part of Data Release 2 of the Million Veteran program whole genome sequencing initiative, Joe created a variant table from Hail, with metadata describing all of the variants we observed. In my last post, I uploaded this table to BigQuery and generated some basic summary statistics. Here, I'll describe how I've continued that effort by doing some preliminary comparative analyses between our dataset and others like [1000 Genomes](https://www.internationalgenome.org/). 
 
 ## Comparing to 1000 Genomes
 ### Plotting minor allele frequency distribution
@@ -50,10 +50,8 @@ I performed a similar analysis, but looked at all possible SNV conversions and d
 
 ![Bar chart of variant counts by allele combination](/assets/2023-09-21/variant_counts_by_allele_combination.png)
 
-
-## Uploading Ensembl gene annotations to BigQuery
-
-## Counting variants in different gene functional regions
+## Future directions
+The notebook I used to perform these analyses is available internally on [GitHub](https://github.com/va-big-data-genomics/hail-variants-on-bigquery/blob/main/2-query-bigquery-variants/wgs-dr2-1000genomes-figures.ipynb). Feel encouraged to check it out even though it is still in a somewhat raw state. I also peformed a few more analyses using Ensembl gene annotations I uploaded to BigQuery. You can see where I looked at the number of observed variants in different functional regions for particular genes. I tried running a similar query to calculate the same metrics across all genes, but that either got stuck or takes a very long time to run. Which I think makes sense given that there are ~20,000 genes with 50 different functional regions and to determine whether a variant is in a region, you have to compare the position to the start and end sites of the gene. Regardless, I'm looking forward to doing more gene based analyses of our variant data in the future.
 
 ## Discuss
-Join the discussion of this post on [GitHub](https://github.com/orgs/va-big-data-genomics/discussions/31)!
+Join the discussion of this post on [GitHub](https://github.com/orgs/va-big-data-genomics/discussions/36)!
