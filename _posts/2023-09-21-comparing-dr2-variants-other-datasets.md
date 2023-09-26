@@ -13,7 +13,7 @@ As part of Data Release 2 of the Million Veteran program whole genome sequencing
 ![1000 Genomes alternate allele frequency distribution](/assets/2023-09-21/1000genomes_alt_allele_freq_dist.png)
 [Figure 7](https://www.nature.com/articles/nature15393/figures/7) from: The 1000 Genomes Project Consortium. A global reference for human genetic variation. Nature 526, 68–74 (2015). [https://doi.org/10.1038/nature15393](https://doi.org/10.1038/nature15393).
 
-Looking at whole genome sequencing publications from other consortiums, I found a lot of sophisticated and complex data analysis that would seemingly require a significant amount of effort to replicate. We will maybe get to those at some point, but I certainly didn't want to start there. However, the alternate allele frequency [histogram (Figure 7a)](https://www.nature.com/articles/nature15393/figures/7) is something that only required one metrics (allele frequency) and provides a measure of validation of the "shape" of our data. Here, I've tried to replicate it with our data.
+Looking at whole genome sequencing publications from other consortiums, I found a lot of sophisticated and complex data analysis that would seemingly require a significant amount of effort to replicate. We will maybe get to those at some point, but I certainly didn't want to start there. However, the alternate allele frequency histogram only requires one metric (allele frequency) and provides a measure of validation of the "shape" of our data. Here, I've tried to replicate it with our data.
 
 ### SQL query
 ```
@@ -36,7 +36,9 @@ ORDER BY
 ![1000 Genomes allele count figure](/assets/2023-09-21/1000genomes-ac-type-frequency.jpg)
 Figure 1B from: High-coverage whole-genome sequencing of the expanded 1000 Genomes Project cohort including 602 trios. Cell. 2022 Sep 1;185(18):3426-3440.e19. doi: [10.1016/j.cell.2022.08.004](https://www.cell.com/cell/fulltext/S0092-8674(22)00991-6?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS0092867422009916%3Fshowall%3Dtrue).
 
-In the 1000 Genomes whole genome sequencing [publication](https://pubmed.ncbi.nlm.nih.gov/36055201/) from 2022, they examine alternate allele counts by type (SNV/INDEL) and frequency bins (singleton, rare, common). I have tried to replicate a similar analysis of our data looking at variant counts (unique locus and alternate allele combinations) as well as alternate allele counts (total number of alternate alleles observed across all variants).
+In the 1000 Genomes whole genome sequencing [publication](https://pubmed.ncbi.nlm.nih.gov/36055201/) from 2022, they examine alternate allele counts by type (SNV/INDEL) and frequency bins (singleton, rare, common). I initially thought they were examining number of variants (unique locus and alternate allele combinations), but reading the figure description they indicate that they were looking at "cohort-level alternate allele counts", so that is what I looked at.
+
+I tried to perform a similar analysis of our data by looking at variant counts (unique locus and alternate allele combinations) as well as alternate allele counts (total number of alternate alleles observed across all variants).
 
 ### MVP DR2 variant counts by type and frequency category
 
@@ -65,11 +67,9 @@ GROUP BY variant_type, allele_frequency_class;
 ![Bar chart of variant counts stratified by frequency category and variant type](/assets/2023-09-21/variant_counts_snv_indel_bar.png)
 
 ### MVP DR2 Alternate allele counts by type and frequency category
-This is a similar figure where variant counts have been replaced by alternate allele counts.
+A related figure where variant counts have been replaced by alternate allele counts.
 
 ![Bar chart of alternate allele counts stratified by frequency category and variant type](/assets/2023-09-21/alternate_allele_counts_snv_indel_bar.png)
-
-And here is figure 1B from the 1000 Genomes paper (2022). I initially thought that they were examining umber of variants (unique locus and alternate allele combinations), but reading the figure description they indicate they were looking at "cohort-level alternate allele counts", so that is what I am comparing against our data here.
 
 ## Comparing to UK Biobank transition/transversion proportions
 
