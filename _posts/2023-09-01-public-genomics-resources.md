@@ -62,6 +62,7 @@ The [Variant Effect Predictor (VEP)](https://useast.ensembl.org/info/docs/tools/
 The [All of Us](https://allofus.nih.gov/) Research Program is a historic effort to collect and study data from one million or more people living in the United States.
 
 Demographics (n=409,420):
+
 | Population |       n |     % |
 |------------|--------:|------:|
 | white      | 222,660 | 54.38 |
