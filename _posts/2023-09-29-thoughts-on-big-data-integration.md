@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "#34 Thoughts on the NHLBI Big Data Integration workshop"
-date:   2023-09-29 12:00:00 -0700
+date:   2023-09-29 13:00:00 -0800
 author: Paul Billing-Ross
 categories: jekyll update
 ---
