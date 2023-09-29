@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "#34 Thoughts on the NHLBI Big Data Integration workshop"
-date:   2023-09-29 13:00:00 -0800
+date:   2023-09-29 13:00:00 -0700
 author: Paul Billing-Ross
 categories: jekyll update
 ---
@@ -40,3 +40,6 @@ In reference to all the studies being performed with All of Us data, someone ask
 So, what's the answer? Automation. If researchers are doing on their computation on a single platform, you could *theoretically* capture the complete provenance of every data object they create. But the more freedom you give them, the harder that will be.
 
 Our Stanford MVP environment can solve that problem by providing a curated API that provides a single point of interface between our data and the researcher. Because all of their operations are mediated through our system, we can document every workflow they use to generate results and share them publicly. The cost of this is that users will be limited in how they can interact with the data. And once they take the results from our environment and manipulate them in their own environment, we can no longer track their process. But I still think we could track the high level workflows used to generate the data that someone else would need to reproduce or replicate their analysis. For instance, we could track of the association tests (e.g. GWAS) run in our system and share those results/methods with other researchers.
+
+## Discuss
+Join the discussion of this post on [GitHub](https://github.com/orgs/va-big-data-genomics/discussions/37)!
