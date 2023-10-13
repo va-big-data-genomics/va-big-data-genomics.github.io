@@ -6,15 +6,17 @@ author: Daniel Cotter
 categories: jekyll update
 ---
 
+# Annotating MVP Genomes with VEP & LOFTEE
+
 So far in our burden testing, our results have not matched Genebass's, but it has been difficult to figure out where the difference are coming from – is it a) differences in the genomes themselves, b) differences in our algorithm, or c) differences in the variants' annotations? Taking one at a time: The individual genomes are obviously different, but we have controlled for covariates like sex, ethnicity, and PCA scores, so this should not be a big factor. Our algorithm is the most basic form of burden testing, just a simple aggregation and linear regression, so we can probably rule it out as well. However, the input to our algorithm – the variants and their annotations – differ from Genebass's, because we have been annotating our variants with gnomAD, whereas Genebass annotated theirs with VEP (Ensembl's Variant Effect Predictor) and its LOFTEE plugin (Karczewski's Loss-of-Function Transcript Effect Estimator).
 
 The variants' annotations, then, have become the focus of our troubleshooting. For background, annotating each variant with its corresponding gene and the likelihood of a loss of function resulting from that variant is one of the first steps in performing rare variant analysis; we are only interested in variants with a high-confidence loss-of-function effect upon the gene. At one point, we considered running VEP/LOFTEE ourselves, but chose not to, because it is built on technology that does not fit very well with our technology stack: VEP is written in Perl and meant to run on a single machine; Hail is written in Python and Scala and meant to run on a distributed computing cluster consisting of many individual machines. Scaling VEP would involve manually sharding and distributing a very large VCF file to a number of machines, then manually combining the results. The perceived difficulty of running VEP on our data led us to try other options first, such as gnomAD. (Incidentally, Hail includes a VEP function that takes a Hail-native table as its object and calls the VEP Perl script under the hood after splitting up the table and distributing the shards to worker nodes in the cluster, but so far it has not worked for various technical reasons).
 
-Recently, however, we took another look at VEP, since our other efforts at troubleshooting had not panned out. This blog post details the process of running VEP on a manually managed "cluster" of virtual machines in Google's cloud.
+Recently, however, we took another look at VEP, since our other efforts at troubleshooting had not panned out. This blog post details the process of running VEP on a manually managed "cluster" of virtual machines in Google's cloud, including the various twists and turns the process took along the way.
 
-### Standalone VEP
+### Running VEP and LOFTEE on a single Compute VM
 
-I'm also working on running VEP on a standalone Compute VM, i.e. not a Dataproc cluster. To that end, I:
+This was my first attempt at running VEP on a Compute VM. The steps I took, in order, are as follows:
 
 - Created a new Compute VM instance: `dcotter-standalone-vep` with `n1-highmem-32` machine type and a 20 Gb boot disk:
   ```
@@ -167,14 +169,14 @@ WARNING: Failed to instantiate plugin LoF: Can't open /vep/loftee/splice_data/do
 gzip: stdout: Broken pipe
 ```
 
-For one thing, there is the warning message:
+There are a few warning signs here, but the one that concerned me the most was VEP saying it couldn't start LOFTEE:
 ```
 WARNING: Failed to instantiate plugin LoF: Can't open /vep/loftee/splice_data/donor_motifs/ese.txt: No such file or directory at /opt/vep/.vep/loftee/loftee_splice_utils.pl line 212.
 ```
 
-This all the output there was from the program; there were no progress indicators. In order to get an idea of what was going on, I ran `ps` and `wc -l rel2_100k-var-vep.tsv`, which file was the specified output. The VPN connection timed out at some point, and the SSH session froze its output, but I don't know whether the Docker container continued to run in the abandoned session or what.
+The program hadn't returned, either in success or failure, so I just let it run for a while. There were no progress indicators, so in order to get an idea of what was going on, I ran `ps` and `wc -l rel2_100k-var-vep.tsv` (the specified output file). At some point, my VPN connection timed out and the SSH session froze its output, so I didn't know whether the Docker container continued to run in the abandoned session or what. Clearly, I needed a better way of actually running the job.
 
-The final output of `wc` was 1.2M lines and 174MB:
+Logging back in to check on things, I saw the final output of `wc` was 1.2M lines and 174MB:
 ```
 1200745 rel2_100k-var-vep.tsv
 ```
@@ -283,63 +285,11 @@ chr1_13088_G/-	chr1:13088	-	ENSG00000278267	ENST00000619216	Transcript	downstrea
 chr1_13088_G/C	chr1:13088	C	ENSG00000223972	ENST00000450305	Transcript	intron_variant,non_coding_transcript_variant	-	-	-	-	-	-	IMPACT=MODIFIER;STRAND=1
 ```
 
-So I have two problems:
+This looks like roughly what I was expecting as output from VEP, but I have two problems to deal with still:
 1. The VPN timeout is killing my SSH session with the Compute VM
 2. The LOFTEE plugin is not being loaded when VEP runs.
 
-### Standalone VEP
-
-Joe sent the Storage location on 9/19 for the Data Release 2 VCF (`gs://gbsc-gcp-project-mvp-wgs-data-release-2/gvcf_aggregation_100k/release_20230505/rel2_100k-var.vcf.bgz`), a 236 GB bzipped file.
-
-I'm trying to figure out how to shard the file into one file per chromosome so I can run VEP on smaller files one at a time. This is the header of the file:
-```
-$ zcat rel2_100k-var.vcf.bgz | grep -v "^##" | head -n 1
-#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	SHIP5297471	SHIP5508159...
-```
-
-The list of header columns goes on for many screens, and I suspected there were as many columns as
-there are samples (104,923 in DR2). To test, I did `wc -w`:
-```
-$ zcat rel2_100k-var.vcf.bgz | grep -v "^##" | head -n 1 | wc -w
-104932
-```
-
-Which amounts to 9 columns (CHROM, POS, ID, REF, ALT, QUAL, FILTER, INFO, and FORMAT), plus 104,923 samples, so I was right. Then I wrote a quick Bash script to split the master file by contig:
-
-```
-# /bin/bash
-
-for contig in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 X Y M
-do
-	zgrep -v "^##" rel2_100k-var.vcf.bgz | head -n 1 | gzip > chr$contig.gz
-	zgrep "^chr$contig" rel2_100k-var.vcf.bgz | gzip >> chr$contig.gz
-done
-```
-
-Later, I asked Paul whether `grep` was sufficient for splitting the file by chromosome – I was worried there might be exceptions to the simple regex I was using based on some anomalous chromosome names I'd run across – and he said `bcftools` might be a better option. `bcftools`, however, requires an index file for random access to the VCF, so the first step is to index the VCF file. Here is my revised process:
-
-1. Index the VCF file:
-   ```
-   bcftools index rel2_100k-var.vcf.bgz
-   ```
-2. Filter by region for each chromosome:
-   ```
-   bcftools filter --regions chr1 > rel2_100k-var-chr1.vcf
-   ```
-
-Step 1 took 8 days to complete (from 9/27 to 10/4) and produced a 2.3 MB index file with a `.csi` extension. In the meantime, I happened to notice an index file by the name of `rel2_100k-var.vcf.bgz.tbi` in the same Storage directory Joe gave me earlier (`gs://gbsc-gcp-project-mvp-wgs-data-release-2/gvcf_aggregation_100k/release_20230505`). So recreating the index file was probably a waste of time versus just using the one that was already there that I didn't notice when I first looked at the directory (which, to be fair, was before I knew I would need an index file or that it would take so long to generate one). By the time the index had been created, we had realized there was a better way to do what I was trying to do (see update below), so I nixed step 2.
-
-### UPDATE
-
-The 236 GB file that Joe uploaded turned out to include all 105k sample columns and blank genotype entries for each sample at each variant, which added a lot of unneeded bulk to the table. We realized this during a Slack meeting on 10/3 between me, Paul, and Joe. Apparently, the commands he used in Hail rendered the genotype entries blank but didn't drop the sample columns, so each (blank) entry was represented by a single dot. Later that day, he recreated the variants-only dataset in Hail without the sample columns or genotype entries and split it out by chromosome. He posted the results, 24 separate `.bgz` files, to `gs://gbsc-gcp-project-mvp-wgs-data-release-2/gvcf_aggregation_100k/release_20230505/var_vcfs`, and they are much smaller (from 12 MB to 180 MB each, for 24 files).
-
-
-
-### Standalone VEP
-
-Regarding the problem I was having with my terminal sessions being disconnected by the VPN timeout: Paul suggested a terminal multiplexer like `screen` or `tmux`, which would keep the session alive even after I was disconnected from the SSH session. I tried `screen` and it worked like a charm. I'm amazed I've never used a terminal emulator before...
-
-Regarding the other problem, the LOFTEE plugin not loading, I found a solution, but I'm not totally sure why it works. Instead of pointing VEP to the LOFTEE plugin code in the cloned repository, I just copied all the code from the repo to the root-level plugins directory and ran VEP without specifying the LOFTEE plugin location.
+Regarding the first, Paul suggested a terminal multiplexer like `screen` or `tmux`, which would keep the session alive even after I was disconnected from the SSH session, which did the trick. Regarding the second, I found a solution, but I'm not totally sure why it works. Instead of pointing VEP to the LOFTEE plugin code in the cloned repository, I just copied all the code from the repo to the root-level plugins directory and ran VEP without specifying the LOFTEE plugin location.
 
 NOT WORKING:
 ```
@@ -366,8 +316,49 @@ vep --cache \
 
 I would normally hesitate to copy plugin code to a global directory and risk overwriting existing files, especially when they use common directory names like `src`, but since this is running in a transient Docker container with no other users and a very temporary lifespan, I can't see the harm.
 
+### Dealing with very big data
+Joe sent the Storage location on 9/19 for the Data Release 2 VCF (`gs://gbsc-gcp-project-mvp-wgs-data-release-2/gvcf_aggregation_100k/release_20230505/rel2_100k-var.vcf.bgz`), a 236 GB compressed file. I was warned not to decompress it - after all, if it is 236 GB compressed, how many times larger would it be at full size? Better not to find out, so I restricted myself to tools that could manipulate the file in its compressed form (typically, these utilities decompress small parts of the file in memory, do their work, and write the results to disk, thus avoiding writing out the decompressed contents of the file to disk).
 
-### Standalone VEP
+The next problem was to figure out how to shard the file into one file per chromosome so I can run VEP on smaller files one at a time. This is the header of the file:
+```
+$ zcat rel2_100k-var.vcf.bgz | grep -v "^##" | head -n 1
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	SHIP5297471	SHIP5508159...
+```
+
+The list of header columns goes on for many screens, and I suspected there were as many columns as samples (104,923 in DR2). To test, I counted the number of words in the header:
+```
+$ zcat rel2_100k-var.vcf.bgz | grep -v "^##" | head -n 1 | wc -w
+104932
+```
+
+This amounts to 9 VEP columns (CHROM, POS, ID, REF, ALT, QUAL, FILTER, INFO, and FORMAT), plus 104,923 samples, so I was right. Then I wrote a quick Bash script to split the master file by contig:
+
+```
+# /bin/bash
+
+for contig in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 X Y M
+do
+	zgrep -v "^##" rel2_100k-var.vcf.bgz | head -n 1 | gzip > chr$contig.gz
+	zgrep "^chr$contig" rel2_100k-var.vcf.bgz | gzip >> chr$contig.gz
+done
+```
+
+Later, I asked Paul whether `grep` was sufficient for splitting the file by chromosome – I was worried there might be exceptions to the simple regex I was using based on some anomalous chromosome names I'd run across – and he said `bcftools` might be a better option. `bcftools`, however, requires an index file for random access to the VCF, so the first step is to index the VCF file. Here is my revised process:
+
+1. Index the VCF file:
+   ```
+   bcftools index rel2_100k-var.vcf.bgz
+   ```
+2. Filter by region for each chromosome:
+   ```
+   bcftools filter --regions chr1 > rel2_100k-var-chr1.vcf
+   ```
+
+Step 1 took 8 days to complete (from 9/27 to 10/4) and produced a 2.3 MB index file with a `.csi` extension. In the meantime, I happened to notice an index file I hadn't noticed before by the name of `rel2_100k-var.vcf.bgz.tbi` in the same Storage directory Joe gave me earlier (`gs://gbsc-gcp-project-mvp-wgs-data-release-2/gvcf_aggregation_100k/release_20230505`). So recreating the index file was probably unnecessary versus just using the one that was already there that I didn't notice when I first looked at the directory (which, to be fair, was before I knew I would need an index file or that it would take so long to generate one). By the time the index had been created, we had realized there was a better way to do what I was trying to do (see update below), so I nixed step 2.
+
+Around the same time, we realized that the 236 GB file Joe uploaded turned out to include all 105k sample columns and blank genotype entries for each sample at each variant, which added a lot of unneeded bulk to the table. Apparently, the commands he used in Hail rendered the genotype entries blank but didn't drop the sample columns, so each (blank) entry was represented by a single dot. Later that day, he recreated the variants-only dataset in Hail without the sample columns or genotype entries and split it out by chromosome. He posted the results, 24 separate `.bgz` files, to `gs://gbsc-gcp-project-mvp-wgs-data-release-2/gvcf_aggregation_100k/release_20230505/var_vcfs`, and they are much smaller (from 12 MB to 180 MB each, for 24 files).
+
+### Distributing a large homo sapiens variations file to the worker nodes
 
 My plan was to create one Compute VM per chromosome and run VEP on each of them, then stitch the results into a single output file – a sort of manually orchestrated compute cluster. The first problem I ran into was that VEP requires a homo sapiens variations file, which can either be downloaded on the fly from their [FTP site](https://ftp.ensembl.org/pub/release-110/variation/indexed_vep_cache/homo_sapiens_vep_110_GRCh38.tar.gz) or provided locally in a cache directory (they recommend the latter). I needed to get this file onto all 24 computers, and given it size, 20 GB, this was a non-trivial problem.
 
@@ -400,9 +391,7 @@ gcloud compute disks create dcotter-vep-chry \
 
 It took less than a minute to create the disk; and after attaching the cloned disk to a new Compute VM and mounting the device, I can see the 20G file there, so I'm going to call it a success.
 
-
-
-### Standalone VEP
+### Creating a machine image to use on Compute VM
 
 Now, I'm wondering if I can create an image that includes VEP, LOFTEE, the 20G cache file, and any other requirements for running VEP, and then use that image for each of the 24 VEP VMs? I don't want to waste precious time on technical adventurism; on the other hand, it might pay off in a reusable image and some useful new knowledge. The GCP console notes that:
 
