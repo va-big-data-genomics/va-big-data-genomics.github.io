@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "#36 Comparing MVP release 2 to gnomAD v3 variants"
-date:   2023-10-13 8:00:00 -0700
+date:   2023-10-13 10:05:00 -0800
 author: Paul Billing-Ross
 categories: jekyll update
 ---
