@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "#35 Annotating MVP Genomes with VEP & LOFTEE"
-date:   2023-09-01 10:00:00 -0800
+date:   2023-10-13 10:00:00 -0800
 author: Daniel Cotter
 categories: jekyll update
 ---
