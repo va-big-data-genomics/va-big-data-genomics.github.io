@@ -1,3 +1,17 @@
+---
+layout: post
+title:  "#35 Annotating MVP Genomes with VEP & LOFTEE"
+date:   2023-09-01 10:00:00 -0800
+author: Daniel Cotter
+categories: jekyll update
+---
+
+So far in our burden testing, our results have not matched Genebass's, but it has been difficult to figure out where the difference are coming from – is it a) differences in the genomes themselves, b) differences in our algorithm, or c) differences in the variants' annotations? Taking one at a time: The individual genomes are obviously different, but we have controlled for covariates like sex, ethnicity, and PCA scores, so this should not be a big factor. Our algorithm is the most basic form of burden testing, just a simple aggregation and linear regression, so we can probably rule it out as well. However, the input to our algorithm – the variants and their annotations – differ from Genebass's, because we have been annotating our variants with gnomAD, whereas Genebass annotated theirs with VEP (Ensembl's Variant Effect Predictor) and its LOFTEE plugin (Karczewski's Loss-of-Function Transcript Effect Estimator).
+
+The variants' annotations, then, have become the focus of our troubleshooting. For background, annotating each variant with its corresponding gene and the likelihood of a loss of function resulting from that variant is one of the first steps in performing rare variant analysis; we are only interested in variants with a high-confidence loss-of-function effect upon the gene. At one point, we considered running VEP/LOFTEE ourselves, but chose not to, because it is built on technology that does not fit very well with our technology stack: VEP is written in Perl and meant to run on a single machine; Hail is written in Python and Scala and meant to run on a distributed computing cluster consisting of many individual machines. Scaling VEP would involve manually sharding and distributing a very large VCF file to a number of machines, then manually combining the results. The perceived difficulty of running VEP on our data led us to try other options first, such as gnomAD. (Incidentally, Hail includes a VEP function that takes a Hail-native table as its object and calls the VEP Perl script under the hood after splitting up the table and distributing the shards to worker nodes in the cluster, but so far it has not worked for various technical reasons).
+
+Recently, however, we took another look at VEP, since our other efforts at troubleshooting had not panned out. This blog post details the process of running VEP on a manually managed "cluster" of virtual machines in Google's cloud.
+
 ### Standalone VEP
 
 I'm also working on running VEP on a standalone Compute VM, i.e. not a Dataproc cluster. To that end, I:
