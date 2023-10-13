@@ -506,9 +506,9 @@ curl -sSO https://dl.google.com/cloudagents/mass-provision-google-cloud-ops-agen
 python3 mass-provision-google-cloud-ops-agents.py --file agents_to_install.csv
 ```
 
-### Rate-limiting
+The results were that VEP ran w/o significant errors or warnings on all 24 chromosomes, which I subsequently uploaded to `gs://gbsc-gcp-project-mvp-wgs-data-release-2/gvcf_aggregation_100k/release_20230505/var_vcfs`, with the input files. The next step is to download all these files to a single machine, filter them down to just the high-confidence loss-of-function variants, combine them into a master file, and import them into Hail to use as annotations to the MVP genomes. Hopefully, the resulting burden test will match Genebass's fairly closely.
+
+### Minor problem: Rate-limiting
 One problem yet to be solved is that, when creating the machines from the standalone-VEP image, I get the error "Operation rate exceeded for resource 'projects/gbsc-gcp-project-mvp/global/machineImages/dcotter-vep-standalone-image'. Too frequent operations from the source resource." The rate limit appears to be fixed, according to GCP [docs](https://cloud.google.com/compute/docs/machine-images/create-instance-from-machine-image#restrictions), not something where we can just pay more to use more.
 
 In the moment, I just continued running the command every few minutes until all the instances were created, but Paul and I got together to talk about possible solutions. Paul had the idea to use a shared read-only disk; I liked the idea and thought that I could have LOFTEE, the homo sapiens cache file, and the Docker image on one read-only disk, then use a second, read-write, disk to launch the Docker container, write out the VEP results, and so on. It’s a more complicated configuration, but it would get around the rate-limiting problem.
-
-
