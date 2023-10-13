@@ -316,7 +316,7 @@ vep --cache \
 
 I would normally hesitate to copy plugin code to a global directory and risk overwriting existing files, especially when they use common directory names like `src`, but since this is running in a transient Docker container with no other users and a very temporary lifespan, I can't see the harm.
 
-### Dealing with very big data
+### Dealing with (very) big data
 Joe sent the Storage location on 9/19 for the Data Release 2 VCF (`gs://gbsc-gcp-project-mvp-wgs-data-release-2/gvcf_aggregation_100k/release_20230505/rel2_100k-var.vcf.bgz`), a 236 GB compressed file. I was warned not to decompress it - after all, if it is 236 GB compressed, how many times larger would it be at full size? Better not to find out, so I restricted myself to tools that could manipulate the file in its compressed form (typically, these utilities decompress small parts of the file in memory, do their work, and write the results to disk, thus avoiding writing out the decompressed contents of the file to disk).
 
 The next problem was to figure out how to shard the file into one file per chromosome so I can run VEP on smaller files one at a time. This is the header of the file:
@@ -494,5 +494,21 @@ Machine image (per GB / month): $0.05 ([source](https://cloud.google.com/compute
 
 
 
+### Trying again with the proper LOFTEE release
+When I looked at the results of the VEP runs on the 24 machines, they were not what I expected. The log file contained lots of warnings and errors, and the results files ended well before their respective chromosomes did (chrom. 15, for instance, stopped around ~40M bp, and the chromosome itself is ~102M bp long, so something went wrong). Well, it turns out I should have been using the LOFTEE [GRCh38 release](https://github.com/konradjk/loftee/releases/tag/v1.0.4_GRCh38), rather than the latest version of the LOFTEE plugin [repository](https://github.com/konradjk/loftee). As it turns out, the master branch of the LOFTEE code repository is "[very broken for 38](https://github.com/konradjk/loftee/issues/73#issuecomment-733109901)" (according to Karczewski, the author of the plugin). I agree with the user who [said](https://github.com/konradjk/loftee/issues/73#issuecomment-1129447200) "I think master being broken for GRCh38 needs to be added to the README on the front page. GRCh38 is the latest human reference and should be considered the default."
+
+In any case, I recreated the machine for chromosome 15 with GRCh38 release of LOFTEE (chromosome 15 because this is where ACAN, the top hit for our height phenotype lives, around ~88M bp). I checked on it after a few hours, and it looked much better. VEP got to the end of the chromosome (~102M base pairs) and flagged several variants within ACAN as high-confidence loss-of-function variants. Following on this success, I recreated the other 23 virtual machines with an updated image that used the GRCh38 release of LOFTEE. I also enabled Ops Agent, a Google Cloud Platform service that monitors memory usage of virtual machines (another thing that seems like it should be on by default). The code to create these machines was almost identical to the code already cited, so I won't cite it again, but the code to install the Ops Agent was as follows:
+
+```
+:> agents_to_install.csv && \
+echo '"projects/gbsc-gcp-project-mvp/zones/us-west1-b/instances/dcotter-vep-standalone-chr15"' >> agents_to_install.csv && \
+curl -sSO https://dl.google.com/cloudagents/mass-provision-google-cloud-ops-agents.py && \
+python3 mass-provision-google-cloud-ops-agents.py --file agents_to_install.csv
+```
+
+### Rate-limiting
+One problem yet to be solved is that, when creating the machines from the standalone-VEP image, I get the error "Operation rate exceeded for resource 'projects/gbsc-gcp-project-mvp/global/machineImages/dcotter-vep-standalone-image'. Too frequent operations from the source resource." The rate limit appears to be fixed, according to GCP [docs](https://cloud.google.com/compute/docs/machine-images/create-instance-from-machine-image#restrictions), not something where we can just pay more to use more.
+
+In the moment, I just continued running the command every few minutes until all the instances were created, but Paul and I got together to talk about possible solutions. Paul had the idea to use a shared read-only disk; I liked the idea and thought that I could have LOFTEE, the homo sapiens cache file, and the Docker image on one read-only disk, then use a second, read-write, disk to launch the Docker container, write out the VEP results, and so on. It’s a more complicated configuration, but it would get around the rate-limiting problem.
 
 
