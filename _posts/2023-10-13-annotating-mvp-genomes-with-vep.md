@@ -21,7 +21,7 @@ This was my first attempt at running VEP on a Compute VM. The steps I took, in o
 - Created a new Compute VM instance: `dcotter-standalone-vep` with `n1-highmem-32` machine type and a 20 Gb boot disk:
   ```
   gcloud compute instances create dcotter-vep-standalone \
-    --project=gbsc-gcp-project-mvp \
+    --project=xxx \
     --zone=us-west1-b \
     --machine-type=n1-highmem-8 \
     --network-interface=network=default,network-tier=PREMIUM,stack-type=IPV4_ONLY \
@@ -29,7 +29,7 @@ This was my first attempt at running VEP on a Compute VM. The steps I took, in o
     --provisioning-model=STANDARD \
     --service-account=963911152157-compute@developer.gserviceaccount.com \
     --scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/trace.append \
-    --create-disk=auto-delete=yes,boot=yes,device-name=dcotter-vep-standalone,image=projects/debian-cloud/global/images/debian-11-bullseye-v20230912,mode=rw,size=20,type=projects/gbsc-gcp-project-mvp/zones/us-west1-b/diskTypes/pd-balanced \
+    --create-disk=auto-delete=yes,boot=yes,device-name=dcotter-vep-standalone,image=projects/debian-cloud/global/images/debian-11-bullseye-v20230912,mode=rw,size=20,type=projects/xxx/zones/us-west1-b/diskTypes/pd-balanced \
     --no-shielded-secure-boot \
     --shielded-vtpm \
     --shielded-integrity-monitoring \
@@ -99,7 +99,7 @@ This was my first attempt at running VEP on a Compute VM. The steps I took, in o
     cd /home/dlcott2/data
     
     # Download MVP DR2 VCF file (VERY large, 237 GB)
-    gsutil cp gs://gbsc-gcp-project-mvp-wgs-data-release-2/gvcf_aggregation_100k/release_20230505/rel2_100k-var.vcf.bgz .
+    gsutil cp gs://xxx/gvcf_aggregation_100k/release_20230505/rel2_100k-var.vcf.bgz .
     
     # Download the VEP cache files and unpack them (also large, 20 GB)
     curl --remote-name https://ftp.ensembl.org/pub/release-110/variation/indexed_vep_cache/homo_sapiens_vep_110_GRCh38.tar.gz
@@ -317,7 +317,7 @@ vep --cache \
 I would normally hesitate to copy plugin code to a global directory and risk overwriting existing files, especially when they use common directory names like `src`, but since this is running in a transient Docker container with no other users and a very temporary lifespan, I can't see the harm.
 
 ### Dealing with (very) big data
-Joe sent the Storage location on 9/19 for the Data Release 2 VCF (`gs://gbsc-gcp-project-mvp-wgs-data-release-2/gvcf_aggregation_100k/release_20230505/rel2_100k-var.vcf.bgz`), a 236 GB compressed file. I was warned not to decompress it - after all, if it is 236 GB compressed, how many times larger would it be at full size? Better not to find out, so I restricted myself to tools that could manipulate the file in its compressed form (typically, these utilities decompress small parts of the file in memory, do their work, and write the results to disk, thus avoiding writing out the decompressed contents of the file to disk).
+Joe sent the Storage location on 9/19 for the Data Release 2 VCF (`gs://xxx/gvcf_aggregation_100k/release_20230505/rel2_100k-var.vcf.bgz`), a 236 GB compressed file. I was warned not to decompress it - after all, if it is 236 GB compressed, how many times larger would it be at full size? Better not to find out, so I restricted myself to tools that could manipulate the file in its compressed form (typically, these utilities decompress small parts of the file in memory, do their work, and write the results to disk, thus avoiding writing out the decompressed contents of the file to disk).
 
 The next problem was to figure out how to shard the file into one file per chromosome so I can run VEP on smaller files one at a time. This is the header of the file:
 ```
@@ -354,9 +354,9 @@ Later, I asked Paul whether `grep` was sufficient for splitting the file by chro
    bcftools filter --regions chr1 > rel2_100k-var-chr1.vcf
    ```
 
-Step 1 took 8 days to complete (from 9/27 to 10/4) and produced a 2.3 MB index file with a `.csi` extension. In the meantime, I happened to notice an index file I hadn't noticed before by the name of `rel2_100k-var.vcf.bgz.tbi` in the same Storage directory Joe gave me earlier (`gs://gbsc-gcp-project-mvp-wgs-data-release-2/gvcf_aggregation_100k/release_20230505`). So recreating the index file was probably unnecessary versus just using the one that was already there that I didn't notice when I first looked at the directory (which, to be fair, was before I knew I would need an index file or that it would take so long to generate one). By the time the index had been created, we had realized there was a better way to do what I was trying to do (see update below), so I nixed step 2.
+Step 1 took 8 days to complete (from 9/27 to 10/4) and produced a 2.3 MB index file with a `.csi` extension. In the meantime, I happened to notice an index file I hadn't noticed before by the name of `rel2_100k-var.vcf.bgz.tbi` in the same Storage directory Joe gave me earlier (`gs://xxx/gvcf_aggregation_100k/release_20230505`). So recreating the index file was probably unnecessary versus just using the one that was already there that I didn't notice when I first looked at the directory (which, to be fair, was before I knew I would need an index file or that it would take so long to generate one). By the time the index had been created, we had realized there was a better way to do what I was trying to do (see update below), so I nixed step 2.
 
-Around the same time, we realized that the 236 GB file Joe uploaded turned out to include all 105k sample columns and blank genotype entries for each sample at each variant, which added a lot of unneeded bulk to the table. Apparently, the commands he used in Hail rendered the genotype entries blank but didn't drop the sample columns, so each (blank) entry was represented by a single dot. Later that day, he recreated the variants-only dataset in Hail without the sample columns or genotype entries and split it out by chromosome. He posted the results, 24 separate `.bgz` files, to `gs://gbsc-gcp-project-mvp-wgs-data-release-2/gvcf_aggregation_100k/release_20230505/var_vcfs`, and they are much smaller (from 12 MB to 180 MB each, for 24 files).
+Around the same time, we realized that the 236 GB file Joe uploaded turned out to include all 105k sample columns and blank genotype entries for each sample at each variant, which added a lot of unneeded bulk to the table. Apparently, the commands he used in Hail rendered the genotype entries blank but didn't drop the sample columns, so each (blank) entry was represented by a single dot. Later that day, he recreated the variants-only dataset in Hail without the sample columns or genotype entries and split it out by chromosome. He posted the results, 24 separate `.bgz` files, to `gs://xxx/gvcf_aggregation_100k/release_20230505/var_vcfs`, and they are much smaller (from 12 MB to 180 MB each, for 24 files).
 
 ### Distributing a large homo sapiens variations file to the worker nodes
 
@@ -381,12 +381,12 @@ However, I tried downloading the file from Globus through the web app (i.e. not 
 Finally, I hit on the idea that would drastically speed up the whole operation: **Clone the disk through the Compute API**. I ran the following:
 ```
 gcloud compute disks create dcotter-vep-chry \
-  --project=gbsc-gcp-project-mvp \
+  --project=xxx \
   --type=pd-balanced \
   --description=Includes\ 20G\ homo\ sapiens\ cache\ file\ required\ by\ VEP \
   --size=500GB \
   --zone=us-west1-b \
-  --source-disk=projects/gbsc-gcp-project-mvp/zones/us-west1-b/disks/data-disk`)
+  --source-disk=projects/xxx/zones/us-west1-b/disks/data-disk`)
 ```
 
 It took less than a minute to create the disk; and after attaching the cloned disk to a new Compute VM and mounting the device, I can see the 20G file there, so I'm going to call it a success.
@@ -401,7 +401,7 @@ The [docs](https://cloud.google.com/compute/docs/machine-images) say an image is
 
   ```
   gcloud beta compute machine-images create dcotter-vep-standalone-image \
-      --project=gbsc-gcp-project-mvp \
+      --project=xxx \
       --description=The\ image\ includes:$'\n'\ \ -\ VEP\ Docker\ image$'\n'\ \ -\ LOFTEE\ Git\ repo$'\n'\ \ -\ homo\ sapiens\ cache\ file\ \(20Gb\)\ and\ extracted\ directory\ tree \
       --source-instance=dcotter-vep-standalone \
       --source-instance-zone=us-west1-b \
@@ -412,7 +412,7 @@ And now I'm creating an instance based on the image (this will turn out to work 
 
   ```
   gcloud compute instances create dcotter-vep-standalone-chr01 \
-    --project=gbsc-gcp-project-mvp \
+    --project=xxx \
     --zone=us-west1-b \
     --machine-type=n1-highmem-32 \
     --network-interface=network=default,network-tier=PREMIUM,stack-type=IPV4_ONLY \
@@ -436,7 +436,7 @@ After creating the VM based on the image:
   ```
 - Download the appropriate chromosome VCF:
   ```
-  gsutil cp gs://gbsc-gcp-project-mvp-wgs-data-release-2/gvcf_aggregation_100k/release_20230505/var_vcfs/rel2_100k-var-chr01.vcf.bgz /home/dlcott2/data/
+  gsutil cp gs://xxx/gvcf_aggregation_100k/release_20230505/var_vcfs/rel2_100k-var-chr01.vcf.bgz /home/dlcott2/data/
   ```
 - Start a new `screen`:
   ```
@@ -466,10 +466,10 @@ After creating the VM based on the image:
     ```
     cd /home/dlcott2/data/
     tar czf rel2_100k-var-chr2-vep.tar.gz rel2_100k-var-chr2-vep*
-    gsutil cp rel2_100k-var-chr2-vep.tar.gz gs://gbsc-gcp-project-mvp-wgs-data-release-2/gvcf_aggregation_100k/release_20230505/var_vcfs/
+    gsutil cp rel2_100k-var-chr2-vep.tar.gz gs://xxx/gvcf_aggregation_100k/release_20230505/var_vcfs/
     ```
 
-I ended up running all 24 Compute VMs in this manner and uploaded the results to `gs://gbsc-gcp-project-mvp-wgs-data-release-2/gvcf_aggregation_100k/release_20230505/var_vcfs`.
+I ended up running all 24 Compute VMs in this manner and uploaded the results to `gs://xxx/gvcf_aggregation_100k/release_20230505/var_vcfs`.
 
 ### Aside: How much does an image cost?
 ```
@@ -501,14 +501,14 @@ In any case, I recreated the machine for chromosome 15 with GRCh38 release of LO
 
 ```
 :> agents_to_install.csv && \
-echo '"projects/gbsc-gcp-project-mvp/zones/us-west1-b/instances/dcotter-vep-standalone-chr15"' >> agents_to_install.csv && \
+echo '"projects/xxx/zones/us-west1-b/instances/dcotter-vep-standalone-chr15"' >> agents_to_install.csv && \
 curl -sSO https://dl.google.com/cloudagents/mass-provision-google-cloud-ops-agents.py && \
 python3 mass-provision-google-cloud-ops-agents.py --file agents_to_install.csv
 ```
 
-The results were that VEP ran w/o significant errors or warnings on all 24 chromosomes, which I subsequently uploaded to `gs://gbsc-gcp-project-mvp-wgs-data-release-2/gvcf_aggregation_100k/release_20230505/var_vcfs`, with the input files. The next step is to download all these files to a single machine, filter them down to just the high-confidence loss-of-function variants, combine them into a master file, and import them into Hail to use as annotations to the MVP genomes. Hopefully, the resulting burden test will match Genebass's fairly closely.
+The results were that VEP ran w/o significant errors or warnings on all 24 chromosomes, which I subsequently uploaded to `gs://xxx/gvcf_aggregation_100k/release_20230505/var_vcfs`, with the input files. The next step is to download all these files to a single machine, filter them down to just the high-confidence loss-of-function variants, combine them into a master file, and import them into Hail to use as annotations to the MVP genomes. Hopefully, the resulting burden test will match Genebass's fairly closely.
 
 ### Minor problem: Rate-limiting
-One problem yet to be solved is that, when creating the machines from the standalone-VEP image, I get the error "Operation rate exceeded for resource 'projects/gbsc-gcp-project-mvp/global/machineImages/dcotter-vep-standalone-image'. Too frequent operations from the source resource." The rate limit appears to be fixed, according to GCP [docs](https://cloud.google.com/compute/docs/machine-images/create-instance-from-machine-image#restrictions), not something where we can just pay more to use more.
+One problem yet to be solved is that, when creating the machines from the standalone-VEP image, I get the error "Operation rate exceeded for resource 'projects/xxx/global/machineImages/dcotter-vep-standalone-image'. Too frequent operations from the source resource." The rate limit appears to be fixed, according to GCP [docs](https://cloud.google.com/compute/docs/machine-images/create-instance-from-machine-image#restrictions), not something where we can just pay more to use more.
 
 In the moment, I just continued running the command every few minutes until all the instances were created, but Paul and I got together to talk about possible solutions. Paul had the idea to use a shared read-only disk; I liked the idea and thought that I could have LOFTEE, the homo sapiens cache file, and the Docker image on one read-only disk, then use a second, read-write, disk to launch the Docker container, write out the VEP results, and so on. It’s a more complicated configuration, but it would get around the rate-limiting problem.
