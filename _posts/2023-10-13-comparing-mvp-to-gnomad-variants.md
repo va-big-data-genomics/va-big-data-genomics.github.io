@@ -65,5 +65,8 @@ Figure 3. Scatterplot of alternate allele counts of variants shared between MVP 
 
 Overall, I would say there is high concordance of allele counts between the datasets.
 
+## Code
+Our team members can find the source notebook with code and descriptions of these analyses in our internal [repository](https://github.com/va-big-data-genomics/hail-variants-on-bigquery/blob/main/2-query-bigquery-variants/compare-mvp-gnomad-variants.ipynb).
+
 ## Discuss
 Join the discussion of this post on [GitHub](https://github.com/orgs/va-big-data-genomics/discussions/37)!
