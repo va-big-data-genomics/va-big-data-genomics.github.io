@@ -21,8 +21,8 @@ With release 2 of Million Veteran Program whole genome sequencing data, we've id
 | Dataset | Whole genomes | Unique variants | Sequencing coverage |
 | --- | --- | --- | --- |
 | MVP release 2 | 104,923 | 663,351,127 | 30x |
-| gnomAD v3 | 76,156 | 707,950,943 | 30x |
-Table 1. Overview of the MVP and gnomAD datasets I am comparing.
+| gnomAD v3 | 76,156 | 707,950,943 | 30-32x |
+Table 1. Overview of the MVP and gnomAD datasets I am comparing. gnomAD coverage statistics were obtained from their [preprint](https://www.biorxiv.org/content/10.1101/2022.03.20.485034v2.full).
 
 ## Shared variants between MVP and gnomAD
 In order to determine how many variants are shared between MVP and gnomAD, I wrote a SQL query that considers variants to be shared between datasets if they have the same chromosome, position, reference, and alternate bases.Because the gnomAD data is split into separate tables, by chromosome, I used Python code to run this query across all chromosomes and then combine the results.
