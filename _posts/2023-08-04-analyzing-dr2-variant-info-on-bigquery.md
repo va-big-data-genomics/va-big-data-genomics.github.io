@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "#28 Analyzing data release 2 variant info on BigQuery"
+title:  "#28 MVP Release 2 variants #1:  Analyzing variant info on BigQuery"
 date:   2023-08-04 06:00:00 -0700
 author: Paul Billing-Ross
 categories: jekyll update

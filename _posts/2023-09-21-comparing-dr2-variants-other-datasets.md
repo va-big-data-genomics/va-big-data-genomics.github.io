@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "#33 Comparing MVP data release 2 variants to other datasets"
+title:  "#33 MVP Release 2 variants #2: Comparing MVP variants to other datasets"
 date:   2023-09-21 06:00:00 -0700
 author: Paul Billing-Ross
 categories: jekyll update
