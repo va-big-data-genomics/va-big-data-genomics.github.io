@@ -22,6 +22,7 @@ With release 2 of Million Veteran Program whole genome sequencing data, we've id
 | --- | --- | --- | --- |
 | MVP release 2 | 104,923 | 663,351,127 | 30x |
 | gnomAD v3 | 76,156 | 707,950,943 | 30-32x |
+
 Table 1. Overview of the MVP and gnomAD datasets I am comparing. gnomAD coverage statistics were obtained from their [preprint](https://www.biorxiv.org/content/10.1101/2022.03.20.485034v2.full).
 
 ## Shared variants between MVP and gnomAD
@@ -42,6 +43,7 @@ I also wrote queries to count the total number of variants in MVP and gnomAD as 
 | Chromosome | MVP variants | gnomAD variants | Shared variants |
 | --- | --- | --- | --- |
 | All | 663,351,127 | 707,950,943 | 325,409,090 |
+
 Table 2. Comparison of variant counts between MVP release 2 and gnomAD v3.
 
 In Figure 1, you can also see the breakdown by chromosome. Across the autosomes there is a consistent pattern of gnomAD including slightly more variants than MVP. This is somewhat surprising given that gnomAD included 71,402 samples while we have 104,923. My guess is that this is due to us using for quality thresholds for including variants. The pattern is slightly reversed for the sex chromosomes where we see more variants than gnomAD.
@@ -88,6 +90,7 @@ We know that a lot of the variants in MVP are singletons or rare variants. Given
 | Chromosome | MVP variants | gnomAD variants | Shared variants |
 | --- | --- | --- | --- |
 | All | 336,227,251 | 312,793,823 | 243,680,654 |
+
 Table 3. Comparison of variants counts, excluding singletons, between MVP and gnomAD.
 
 ## Code
