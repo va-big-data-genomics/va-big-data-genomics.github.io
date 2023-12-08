@@ -24,7 +24,7 @@ You should find the database credentials of each Neo4j instance in the Secret Ma
 
 Also, Trellis behavior is governed by a configuration file called `trellis-config.yaml` in the Trellis bucket of each project it is deployed in. Try reading the object without taking it out of the cloud environment (because you should never take anything out of the cloud environment).
 
-#### Activity
+#### Activity 1
 - Download the Neo4j Desktop Client
 - Retrieve the Neo4j database credentials
 - Connect to the database from your local Neo4j client
@@ -34,7 +34,7 @@ Also, Trellis behavior is governed by a configuration file called `trellis-confi
 ### Trellis Monitoring Dashboard
 The other way to keep an eye on Trellis and the systems that run it (compute instances, cloud functions, etc.) is using [Monitoring Dashboards](https://cloud.google.com/monitoring/dashboards/api-examples). I've created one spefically [for Trellis](https://console.cloud.google.com/monitoring/dashboards/builder/dc56b2f7-f69b-4527-b054-3f7bcc1852a7;duration=P1D?authuser=0&project=gbsc-gcp-project-mvp). If you are not Stanford Staff, you can check out the slide decks below to get a better idea of what the dashboard looks like.
 
-#### Activity
+#### Activity 2
 Using the Monitoring dashboard, answer these questions:
 - How long has the average Neo4j query taken to run in the last 7 days?
 - How long has the longest query taken?
@@ -57,7 +57,7 @@ The source for the Trellis application and its deployment, as well as supporting
 - [https://github.com/va-big-data-genomics/trellis-mvp-data-modelling](https://github.com/va-big-data-genomics/trellis-mvp-data-modelling): Scripts I have used to update the Trellis metadata model (e.g. adding new types of data).
 - [https://github.com/va-big-data-genomics/trellis-mvp-gatk](https://github.com/va-big-data-genomics/trellis-mvp-gatk): Source for the GATK workflow we use for variant calling. 
 
-### Activity
+### Activity 3
 Figure out which branch of the `trellis-mvp-gatk` repository is being deployed to production. Hint: check the Cloud Build configuration.
 
 ## Cypher queries for checking the state of MVP data
