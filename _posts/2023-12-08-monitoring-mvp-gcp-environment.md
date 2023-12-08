@@ -130,4 +130,4 @@ RETURN COUNT(g), SIZE(qcs)
 ```
 
 ## Discuss
-Join the discussion of this post on [GitHub](https://github.com/orgs/va-big-data-genomics/discussions/37)!
+Join the discussion of this post on [GitHub](https://github.com/orgs/va-big-data-genomics/discussions/40)!
