@@ -12,7 +12,7 @@ faq:
 - question: "How did you track the status of genomes before Trellis?"
   answer: "A [spreadsheet](https://docs.google.com/spreadsheets/d/1-j2q816XnF7D7gktFRsxyA9LMIE8_c7beHh6xVTlxMs/edit#gid=0)."
 - question: "Where is the 2018 presentation to Mike Snyder?"
-  answer: "In the GBSC presentations [folder](https://docs.google.com/presentation/d/1e37lkla4E8ZVmLQz9aq--OEEiFt1XYeUaNwpbANuZRU/edit#slide=id.g465b0ec56a_4_0).
+  answer: "In the GBSC presentations [folder](https://docs.google.com/presentation/d/1e37lkla4E8ZVmLQz9aq--OEEiFt1XYeUaNwpbANuZRU/edit#slide=id.g465b0ec56a_4_0)."
 ---
 
 When I think about modelling data I think about two things: where did you come from and what can you do? This is my last post as a member of this team. Next year I'll be setting out on my own professional path. You can read my previous posts to see what I can do. This post is about how I got here. And in understanding my own provenance, hopefully you can better understand the decisions I've made.
