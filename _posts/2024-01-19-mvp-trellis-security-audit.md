@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "#40 Trellis Security Audit"
-date:   2024-12-19 09:00:00 -0800
+date:   2024-01-19 09:00:00 -0800
 author: Daniel Cotter
 categories: jekyll update
 ---
@@ -113,7 +113,7 @@ dsub_args = [
 ]
 ```
 
-The key-value dictionary `job_dict`, in turn, is defined at [line 213](https://github.com/StanfordBioinformatics/trellis-mvp-functions/blob/8c6054e3e367c227accf2f6ac9fed4942c67cff4/functions/launch-cnvnator/main.py#L213), from
+The key-value dictionary `job_dict`, in turn, is defined at line 213, from
 environment variables, hardcoded values, and local variables (which are
 themselves derived from the Pub/Sub event and context passed into the cloud
 function):
