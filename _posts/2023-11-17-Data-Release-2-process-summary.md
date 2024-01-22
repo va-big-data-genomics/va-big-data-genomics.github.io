@@ -40,7 +40,7 @@ To provide quality variants to the MVP community, we set forth a stringent QC fi
 
 We conducted genotype level quality control for the following conditions:
 - All Genotypes
-   - Must have a quality phred score of 400 or less to be retained.
+   - Must have a depth of 400 or less to be retained.
    - Must have a depth of 10 or greater except those within male sex chromosomes which have a depth cut off of 5. 
 - Alleles that are homozygous for the reference allele
    - Must have a genotype phred quality score of 20 or more 
