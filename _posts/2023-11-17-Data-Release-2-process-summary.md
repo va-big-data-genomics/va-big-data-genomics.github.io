@@ -64,7 +64,7 @@ We filtered out samples that did not meet quality standards for two QC metrics. 
 
 ## Final Processing and File Generation
 
-After QC filtering, we prepared the matrix table for release with final processing and file generation. We first checked that no sample duplicates remained in the matrix table. We next annotated samples in the matrix table with a binary flag depending on whether they have a first- or second-degree relationship, as determined by MVP genotype array data. In the last processing step we removed all samples in the matrix table that did not have a corresponding match in an additonal list of samples to retain. This additonal list was provided to us by the Boston team, consists only of samples that are included in the genotype array data, and omits any samples known to be technical duplicates. A summary of all data output at each processing step described is included below (Table 2). 
+After QC filtering we prepared the matrix table for release with final processing and file generation. We first checked that no sample duplicates remained in the matrix table. We next annotated samples in the matrix table with a binary flag depending on whether they have a first- or second-degree relationship, as determined by MVP genotype array data. In the last processing step we removed all samples in the matrix table that did not have a corresponding match in an additonal list of samples to retain. This additonal list was provided to us by the Boston team, consists only of samples that are included in the genotype array data, and omits any samples known to be technical duplicates. A summary of all data output at each processing step described is included below (Table 2). 
 
 Table 2. Output of data processing step by step
 
