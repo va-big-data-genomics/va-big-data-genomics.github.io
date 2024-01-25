@@ -114,7 +114,7 @@ Results of the correlation study showed high correlation between both GWAS resul
 
 #### Results from Data Release 2
 
-With our data showing high correlation with that of the first data release, we wanted to explore our current data further. We chose to perform GWAS on height for our African American population because this population contained the most variants and because it is an underutilized group in genomic studies. For GWAS on the current data set, we changed two steps in our pipeline from that of the first data release. First, we filtered for common variants in individual populations as opposed to a universal filter. Second, we applied LD Pruning to the GWAS results. The pipeline we are current using looks like this:
+With our data showing high correlation with that of the first data release, we wanted to explore our current data further. We chose to perform GWAS on height for our African American population because this population contained the most variants and because it is an underutilized group in genomic studies. For GWAS on the current data set, we changed two steps in our pipeline from that of the first data release. First, we filtered for common variants in individual populations as opposed to a universal filter. Second, we applied LD Pruning to the GWAS results. The pipeline we are currently using looks like this:
 
 - The population group of interest is pulled out by filtering samples based on HARE data.
 - Common variants are filtered using an allele frequency cutoff of 1% of for the most common alternate allele.
