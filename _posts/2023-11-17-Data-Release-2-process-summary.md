@@ -95,7 +95,7 @@ Table 3. Files generated from final data table
 
 #### Correlation to Data Release 1
 
-Validation of data is crucial to any major study. For Data Release 1 we observed the correlation between GWAS on height results for the European population of the first release with that of the of MVP's genotype array data. For our current release we set out to compare the European GWAS on height results to those of the first data release. We processed the samples in the current release with the GWAS pipeline as described and used in Data Release 1. For reference, this pipeline consisted of the following steps:
+Validation of data is crucial to any major study. For Data Release 1, we observed the correlation between European GWAS on height with that of the of MVP's genotype array data. Having validated the data of Data Release 1, we set out to validate our current dataset by comparing European GWAS on height across both datasets. We processed the samples in the current release with the GWAS pipeline as described and used in Data Release 1. For reference, this pipeline consisted of the following steps:
 
 - Common variants are filtered using an allele frequency cutoff of 1% of for the most common alternate allele.
 - The population group of interest is pulled out by filtering samples based on ancestry prediction.
@@ -106,15 +106,15 @@ Validation of data is crucial to any major study. For Data Release 1 we observed
     - BMI
     - First 10 principal components calculated from genotype array data for the specified population group
 
-For a consistent correlation study, we followed this pipeline with some key differences. Because age and BMI information was not made available to us, these covariates were omitted from our GWAS study. Additionally, while principal components (PCs) from Data Release 1 were obtained from PCA analysis of the genotype array data, we developed a new PCA pipeline to generate PCs based on the WGS data, using Hail. Results of our PCA showed clear separation of samples based on their ethnicity (Fig 1).  To obtain the best correlation, we also downsampled to include only samples within Data Release 1. This resulted in 10,385 total samples, before removing non-Europeans, compared to the 10,390 that were processed in the first release. 
+For a consistentcorrelation study, we followed this pipeline with some key differences. Because age and BMI information was not made available to us, these covariates were omitted from our GWAS study. Additionally, while principal components (PCs) from Data Release 1 were obtained from PCA analysis of the aforementioned genotype array data, we developed a new PCA pipeline to generate PCs based on the WGS data, using Hail. Results of our PCA showed clear separation of samples based on their ethnicity (Fig 1).  To obtain the best correlation, we also downsampled to include only samples within Data Release 1. This resulted in 10,385 total samples, before removing non-Europeans, compared to the 10,390 that were processed in the first release. 
 
 ![Fig. 1](/assets/2023-11-17/fig1.png)
 
-Results of the correlation study showed high correlation between both GWAS results. Pearson and Spearman correlation coefficients showed scores of .959 and .927, respectively, indicating very strong correlation. Additionally, we sorted the variants form each study’s GWAS results by P-Value. 92 of the top 100 loci were found to be matched in both studies.   
+Results of the correlation study showed high correlation between both GWAS results. Pearson and Spearman correlation coefficients showed scores of .959 and .927, respectively, indicating very strong correlation. Additionally, we sorted the variants from each study’s GWAS results by P-Value. 92 of the top 100 loci were found to be matched in both studies.   
 
 #### Results from Data Release 2
 
-With our data showing high correlation with that of the first data release, we wanted to explore our current data. We chose to perform GWAS on height for our African American population because this population contained the most variants and because it is an underutilized group in genomic studies. For GWAS on the current data set, we changed two steps in our pipeline from that of the first data release. First, we filtered for common variants in individual populations as opposed to a universal filter. Second, we applied LD Pruning to the GWAS results. The pipeline we are current using looks like this:
+With our data showing high correlation with that of the first data release, we wanted to explore our current data further. We chose to perform GWAS on height for our African American population because this population contained the most variants and because it is an underutilized group in genomic studies. For GWAS on the current data set, we changed two steps in our pipeline from that of the first data release. First, we filtered for common variants in individual populations as opposed to a universal filter. Second, we applied LD Pruning to the GWAS results. The pipeline we are current using looks like this:
 
 - The population group of interest is pulled out by filtering samples based on HARE data.
 - Common variants are filtered using an allele frequency cutoff of 1% of for the most common alternate allele.
@@ -123,7 +123,7 @@ With our data showing high correlation with that of the first data release, we w
     - First 10 principal components calculated for the specified population group
 - GWAS results are pruned with the LD prune function in Hail
 
-The results of GWAS on height in the African American population resulted in nine significant loci (Fig 2). We then annotated the nine variants using VEP and Biomart. Eight of the nine variants resided within six genes, TCP11, FRAS1, ADAMTSL3, ARSL, ACAN, and NUDT3, all of which have known height associations in the EBI and GeneCards databases. The ninth variant was not shown to be within a gene coding region. Additionally, all nine variants have been described in previous publications (N'Diave et al., Carty et al., Yengo et al), further validating our data.  
+GWAS on height, in the African American population, resulted in nine significant variants (Fig 2). We annotated the corresponding loci using VEP and Biomart. Eight of the nine loci resided within six genes, TCP11, FRAS1, ADAMTSL3, ARSL, ACAN, and NUDT3, all of which have known height associations in the EBI and GeneCards databases. The ninth variant was not shown to be within a gene coding region. Additionally, three of the candiate variants and all six accompanying genes have previously been described as being associated with height regulation (N'Diave et al., Carty et al., Yengo et al), further validating our data.  
 
 ![Fig. 2](/assets/2023-11-17/fig2.png)
 
