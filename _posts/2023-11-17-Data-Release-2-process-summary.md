@@ -123,7 +123,7 @@ With our data showing high correlation with that of the first data release, we w
     - First 10 principal components calculated for the specified population group
 - GWAS results are pruned with the LD prune function in Hail
 
-GWAS on height, in the African American population, resulted in nine significant variants (Fig 2). We annotated the corresponding loci using VEP and Biomart. Eight of the nine loci resided within six genes, TCP11, FRAS1, ADAMTSL3, ARSL, ACAN, and NUDT3, with one variant 10kb upstream of FGFR2, all of which have known height associations in the EBI and GeneCards databases. Additionally, three of the candidate variants and all seven associated genes have previously been described as being associated with height regulation in African Americans (Carty et al., N'Diave et al., Yengo et al.) further validating our data.  
+GWAS on height, in the African American population, resulted in nine significant variants (Fig 2). We annotated the corresponding loci using VEP and Biomart. Eight of the nine loci resided within six genes, TCP11, FRAS1, ADAMTSL3, ARSL, ACAN, and NUDT3, with one variant 10kb upstream of FGFR2, all of which have known height associations in the EBI and GeneCards databases. Additionally, three of the candidate variants and all seven associated genes have previously been described as being associated with height regulation in African Americans (Carty et al., N'Diave et al., Yengo et al.), further validating our data.  
 
 ![Fig. 2](/assets/2023-11-17/fig2.png)
 
