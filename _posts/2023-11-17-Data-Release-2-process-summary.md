@@ -106,7 +106,7 @@ Validation of data is crucial to any major study. For Data Release 1, we observe
     - BMI
     - First 10 principal components calculated from genotype array data for the specified population group
 
-For a consistentcorrelation study, we followed this pipeline with some key differences. Because age and BMI information was not made available to us, these covariates were omitted from our GWAS study. Additionally, while principal components (PCs) from Data Release 1 were obtained from PCA analysis of the aforementioned genotype array data, we developed a new PCA pipeline to generate PCs based on the WGS data, using Hail. Results of our PCA showed clear separation of samples based on their ethnicity (Fig 1).  To obtain the best correlation, we also downsampled to include only samples within Data Release 1. This resulted in 10,385 total samples, before removing non-Europeans, compared to the 10,390 that were processed in the first release. 
+For a consistent correlation study, we followed this pipeline with some key differences. Because age and BMI information was not made available to us, these covariates were omitted from our GWAS study. Additionally, while principal components (PCs) from Data Release 1 were obtained from PCA analysis of the aforementioned genotype array data, we developed a new PCA pipeline to generate PCs based on the WGS data, using Hail. Results of our PCA showed clear separation of samples based on their ethnicity (Fig 1).  To obtain the best correlation, we also downsampled to include only samples within Data Release 1. This resulted in 10,385 total samples, before removing non-Europeans, compared to the 10,390 that were processed in the first release. 
 
 ![Fig. 1](/assets/2023-11-17/fig1.png)
 
