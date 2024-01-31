@@ -29,7 +29,7 @@ For Data Release 1 we had aggregated around ten thousand samples using the [run_
 
 We then implemented a new method developed by the Hail team. The new method aggregates the samples into a Variant Dataset (VDS), in place of an SMT. VDS aggregation presents a new method that is both more time and memory efficient than SMT aggregation. VDS functionality also allows for seamless transition between VDS and SMT. This allowed us to convert our aggregated table to SMT for downstream analysis. 
 
-[vds.new_combiner()](https://hail.is/docs/0.2/vds/hail.vds.combiner.new_combiner.html) allows for gVCF or VDS as input. Because we had several batches of ten thousand sample SMTs, and SMTs can easily be converted into VDS, we converted all our SMTs into VDS and proceeded to aggregate them. The resulting table consisted of 109,826 samples and 2,909,379,928 variants. It should be noted that 100 of these samples were the result of sample duplication, resulting in an increase in the 109,726 samples from our QC step. We removed these samples in a processing step downstream that removes all sample duplicates. 
+[vds.new_combiner()](https://hail.is/docs/0.2/vds/hail.vds.combiner.new_combiner.html) allows for gVCF or VDS as input. Because we had several batches of ten thousand sample SMTs, and SMTs can easily be converted into VDS, we converted all our SMTs into VDS and proceeded to aggregate them. The resulting table consisted of 109,826 samples and 2,909,379,928 bases. It should be noted that 102 of these samples were the result of sample duplication, resulting in an increase in the 109,726 samples from our QC step. We removed these samples in a processing step downstream that removes all sample duplicates. 
 
 ## Quality Control 
 
@@ -68,12 +68,12 @@ After QC filtering we prepared the matrix table for release with final processin
 
 Table 2. Output of data processing step by step
 
-| Process | File Type | Size| Samples| Variants| % Genotypes Filtered|
+| Process | File Type | Size| Samples| Bases| % Genotypes Filtered|
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| Aggregated Table | VDS | 260.35Tib | 109,826| 2,909,379,298 |0%|
-| Pre-processed Table | SMT | 279.53TiB | 109,826 | 919,057,644 |0%|
+| Aggregated Table | VDS | 260.35Tib | 109,826| 2,909,379,298 |NA|
+| Pre-processed Table | SMT | 279.53TiB | 109,826 | 919,057,644 |NA|
 | QC'd Table | SMT |194.73TiB| 108,171 |663,351,127|5.41%|
-| Final Matrix Table | SMT | 188.86TiB |104,923| 663,351,127|0%|
+| Final Matrix Table | SMT | 188.86TiB |104,923| 663,351,127|NA|
 
 
 Once the matrix table was finalized, we exported the data as several file types (Table 3). The only file that currently is released to the public is the genotype information that is contained in a VCF file consisting of 104,923 samples and 663,351,127 variants. This file is converted to a PGEN file by the Boston team to load for MVP researchers.
