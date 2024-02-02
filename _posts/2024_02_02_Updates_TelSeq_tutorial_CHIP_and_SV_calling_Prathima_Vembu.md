@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "#41 Updates on TelSeq tutorial, CHIP calling and SV calling in MVP"
-date:   2024-02-02 09:00:00 -0800
+date:   2024-02-02 10:05:00 -0800
 author: Prathima Vembu 
 categories: jekyll update
 ---
