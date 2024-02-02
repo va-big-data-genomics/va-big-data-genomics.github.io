@@ -129,7 +129,7 @@ dsub \
 
 ### 3. Uploading scripts to GCS
 
-To enable command-line interaction with Google Cloud Storage (GCS), it is essential to install the Google Cloud SDK, which can be installed from the official documentation here. During the installation process, it is important to ensure the selection and installation of the components specifically related to gsutil and gcloud. These components provide the necessary tools and functionalities for seamless communication with GCS using the command line, as shown below.
+To enable command-line interaction with Google Cloud Storage (GCS), it is essential to install the Google Cloud SDK, which can be installed from the official documentation [here](https://cloud.google.com/sdk/docs/install). During the installation process, it is important to ensure the selection and installation of the components specifically related to `gsutil` and `gcloud`. These components provide the necessary tools and functionalities for seamless communication with GCS using the command line, as shown below.
 
 ```
 gsutil cp <script> gs://bucket_name 
@@ -146,7 +146,7 @@ To initiate a TelSeq dsub job on GCP, follow the steps outlined below:
 To achieve a streamlined execution, you can follow the steps outlined in this best practices [guide](https://github.com/DataBiosphere/dsub). 
 - Monitoring the job’s progress is facilitated by the `dstat` command, which provides real-time updates on the job’s status and can be conveniently accessed through the standard output (STDOUT) using the corresponding job ID.
 
-It is important to note that running TelSeq tasks on Google Cloud incurs charges based on various factors such as the selected machine type, disk size, and region. To estimate the associated runtime and costs, you can refer to the detailed information provided here. Monitoring the log files is highly recommended to ensure the continuous execution of the job.
+It is important to note that running TelSeq tasks on Google Cloud incurs charges based on various factors such as the selected machine type, disk size, and region. Monitoring the log files is highly recommended to ensure the continuous execution of the job.
 
 ### 5. Merging TelSeq '.txt' files into a single dataframe
 Section update in progress
