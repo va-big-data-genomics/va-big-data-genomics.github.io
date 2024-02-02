@@ -42,7 +42,7 @@ docker run -it username/toolname:version input_file
 - To share your Docker image with others, you can push it to DockerHub. 
 - From the command line, use the `docker push` command, followed by the name of the image to upload the image to DockerHub. 
 - The docker image utilized for this particular study is accessible at pvembu/telseq. The corresponding Dockerfile can be found here. 
-- For detailed instructions on constructing Dockerfiles and pushing images to Docker Hub, you can refer to the documentation provided here.
+- For detailed instructions on pushing images to Docker Hub, you can refer to the documentation provided [here](https://docs.docker.com/engine/reference/commandline/image_push/).
 
 ### 2. Scripts required to run TelSeq on GCP
 
@@ -60,7 +60,7 @@ Where:
 
 * samtools -u : reads in a CRAM file and converts it into an uncompressed BAM file.
 * $CRAM : represents the input CRAM file.
-* $REF : denotes the reference genome in FASTA format. It is required for the CRAM to BAM conversion. For this study, GRCh38 was selected as the reference genome.
+* $REF : denotes the reference genome in FASTA format. It is required for the CRAM to BAM conversion. 
 * -r : specifies the read length for each read. The default value is 100, but it can be customized according to the specific read length.
 * -k : sets the threshold for the number of TTAGGG/CCCTAA repeats in a read to be considered telomeric. The default value is 7.
 * -u : indicates that all the reads are from the same read group.
@@ -74,7 +74,7 @@ The read length was identified to be 150 by running the command:
 samtools view input.cram | awk '{print length($10)}' | head -1000 | sort -u
 ```
 
-Consequently, a repeat number of 12 for k was chosen to run TelSeq on MVP samples. Additional information regarding the read length and the selected value of k can be found in this study. For reference, the complete script used for TelSeq can be accessed here(Add link from public repository, once ready).
+Consequently, a repeat number of 12 for k was chosen to run TelSeq on MVP samples. Additional information regarding the read length and the selected value of k can be found in this [study](https://www.sciencedirect.com/science/article/pii/S2666979X21001051?via%3Dihub). For reference, the complete script used for TelSeq can be accessed here(Add link from public repository, once ready).
 
 #### 2.2. Tab-separated file (TSV)
 
@@ -166,9 +166,7 @@ The dataset was then examined for negative age values. By excluding samples with
 
 #### 6.3. Merging with TelSeq dataframe and filtering for 'NA' values
 
-The results obtained from TelSeq analysis were imported into a dataframe for further examination. To enrich the dataset, these TelSeq results were merged with corresponding phenotypic data, incorporating age, sex, and ethnicity values for each sample. 
-
-Following the merging process, samples that did not have ethnicity information (represented as NA, accounting for 6292 samples) were carefully excluded from the study. This filtering ensured that the final dataset consisted only of samples with complete demographic information, enabling more robust and accurate analyses.
+TelSeq results were merged with corresponding phenotypic data, incorporating age, sex, and ethnicity values for each sample. Following the merging process, samples that did not have ethnicity information (represented as NA, accounting for 6292 samples) were carefully excluded from the study. This filtering ensured that the final dataset consisted only of samples with complete demographic information, enabling more robust and accurate analyses.
 
 ---
 
@@ -187,7 +185,7 @@ Following our meeting yesterday, we have received the list of CHIP driver genes 
 
 ### Steps involved:
 
-##### 1: Run Mutect2 on MVP CRAMs 
+#### 1: Run Mutect2 on MVP CRAMs 
 
 Example script for tumor-only mode:
 ```shell
@@ -199,13 +197,13 @@ Example script for tumor-only mode:
   -O sample-output.vcf.gz 
 ```
 
-##### 2: Filtering the VCFs 
+#### 2: Filtering the VCFs 
 To enhance the quality of the variants for downstream analysis, a filtering process is employed using `bcftools filter`. This process eliminates variants that exhibit insufficient sequencing depth (minimum read depth, DP < 20) or those exclusively detected on either the forward or reverse strand. The resulting output consists of a more compact, bgzipped VCF file, accompanied by its corresponding index. 
 
-##### 3: Merging the VCFs ahead of annotation
+#### 3: Merging the VCFs ahead of annotation
 This step streamlines the downstream analysis by consolidating multiple variant calls into a unified dataset using `bcftools merge`. Alex and team performed this in batches on 500, and then merged the resulting files into one large VCF. The resulting file is a large bzipped VCF.  
 
-##### 4: Annotating merged VCF
+#### 4: Annotating merged VCF
 The merged VCF was annotated using `Annovar`, by Alex and team. Once we have the merged VCF for the initial run, subsequent discussions will be held to identify the best course of action to annotate the merged VCF. 
 
 ### Plan of action: 
