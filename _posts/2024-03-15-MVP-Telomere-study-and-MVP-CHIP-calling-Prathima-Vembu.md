@@ -13,6 +13,7 @@ Leukocyte telomere length estimation for 103,763 MVP WGS samples has been comple
 - 808 samples that were a part of WGS DR2 were not a part of the LTL study. 
 
 ## Sample count:
+
 |||
 |-|-|
 |Number of samples in WGS DR2|104,923| 
