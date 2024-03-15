@@ -108,7 +108,7 @@ Mean estimated LTL in Pilot study, per HARE group:
 - HIS = 2.03kb
 - ASN = 2.0kb
 
-## 6. Variation in correlation between Age and LTL varies every 20 years 
+## 6. Variation in correlation between Age and estimated LTL, every 20 years 
 
 ![Understanding how correlation between Age and LTL varies, every 20 years](/assets/2024-03-15/20-year-correlation-age-ltl.png)
 
