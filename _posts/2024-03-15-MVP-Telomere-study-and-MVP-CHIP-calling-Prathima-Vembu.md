@@ -58,7 +58,7 @@ Hare distribution within the 104,903 samples:
 
 ## 3. Distribution of estimated LTL across 103,763 MVP WGS samples
 
-![Distribution of estimated LTL across 103,763 MVP WGS samples](/assets/2024-03-15/Distribution-of-Age-all.png)
+![Distribution of estimated LTL across 103,763 MVP WGS samples](/assets/2024-03-15/Distribution-of-estimated-LTL.png.png)
 
 Mean LTL for the Pilot study was 2.02kb. 
 
@@ -87,10 +87,10 @@ Correaltion co-efficient between Age and LTL in the Pilot study for each HARE gr
 - HIS = -0.22   (p value <1e-16)
 - ASN = -0.21  (p value <1e-16)
 
-## 5. Comparing the LTL across 103,763 samples 
+## 5. Comparing estimated LTL across 103,763 samples 
 
 #### 5.1. Stratified by Sex
-![Comparing the LTL across 103,763 samples - stratified by Sex](/assets/2024-03-15/Comparing_LTL_by_Sex.png)
+![Comparing estimated LTL - stratified by Sex](/assets/2024-03-15/Comparing_LTL_by_Sex.png)
 
 Mean estimated LTL in Pilot study, by sex:
 
@@ -98,7 +98,7 @@ Mean estimated LTL in Pilot study, by sex:
 - Female = 2.16kb 
 
 #### 5.2. Stratified by HARE
-![Comparing the LTL across 103,763 samples - stratified by HARE](/assets/2024-03-15/Comparing_LTL_by_HARE.png)
+![Comparing estimated LTL - stratified by HARE](/assets/2024-03-15/Comparing_LTL_by_HARE.png)
 
 Mean estimated LTL in Pilot study, per HARE group:
 
