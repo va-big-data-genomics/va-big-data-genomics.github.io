@@ -58,7 +58,7 @@ Hare distribution within the 104,903 samples:
 
 ## 3. Distribution of estimated LTL across 103,763 MVP WGS samples
 
-![Distribution of estimated LTL across 103,763 MVP WGS samples](/assets/2024-03-15/Distribution-of-estimated-LTL.png.png)
+![Distribution of estimated LTL across 103,763 MVP WGS samples](/assets/2024-03-15/Distribution-of-estimated-LTL.png)
 
 Mean LTL for the Pilot study was 2.02kb. 
 
