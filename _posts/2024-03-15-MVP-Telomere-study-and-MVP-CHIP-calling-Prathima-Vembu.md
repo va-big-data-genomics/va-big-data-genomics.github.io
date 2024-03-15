@@ -177,4 +177,4 @@ VCF files for the initial 100 samples have been generated and are on GCS. The ne
 
 ---
 
-Join the discussion [here]!
+Join the discussion [here](https://github.com/orgs/va-big-data-genomics/discussions/43)!
