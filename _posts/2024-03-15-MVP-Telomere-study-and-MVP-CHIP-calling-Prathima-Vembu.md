@@ -63,25 +63,25 @@ Hare distribution within the 104,903 genomes:
 
 Mean LTL for the Pilot study was 2.02kb. 
 
-## 4. Correalation between 'Age' and 'LTL'
+## 4. Correlation between 'Age' and 'LTL'
 
 #### 4.1. Across all 103,763 genomes 
-![Correalation between 'Age' and LTL across all genomes](/assets/2024-03-15/Correlation_age_ltl_all.png)
+![Correlation between 'Age' and LTL across all genomes](/assets/2024-03-15/Correlation_age_ltl_all.png)
 
-Correaltion co-efficient between Age and LTL in the Pilot study = -0.26 (p value < 1e-16)
+Correlation co-efficient between Age and LTL in the Pilot study = -0.26 (p value < 1e-16)
 
 #### 4.2. Stratified by Sex
-![Correalation between 'Age' and LTL - stratified by Sex](/assets/2024-03-15/Correlation_age_ltl_sex.png)
+![Correlation between 'Age' and LTL - stratified by Sex](/assets/2024-03-15/Correlation_age_ltl_sex.png)
 
-Correaltion co-efficient between Age and LTL in the Pilot study for each sex:
+Correlation co-efficient between Age and LTL in the Pilot study for each sex:
 
 - Male = -0.24 (p value < 1e-16)
 - Female = -0.24 (p value = 4.8252e-68)
 
 #### 4.3. Stratified by HARE
-![Correalation between 'Age' and LTL - stratified by HARE](/assets/2024-03-15/Correlation_age_ltl_HARE.png)
+![Correlation between 'Age' and LTL - stratified by HARE](/assets/2024-03-15/Correlation_age_ltl_HARE.png)
 
-Correaltion co-efficient between Age and LTL in the Pilot study for each HARE group:
+Correlation co-efficient between Age and LTL in the Pilot study for each HARE group:
 
 - AFR = -0.23  (p value = 1.36e-225)
 - EUR = -0.27  (p value <1e-16)
