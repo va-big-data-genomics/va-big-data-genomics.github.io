@@ -8,13 +8,10 @@ tags: [Mermaid]
 mermaid: true
 ---
 
-#  From FastQ to gVCF: 5 Dollars and a Genome
-April 11, 2024 • Joe Sarro
-
 ## Unraveling the mystery of variant calling in Trellis
 
 
-Since beginning the process to make our system FedRAMP compliant, our team has been digging into the inner workings of Trellis. Trellis, developed by MVP alumnus Paul Billing-Ross is a database management system that is instrumental in processing our Whole Genome Sequencing (WGS) samples. Trellis not only Tracks and makes data available through simple queries, but it automates the workflow that takes sequenced FastQ files to processed gVCF files. 
+Since beginning the process to make our system FedRAMP compliant, our team has been digging into the inner workings of Trellis. Trellis, developed by MVP alumnus Paul Billing-Ross is a database management system that is instrumental in processing our Whole Genome Sequencing (WGS) samples. Trellis not only tracks and makes data available through simple queries, but it automates the workflow that takes sequenced FastQ files to processed gVCF files. 
 
 In the last few months, it has become a priority to understand how this system and its architecture function. Daniel Cotter has been piecing together how the Trellis system is constructed and what changes need to be made to its architecture to make it both functional and compliant with FedRAMP regulations. I have been very interested in understanding how the variant calling pipeline works and what tools are needed to run it.   
 
@@ -53,12 +50,12 @@ dsub_run_gatk calls a WDL file [fc_germline_single_sample_workflow.wdl](https://
 
 [bam_processing.wdl](https://github.com/va-big-data-genomics/trellis-mvp-gatk/blob/no-address/gatk-mvp-pipeline/tasks_pipelines/bam_processing.wdl)
 - SortSam: Sort and index mapped BAM files using [SortSam](https://gatk.broadinstitute.org/hc/en-us/articles/360036510732-SortSam-Picard).
-- SortSamSpark: Spark implementation of SortSam that works on spark clusters using [SortSamSpark](https://gatk.broadinstitute.org/hc/en-us/articles/360042912871-SortSamSpark-BETA). (Note_ I do not believe that this has been implemented.)
-- MarkDuplicates: Marks duplicates in mapped BAM file using [MarkDuplicates](https://gatk.broadinstitute.org/hc/en-us/articles/360037052812-MarkDuplicates-Picard).
+- SortSamSpark: Spark implementation of SortSam that works on spark clusters using [SortSamSpark](https://gatk.broadinstitute.org/hc/en-us/articles/360042912871-SortSamSpark-BETA). (Note: I do not believe that this has been implemented.)
+- MarkDuplicates: Marks duplicates in mapped BAM files using [MarkDuplicates](https://gatk.broadinstitute.org/hc/en-us/articles/360037052812-MarkDuplicates-Picard).
 - BaseRecalibrator: Recalibrates base quality scores of a mapped BAM file using [BaseRecalibrator](https://gatk.broadinstitute.org/hc/en-us/articles/360036898312-BaseRecalibrator). 
-- ApplyBQSR: Apply recalibrated base scores from BaseRecalibrator to mapped BAM using [ApplyBQSR](https://gatk.broadinstitute.org/hc/en-us/articles/360037055712-ApplyBQSR). 
+- ApplyBQSR: Apply recalibrated base scores from BaseRecalibrator to mapped BAMs using [ApplyBQSR](https://gatk.broadinstitute.org/hc/en-us/articles/360037055712-ApplyBQSR). 
 - GatherBqsrReports: Merge split BSQR reports into one file using [GatherBqsrReports](https://gatk.broadinstitute.org/hc/en-us/articles/360037433771-GatherBQSRReports).
-- GatherSortedBamFiles: Merge split mapped and sorted BAM files into one using [GatherBamFiles](https://gatk.broadinstitute.org/hc/en-us/articles/360037059192-GatherBamFiles-Picard).
+- GatherSortedBamFiles: Merge split, mapped, and sorted BAM files into one using [GatherBamFiles](https://gatk.broadinstitute.org/hc/en-us/articles/360037059192-GatherBamFiles-Picard).
 - GatherUnsortedBamFiles: Merge unsorted BAM files into one using [GatherBamFiles](https://gatk.broadinstitute.org/hc/en-us/articles/360037059192-GatherBamFiles-Picard). (Note: used in split_large_readgroup) 
 - CheckContamination: Check contamination rate using [VerifyBamID](https://genome.sph.umich.edu/wiki/VerifyBamID)<br>
 
@@ -66,7 +63,8 @@ dsub_run_gatk calls a WDL file [fc_germline_single_sample_workflow.wdl](https://
 - HaplotypeCaller_GATK35_GVCF: Call variants using the [HaplotypeCaller](https://gatk.broadinstitute.org/hc/en-us/articles/360037225632-HaplotypeCaller) walker in GATK version 4.
 - HaplotypeCaller_GATK4_VCF: Call variants using the [HaplotypeCaller](https://gatk.broadinstitute.org/hc/en-us/articles/360037225632-HaplotypeCaller) walker in GATK version 3 (3.5?).
 - MergeVCFs: Merge split gVCF files into one using [MergeVcfs](https://gatk.broadinstitute.org/hc/en-us/articles/360036713331-MergeVcfs-Picard). 
-- HardFilterVcf: Filter variants with GATK’s [VariantFilstration walker](https://gatk.broadinstitute.org/hc/en-us/articles/360037434691-VariantFiltration), using "QD < 2.0 || FS > 30.0 || SOR > 3.0 || MQ < 40.0 || MQRankSum < -3.0 || ReadPosRankSum < -3.0". (Note: Only used when using GATK 4) <br>
+- HardFilterVcf: Filter variants with GATK’s [VariantFilstration walker](https://gatk.broadinstitute.org/hc/en-us/articles/360037434691-VariantFiltration), using:<br>
+  "QD < 2.0 || FS > 30.0 || SOR > 3.0 || MQ < 40.0 || MQRankSum < -3.0 || ReadPosRankSum < -3.0". (Note: Only used when using GATK 4) <br>
 
 [qc.wdl](https://github.com/va-big-data-genomics/trellis-mvp-gatk/blob/no-address/gatk-mvp-pipeline/tasks_pipelines/qc.wdl)
 - CollectQualityYieldMetrics: Uses Picard's [CollectQualityYieldMetrics](https://gatk.broadinstitute.org/hc/en-us/articles/360040507031-CollectQualityYieldMetrics-Picard) to collect metrics about reads that pass quality thresholds and Illumina-specific filters in uBAM files.
@@ -79,23 +77,23 @@ dsub_run_gatk calls a WDL file [fc_germline_single_sample_workflow.wdl](https://
 - ValidateSamFile: Validates a BAM file using Picard's [ValidateSamFile](https://gatk.broadinstitute.org/hc/en-us/articles/360036854731-ValidateSamFile-Picard).
 - CollectWgsMetrics: Collect metrics about coverage and performance of a sorted aggregated BAM using Picard's [CollectWgsMetrics](https://gatk.broadinstitute.org/hc/en-us/articles/360037269351-CollectWgsMetrics-Picard).
 - CollectRawWgsMetrics: Collect whole genome sequencing-related metrics of a sorted aggregated BAM using Picard's [CollectRawWgsMetrics](https://gatk.broadinstitute.org/hc/en-us/articles/360040508411-CollectRawWgsMetrics-Picard). 
-- CalculateReadGroupChecksum: Creates a hash code based on identifying information in the read groups (RG) of a BAM using Picard's [CalculateReadGroupChecksum](https://gatk.broadinstitute.org/hc/en-us/articles/360047216391-CalculateReadGroupChecksum-Picard). A checksum per RG is generated in the final BAM.
+- CalculateReadGroupChecksum: Creates a hash code based on identifying information in the read groups (RG) of a BAM using Picard's [CalculateReadGroupChecksum](https://gatk.broadinstitute.org/hc/en-us/articles/360047216391-CalculateReadGroupChecksum-Picard). A checksum per RG is generated from the final BAM.
 - ValidateGVCF: Validate a VCF file with a strict set of criteria described [here](https://gatk.broadinstitute.org/hc/en-us/articles/360036898972-ValidateVariants). (I do not see this function used)
 - CollectGvcfCallingMetrics: Collects per-sample and aggregate metrics from the provided VCF file using Picard's [CollectVariantCallingMetrics](https://gatk.broadinstitute.org/hc/en-us/articles/360037057132-CollectVariantCallingMetrics-Picard). (I do not see this function used.)<br>
 
 [split_large_readgroup.wdl](https://github.com/va-big-data-genomics/trellis-mvp-gatk/blob/no-address/gatk-mvp-pipeline/tasks_pipelines/split_large_readgroup.wdl)
-- This WDL file contains a workflow that is used to split uBAM files that are larger than a defined cutoff (GB). The workflow will split(scatter) the uBAM and proceed to convert and map the files using SamToFastqAndBwaMemAndMba. <br>
+- This WDL file contains a workflow that is used to split uBAM files that are larger than a defined size cutoff. The workflow will split(scatter) the uBAM and proceed to convert and map the files using SamToFastqAndBwaMemAndMba. <br>
 
 [utilities.wdl](https://github.com/va-big-data-genomics/trellis-mvp-gatk/blob/no-address/gatk-mvp-pipeline/tasks_pipelines/utilities.wdl)
 - CreateSequenceGroupingTSV: Generates sets of intervals for scatter-gathering over chromosomes. Used to create list of sequences for scatter-gather parallelization in base recalibration.
 - ScatterIntervalList: Calls picard's I[ntervalListTools](https://gatk.broadinstitute.org/hc/en-us/articles/360037592651-IntervalListTools-Picard) to scatter the input interval list into scatter_count sub interval lists. Variants are called on subinterval lists and merged. 
 - ConvertToCram: Converts a BAM file to CRAM using [Samtools view](https://www.htslib.org/doc/samtools-view.html). 
 - ConvertToBam: Converts a CRAM file to BAM using Samtools view.
-- SumFloats: Calculates sum from a list of floats. This is used to estimate size of an aggregated BAM from split BAMS.<br>
+- SumFloats: Calculates sum from a list of floats. This is used to estimate size of an aggregated BAM from split BAMs.<br>
 
 ### Additional files 
 
-The Git README notes that this pipeline requires that samples be un uBAM format. Samples that are not already in uBAM file can have their FastQ files converted to uBAM using another dsub script: [dsub_run_fastqtoubam](https://github.com/va-big-data-genomics/trellis-mvp-gatk/blob/no-address/dsub_run_fastqtoubam). This script makes use of Picard's [FastqToSam](https://gatk.broadinstitute.org/hc/en-us/articles/360036351132-FastqToSam-Picard).
+The Git README notes that this pipeline requires samples to be un uBAM format before proceeding. Samples that are not already in uBAM file can have their FastQ files converted to uBAM using another dsub script: [dsub_run_fastqtoubam](https://github.com/va-big-data-genomics/trellis-mvp-gatk/blob/no-address/dsub_run_fastqtoubam). This script makes use of Picard's [FastqToSam](https://gatk.broadinstitute.org/hc/en-us/articles/360036351132-FastqToSam-Picard).
 
 There are two additional files that specify cloud resources.
 - [gatk-mvp-profile.sh](https://github.com/va-big-data-genomics/trellis-mvp-gatk/blob/no-address/gatk-mvp-profile.sh): Grabs bucket and project information from Google Cloud.
@@ -137,13 +135,13 @@ The workflow for variant calling is processed in the following steps:
 
 While I was able to gain a lot of insight to the FastQ->gVCF process in Trellis by reviewing the scripts contained in the Git Repo, I was unable to locate some information. Two QC parameters that we use in sample filtering are FastQ quality results from fastQC and BAM alignment metrics from Samtool's flagstat tool. Finding the source for running these tools is crucial, not just for processing new WGS data, but also for processing current WGS data in which this information is lacking. 
 
-As mentioned in the previous section, typical WGS variant calling workflows implement an adapter trimming step. A tool like Trimmomatic will trim sequence adapters, in addition to low quality bases. While it is not mandatory to complete this step, it is highly recommended. Current mapping tools do provide a level of trimming on the fly during the alignment step. For example, the current pipeline we are using makes use of the soft clipping feature of BWA-MEM. The results from our current data release shows that this may be sufficient for our data, but it is something to think about for the future. Especially at this time while we are overhauling Trellis for FedRAMP, and it has been recently noted that this pipeline has been deprecated by the Broad.
+As mentioned in the previous section, typical WGS variant calling workflows implement an adapter trimming step. A tool like Trimmomatic will trim sequence adapters, in addition to low quality bases. While it is not mandatory to complete this step, it is highly recommended. Current mapping tools do provide a level of trimming on the fly during the alignment step. For example, the current pipeline we are using makes use of the soft clipping feature of BWA-MEM. The results from our current data release shows that this may be sufficient for our data, but it is something to think about for the future. Especially at this time while we are overhauling Trellis for FedRAMP, and it has been recently noted that this pipeline has been deprecated by the Broad Institute.
 
 ## Plans for the future
 
 In looking deeper into our pipeline's depreciation, I have found some interesting things. While I originally thought many of the scripts described in this blog were written in house, following the Broad's best practices guidelines, it appears the WDL files are imported directly from the Broad's [$5 genome pipe Git repo](https://github.com/gatk-workflows/five-dollar-genome-analysis-pipeline?tab=readme-ov-file). This would make our entire workflow deprecated and therefore no longer supported by the Broad Institute. This current pipeline was replaced in January of 2020 by [a new pipeline](https://github.com/gatk-workflows/gatk4-genome-processing-pipeline). This new pipeline uses similar methodology upon first glance. However, this pipeline was also replaced in November of 2020. This would indicate that we are several versions behind. 
 
-The newest pipeline, [warp](https://github.com/broadinstitute/warp/tree/develop/pipelines/broad/dna_seq/germline/single_sample/wgs), updates the older methodology but allows the option of using [Dragen](https://www.illumina.com/products/by-type/informatics-products/dragen-secondary-analysis/order.html) as an alternative pipeline. Moving to Dragen has recently become a discussion topic among our group.  I have used Dragen tools in the past, not for WGS analysis but [for viral variant calling and lineage analysis](https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2788632). For this project we used the Illumina BaseSpace cloud for data storage and processing. Other methods of running Dragen are available. Preliminary discussions have brought up the idea of using an Illumina server for our purposes. Strategies for incorporating this hardware into our FedRAMP approved architecture will need to be planned in this scenario. Running Dragen directly on our current cloud is another enticing possibility. It seems that Dragen [Can be run on AWS and Azure](https://support-docs.illumina.com/SW/Dragen_MultiCloud/Content/SW/FrontPages/DRAGENMultiCloud.htm), but I have not determined if it is compatible with Google Cloud. 
+The newest pipeline, [warp](https://github.com/broadinstitute/warp/tree/develop/pipelines/broad/dna_seq/germline/single_sample/wgs), updates the older methodology but allows the option of using [Dragen](https://www.illumina.com/products/by-type/informatics-products/dragen-secondary-analysis/order.html) as an alternative pipeline. Moving to Dragen has recently become a discussion topic among our group.  I have used Dragen tools in the past, not for WGS analysis but [for viral variant calling and lineage analysis](https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2788632). For this project we used the Illumina BaseSpace cloud for data storage and processing. Other methods of running Dragen are available. Preliminary discussions have brought up the idea of using an Illumina server for our purposes. Strategies for incorporating this hardware into our FedRAMP approved architecture will need to be planned in this scenario. Running Dragen directly on our current cloud is another intriguing possibility. It seems that Dragen [Can be run on AWS and Azure](https://support-docs.illumina.com/SW/Dragen_MultiCloud/Content/SW/FrontPages/DRAGENMultiCloud.htm), but I have not determined if it is compatible with Google Cloud. 
 
 Some questions that we will need to consider moving forward are
 - Whether we want to/when we want to update our pipeline?
