@@ -101,6 +101,7 @@ There are two additional files that specify cloud resources.
 
 ## The Pipeline
 
+(Note: There are several splits and merges, before generating a final BAM, in the source code that will be described in this section. The source code mentions that these splits are carried out on sequenced reads across multiple flow cells for a single sample. The FastQ files that I have viewed on cloud storage are separated by lane on a single flow cell. However, this does not mean there are not some samples that span multiple flow cells. I do believe most of, if not all, the splits are done on lanes. But until I can affirm this, I will specify these splits as being done across flow cells, as specified in the source code.)
 
 Typical variant calling pipelines that I have worked with in the past have been straightforward, in addition to following the Broad institute’s best practice standards (Fig. 2). An example of this includes the following steps.
 - checking FastQ files for quality with FastQC 
