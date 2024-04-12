@@ -17,7 +17,7 @@ In the last few months, it has become a priority to understand how this system a
 
 We have been left with some clues to help us piece these puzzles together. First, we have the [Trellis paper](https://www.nature.com/articles/s41598-021-02569-5) that gives us some insights to the methodology involved in variant calling. Second, we have the [source code](https://github.com/va-big-data-genomics/trellis-mvp-gatk/tree/no-address/gatk-mvp-pipeline) implemented by Paul and Jina Song. 
 
-The publication gives a brief description of the variant calling process but omits many of the details involved in file processing. The most important information that can be extracted from this publication comes from the following: 
+The publication mentions that we have incorporated the GTAK $5 genome analysis pipeline. It also gives a brief description of the variant calling process but omits many of the details involved in file processing. The most important information that can be extracted from this publication comes from the following: 
 
 ```
 Briefly, the human reference genome GRCh38 was used for mapping and variant calling. Alignment was performed by BWA-MEM (v0.7.15) with the command line: bwa mem -K 100,000,000 -p -v 3 -t 16 -Y $bash_ref_fasta. PCR duplicates were marked by Picard 2.15.0 and BQSR were performed in GATK 4.1.0.0, resulting in four-bin quality score compression. The alignment results in BAM were compressed to CRAM in a lossless manner. Variant calling was performed in GATK 4.1.0.0 using the haplotypeCaller function, resulting in gVCF files which contained reference call blocks, single nucleotide variants (SNVs), and short insertion and deletions (INDELs). 
