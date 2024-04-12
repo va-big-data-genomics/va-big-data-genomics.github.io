@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "#43 From FastQ to gVCF: 5 Dollars and a Genome"
-date:   2024-04-12 10:00:00 -0800
+date:   2024-04-12 01:00:00 -0800
 author: Joe Sarro
 categories: jekyll update
 tags: [Mermaid]
