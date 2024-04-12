@@ -144,7 +144,7 @@ In looking deeper into our pipeline's depreciation, I have found some interestin
 
 The newest pipeline, [warp](https://github.com/broadinstitute/warp/tree/develop/pipelines/broad/dna_seq/germline/single_sample/wgs), updates the older methodology but allows the option of using [Dragen](https://www.illumina.com/products/by-type/informatics-products/dragen-secondary-analysis/order.html) as an alternative pipeline. Moving to Dragen has recently become a discussion topic among our group.  I have used Dragen tools in the past, not for WGS analysis but [for viral variant calling and lineage analysis](https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2788632). For this project we used the Illumina BaseSpace cloud for data storage and processing. Other methods of running Dragen are available. Preliminary discussions have brought up the idea of using an Illumina server for our purposes. Strategies for incorporating this hardware into our FedRAMP approved architecture will need to be planned in this scenario. Running Dragen directly on our current cloud is another intriguing possibility. It seems that Dragen [Can be run on AWS and Azure](https://support-docs.illumina.com/SW/Dragen_MultiCloud/Content/SW/FrontPages/DRAGENMultiCloud.htm), but I have not determined if it is compatible with Google Cloud. 
 
-Some questions that we will need to consider moving forward are
+Some questions that we will need to consider moving forward are:
 - Whether we want to/when we want to update our pipeline?
 - Will we re-run all of our already processed samples?
 - How will we test any new methodology before putting it into production?
