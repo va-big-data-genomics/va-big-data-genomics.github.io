@@ -60,8 +60,8 @@ dsub_run_gatk calls a WDL file [fc_germline_single_sample_workflow.wdl](https://
 - CheckContamination: Check contamination rate using [VerifyBamID](https://genome.sph.umich.edu/wiki/VerifyBamID)<br>
 
 [germline_variant_discovery.wdl](https://github.com/va-big-data-genomics/trellis-mvp-gatk/blob/no-address/gatk-mvp-pipeline/tasks_pipelines/germline_variant_discovery.wdl)
-- HaplotypeCaller_GATK35_GVCF: Call variants using the [HaplotypeCaller](https://gatk.broadinstitute.org/hc/en-us/articles/360037225632-HaplotypeCaller) walker in GATK version 4.
-- HaplotypeCaller_GATK4_VCF: Call variants using the [HaplotypeCaller](https://gatk.broadinstitute.org/hc/en-us/articles/360037225632-HaplotypeCaller) walker in GATK version 3 (3.5?).
+- HaplotypeCaller_GATK35_GVCF: Call variants using the [HaplotypeCaller](https://gatk.broadinstitute.org/hc/en-us/articles/360037225632-HaplotypeCaller) walker in GATK version 3 (3.5?).
+- HaplotypeCaller_GATK4_VCF: Call variants using the [HaplotypeCaller](https://gatk.broadinstitute.org/hc/en-us/articles/360037225632-HaplotypeCaller) walker in GATK version 4.
 - MergeVCFs: Merge split gVCF files into one using [MergeVcfs](https://gatk.broadinstitute.org/hc/en-us/articles/360036713331-MergeVcfs-Picard). 
 - HardFilterVcf: Filter variants with GATK’s [VariantFilstration walker](https://gatk.broadinstitute.org/hc/en-us/articles/360037434691-VariantFiltration), using:<br>
   "QD < 2.0 || FS > 30.0 || SOR > 3.0 || MQ < 40.0 || MQRankSum < -3.0 || ReadPosRankSum < -3.0". (Note: Only used when using GATK 4) <br>
