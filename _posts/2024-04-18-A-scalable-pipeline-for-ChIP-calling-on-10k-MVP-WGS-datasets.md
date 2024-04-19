@@ -244,11 +244,11 @@ Currently this is where we are and after speaking with Alex and team yesterday, 
 
 When I submitted the job for the 10k subset, 6 jobs failed and errored out. The reminaing 9994 went through successfully. From the log files, it seems like the error is a samtools error:
 
-![Fig. 1](/assets/pvembu_blog_figures/2024-04-19/Log-file-screenshot-no-mutect2-cram.jpg)
+![Fig. 1](/assets/pvembu-blog-figures/2024-04-19/Log-file-screenshot-no-mutect2-cram.jpg)
 
 Further when computing the runtime for each of the samples, these 6 samples had an abnormally low runtime, as seen below. 
 
-![Fig. 2](/assets/vembu_blog_figures/2024-04-19/List-of-shipids-no-mutect2.jpg)
+![Fig. 2](/assets/pvembu-blog-figures/2024-04-19/List-of-shipids-no-mutect2.jpg)
 
 Potential fixes:
 - Check the CRAM and CRAI files to ensure they are not corrupted 
