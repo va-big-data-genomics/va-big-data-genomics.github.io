@@ -244,7 +244,14 @@ When I submitted the job for the 10k subset, 6 jobs failed and errored out. The 
 
 Further when computing the runtime for each of the samples, these 6 samples had an abnormally low runtime, as seen below. This makes sense because these jobs errored out pretty quickly.  
 
-![Fig. 2](/assets/pvembu-blog-figures/2024-04-19/List-of-shipids-no-mutect2.jpg)
+|sample_id|runtime (mins)|
+|--|--|
+|Sample 1|0.05|
+|Sample 2|0.06|
+|Sample 3|0.08|
+|Sample 4|0.06|
+|Sample 5|0.07|
+|Sample 6|0.05|
 
 Potential fixes:
 - Check the CRAM and CRAI files to ensure they are not corrupted 
