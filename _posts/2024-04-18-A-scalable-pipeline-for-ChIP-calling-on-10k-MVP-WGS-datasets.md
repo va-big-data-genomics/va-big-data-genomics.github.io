@@ -242,7 +242,7 @@ When I submitted the job for the 10k subset, 6 jobs failed and errored out. The 
 
 ![Fig. 1](/assets/pvembu-blog-figures/2024-04-19/Log-file-screenshot-no-mutect2-cram.jpg)
 
-Further when computing the runtime for each of the samples, these 6 samples had an abnormally low runtime, as seen below. This makes sense becasuse these jobs errored out pretty quickly.  
+Further when computing the runtime for each of the samples, these 6 samples had an abnormally low runtime, as seen below. This makes sense because these jobs errored out pretty quickly.  
 
 ![Fig. 2](/assets/pvembu-blog-figures/2024-04-19/List-of-shipids-no-mutect2.jpg)
 
