@@ -25,4 +25,4 @@ All the analysis have been explained in this [jupyter notebook](https://github.c
 
 ---
 
-Join the discussion [here]()!
+Join the discussion [here](https://github.com/orgs/va-big-data-genomics/discussions/46)!
