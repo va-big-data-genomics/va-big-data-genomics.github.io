@@ -1,16 +1,17 @@
 ---
 layout: post
-title:  "#45 Results from LTL estimation on 103k MVP WGS samples"
+title:  "#45 Results from LTL estimation on 103k MVP WGS samples using GIA"
 date:   2024-05-31 10:05:00 -0800
 author: Prathima Vembu 
 categories: jekyll update
 ---
 
-# Telomere length estimation in MVP WGS data 
+# Telomere length estimation in MVP WGS data using GIA
 Leukocyte telomere length estimation for 103,763 MVP WGS samples using GIA has been completed.
 
 
 #### 1. Sample count:
+
 |Category|Count|
 |-|-|
 |Count of WGS DR2 samples|104,923| 
