@@ -11,7 +11,7 @@ mermaid: true
 # Polygenic Risk Scores & AI: Configuring pgsc_calc with ChatGPT
 Recently, Rodrigo introduced our group to a software for calculating polygenic risk scores, [pgsc_calc](https://github.com/PGScatalog/pgsc_calc). I developed an interest in learning more about this software and running it on our Google Cloud architecture. My goal is to make this feature available to Rodrigo and the rest of our group for use with our data.
 
-ChatGTP is an AI designed to respond to user input, typically in a chat box. [Our internal group at Stanford](https://med.stanford.edu/gbsc/scgpm-team.html) has shown increasing interest in the applications of ChatGTP in our field. Owing to the challenges associated with installing bioinformatics software, I wanted to leverage ChatGTP to get pgsc_calc operational. The following text details the results of my discussions with ChatGTP.
+ChatGTP is an AI designed to respond to user input, typically in a chat box. [Our internal group at Stanford](https://med.stanford.edu/gbsc/scgpm-team.html) has shown increasing interest in the applications of ChatGTP in our field. Owing to the challenges associated with installing bioinformatics software, I wanted to leverage ChatGTP to get pgsc_calc operational, while also getting a feel for the functionality of ChatGTP. The following text details the results of my discussions with ChatGTP.
 
 ## Installation and Test Guide for PGSC_Calc with Nextflow on MacOS
 
