@@ -1,3 +1,13 @@
+---
+layout: post
+title:  "#46 Polygenic Risk Scores & AI: Configuring pgsc_calc with ChatGPT"
+date:   2024-06-14 10:00:00 -0800
+author: Joe Sarro & CharGTP
+categories: jekyll update
+tags: [Mermaid]
+mermaid: true
+---
+
 # Polygenic Risk Scores & AI: Configuring pgsc_calc with ChatGPT
 Recently, Rodrigo introduced our group to a software for calculating polygenic risk scores, [pgsc_calc](https://github.com/PGScatalog/pgsc_calc). I developed an interest in learning more about this software and running it on our Google Cloud architecture. My goal is to make this feature available to Rodrigo and the rest of our group for use with our data.
 
