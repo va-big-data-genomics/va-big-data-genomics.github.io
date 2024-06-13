@@ -309,3 +309,6 @@ I was not able to run pgsc_calc successfully on the Cloud using Google Life Scie
 ## Ancestry prediction using the PGScatalog
 
 One of my main interests in using pgsc_calc was testing its ability to predict ancestry in our WGS dataset. I found that this could be achieved without running the pgsc_calc program itself. pgsc_calc uses an ancestry prediction script within [PGScatalog-utils](https://github.com/PGScatalog/pgscatalog_utils). The documentation for this tool is limited, but I have been able to install it locally and have begun looking at how it works. Alternatively, the same group provides another ancestry prediction method in its PCA analysis tool, [Fraposa](https://github.com/PGScatalog/fraposa_pgsc). This tool seems like it would suit our needs better, as it performs both PCA and ancestry prediction, both of which are values our group requires. This ancestry prediction tool could also be a better option, as it is designed to handle genotype data from large genomics datasets. In the near future, I would like to test both of these methods alongside [Hail's methodology](https://hail.is/docs/0.2/methods/relatedness.html) on a portion of our dataset.
+
+
+Join the discussion [here!](https://github.com/orgs/va-big-data-genomics/discussions/47)
