@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "#46 Polygenic Risk Scores & AI: Configuring pgsc_calc with ChatGPT"
-date:   2024-06-14 10:00:00 -0800
+date:   2024-06-14 01:00:00 -0800
 author: Joe Sarro & CharGTP
 categories: jekyll update
 tags: [Mermaid]
