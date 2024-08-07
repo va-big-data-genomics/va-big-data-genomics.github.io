@@ -97,7 +97,7 @@ Table 3. Files generated from final data table
 
 Validation of data is crucial to any major study. For Data Release 1, we observed the correlation between European GWAS on height with that of the of MVP's genotype array data. Having validated the data of Data Release 1, we set out to validate our current dataset by comparing European GWAS on height across both datasets. We processed the samples in the current release with the GWAS pipeline as described and used in Data Release 1. For reference, this pipeline consisted of the following steps:
 
-- Common variants are filtered using an allele frequency cutoff of 1% of for the most common alternate allele.
+- Common variants are filtered using an allele frequency cutoff of 1% of for the alternate allele.
 - The population group of interest is pulled out by filtering samples based on ancestry prediction.
 - GWAS on height is calculated with a linear regression algorithm in Hail with the following covariates
     - Sex
