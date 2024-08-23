@@ -6,7 +6,7 @@ author: Prathima Vembu
 categories: jekyll update
 ---
 
-# CHIP calling on GCP 
+# CHIP calling
 [Mutect2](https://gatk.broadinstitute.org/hc/en-us/articles/360037593851-Mutect2), a variant caller from the GATK suite of tools, was implemented on GCP to identify CHIP mutations from 10k WGS samples using the [broadinstitute/gatk:latest](https://hub.docker.com/r/broadinstitute/gatk) docker image. This [paper](https://pubmed.ncbi.nlm.nih.gov/36652671/) describes the CHIP calling on WGS data in more detail. 
 
 Mutect2 successfully processed 9994 WGS samples, with a few samples still being reviewed to resolve processing issues. All other steps, including filtration, indexing, ANNOVAR, and enrichment, were executed on an n1-standard-4 VM.
@@ -171,4 +171,4 @@ I have completed the 10k run after modifying the filtration script to filter for
 
 ---
 
-Join the discussion [here]()!
+Join the discussion [here](https://github.com/orgs/va-big-data-genomics/discussions/48)!
