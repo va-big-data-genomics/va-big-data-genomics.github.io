@@ -131,7 +131,7 @@ A cost analysis for running Mutect2 on GCP for a small subset of 10 samples has 
 *Wall clock time - This is the real-world elapsed time from the start to the end of a task or process. It includes all time intervals, such as CPU processing time, waiting time, and any other delays that might occur during execution.*
 
 # CHIP outputs
-Average files sizes for the output files at arious stages are mentioned below for the the 9994 WGS sample set. I took into account Joe's feedback from our previous lab meeting regarding file size labeling on GCP. Files were labeled as Kb, which on GCS actually stands for Kibibytes (Kib). To convert these to Kilobytes (KB), you multiply by 1.024, and to convert to Megabytes (MB), you divide by 1024. All the values provided above have been converted to MB.
+Average files sizes for the output files at various stages are mentioned below for the the 9994 WGS sample set. I took into account Joe's feedback from our previous lab meeting regarding file size labeling on GCP. Files were labeled as Kb, which stands for Kibibytes (Kib). To convert these to Kilobytes (KB), you multiply by 1.024, and to convert to Megabytes (MB), you divide by 1024. All the values provided above have been converted to MB.
 
 - Mutect 2 dsub job output (Number of files produced = 9994) <br>
 VCF files – 271.78 MB 
