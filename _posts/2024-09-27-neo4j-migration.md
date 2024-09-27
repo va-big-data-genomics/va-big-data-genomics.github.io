@@ -131,6 +131,7 @@ which has permissions on both projects, for operations that required them:
     core:
       account: dlcott2@stanford.edu
       project: mvp-fedramp-trellis-dev
+```
 
 #### Authorizing kubectl to Google Cloud Platform
 
