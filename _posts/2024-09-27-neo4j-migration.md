@@ -80,7 +80,6 @@ project in GCP and assigning roles only as needed for specific tasks:
     roles/serviceusage.serviceUsageAdmin
     roles/storage.admin
     roles/vpcaccess.admin
-  ```
 
   % gcloud iam service-accounts list
   DISPLAY NAME         EMAIL                                                                DISABLED
