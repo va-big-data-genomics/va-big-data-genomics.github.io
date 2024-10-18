@@ -197,4 +197,6 @@ In conclusion, the above validations dont seem to be successful for our estiamte
 
 In this [notebook](https://github.com/va-big-data-genomics/mvp-telomere-analysis/blob/main/analysis-pipeline/Manuscript_LTL_analysis_GIA_104k.ipynb), we have refined our dataset to include only samples from individuals aged under 80, focusing specifically on those from the EUR, AFR, and AMR ancestries. Several figures have been reorganized and updated, and these will constitute the final figures for inclusion in the manuscript.
 
+---
 
+Discuss [here](https://github.com/orgs/va-big-data-genomics/discussions/50)
