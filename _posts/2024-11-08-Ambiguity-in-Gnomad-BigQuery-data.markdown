@@ -38,7 +38,7 @@ Reanalyzing the MVP to Gnomad v3.0 comparison using Hail showed a slight increas
 
 Table 1. Comparison of variant counts between MVP Release 2 and gnomAD v3, including updated results.
 
-I am currently in the process of generating this updated information, taking allele counts into consideration. I will update this post when these tests have been completed.
+The number of shared variants will undoubtedly decrease when factoring out singletons, resulting in even less of a change. Tests using allele counts are currently being conducted, and I will update this post when these tests have been completed.
 
 ![Scatterplot of shared variants by chromosomes](/assets/jsarro_blog_figs/Variant_comparison_Gnomad_v3_with_Hail.png)
 Figure 1. Reprocessed scatterplot of shared variant counts between MVP Release 2 and gnomAD v3, generated using Hail and stratified by chromosome.
