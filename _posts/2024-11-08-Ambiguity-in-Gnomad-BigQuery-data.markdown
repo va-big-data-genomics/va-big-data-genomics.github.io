@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "#50 Ambiguity in Gnomad BigQuery data"
-date:   2024-11-08 01:00:00 -0800
+date:   2024-11-08 00:01:00 -0800
 author: Joe Sarro
 categories: jekyll update
 ---
