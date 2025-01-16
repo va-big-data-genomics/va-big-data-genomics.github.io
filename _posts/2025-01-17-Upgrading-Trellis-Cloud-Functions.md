@@ -159,65 +159,6 @@ importing the Python libraries `six` and `pkg_resources` (more on that later):
 
 That seemed like sensible advice, so I stuck with 3.11.
 
-https://chatgpt.com/share/67805c91-f0c4-800f-a3e8-59851568cb8e
-^^^ This is the chat where I discussed:
-1. Missing environment variables (FUNCTION_NAME)
-2. Which version of the Python runtime to use
-3. Using `pip-compile` to get harmonized pinned libraries
-
-### A slight digression: Installing PyYAML
-
-I was trying to install `pyyaml` locally so I could test the `import yaml`
-statement in one of the Trellis cloud functions, but I kept getting the error:
-
-  ```plaintext
-  error: externally-managed-environment
-
-  × This environment is externally managed
-  ╰─> To install Python packages system-wide, try brew install
-      xyz, where xyz is the package you are trying to
-      install.
-  ```
-  
-But when I run that command, I get this:
-  
-  ```bash
-   % brew install pyyaml
-  Error: pyyaml has been disabled because it does not meet homebrew/core's requirements for Python library formulae! It was disabled on 2024-10-06.
-  ```
-  
-So I can't install it via `pip`, because `brew` manages system-wide Python
-libraries, but I can't install it via `brew` because it doesn't meet their
-requirements. Great. My solution was to install it via `pip` in a virtual
-environment:
-
-  ```bash
-  % cd ~/Documents/tmp
-  % python -m venv pyyaml-test
-  % cd pyyaml-test 
-  % source bin/activate
-
-  (pyyaml-test) % pip install pyyaml
-  Collecting pyyaml
-    Downloading PyYAML-6.0.2-cp313-cp313-macosx_10_13_x86_64.whl.metadata (2.1 kB)
-  Downloading PyYAML-6.0.2-cp313-cp313-macosx_10_13_x86_64.whl (181 kB)
-  Installing collected packages: pyyaml
-  Successfully installed pyyaml-6.0.2
-  
-  % python
-  Python 3.13.0 (main, Oct  7 2024, 05:02:14) [Clang 15.0.0 (clang-1500.3.9.4)] on darwin
-  Type "help", "copyright", "credits" or "license" for more information.
-  >>> import yaml
-  >>> import pprint
-  >>> pprint.pprint( dir( yaml ))
-  [ ...
-    'Loader',
-    ...
-    'load',
-    ...
-  ]
-  ```
-
 ## Imported libraries
 
 Trellis's Cloud Functions utilize a variety of Python libraries to perform their
