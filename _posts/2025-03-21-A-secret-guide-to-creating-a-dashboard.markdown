@@ -65,8 +65,8 @@ After you have created your YAML file, you can store it and your working project
 ```
 gcloud secrets versions add my-yaml-config --data-file=/PATH/TO/YAML/file_key.yaml
 
-SECRET_NAME="my-yaml-config"
-GOOGLE_CLOUD_PROJECT="your_project_name"
+export SECRET_NAME="my-yaml-config"
+export GOOGLE_CLOUD_PROJECT="your_project_name"
 ```
 As an alternative, you can also pass these variables directly in your Dataproc job submission script.
 
