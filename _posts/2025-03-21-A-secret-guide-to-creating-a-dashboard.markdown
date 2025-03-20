@@ -26,8 +26,8 @@ RETURN DISTINCT n.sample AS sample
 2. A file containing a list of samples that have been processed in our variant calling ($5 GATK) pipeline. This table was generated in Neo4j with the following query:
 
 ```
-MATCH (n:PersonalisSequencing)<-[:WAS_USED_BY]-(s:Sample)<-[:GENERATED]-(:Person)-[:HAS_BIOLOGICAL_OME]->(:Genome)-[:HAS_VARIANT_CALLS]->(v:Merged:Vcf)
-RETURN DISTINCT s.sample AS sample
+MATCH (n:PersonalisSequencing)<-[:WAS_USED_BY]-(:Sample)<-[:GENERATED]-(:Person)-[:HAS_BIOLOGICAL_OME]->(:Genome)-[:HAS_VARIANT_CALLS]->(v:Merged:Vcf)
+RETURN DISTINCT n.sample AS sample
 ```
 
 3. A table containing a list of samples that have undergone QC. An additional column specifying whether a sample has passed, failed, or is missing QC info (NA) is also included. This file was generated with a Pyhton script (see below)
