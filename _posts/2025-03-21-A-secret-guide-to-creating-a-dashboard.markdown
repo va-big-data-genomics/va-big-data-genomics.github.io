@@ -16,25 +16,25 @@ With FedRamp "ramping up," privacy is becoming more important to our data than e
 ## Sample Dashboard
 One task I recently received at our in-person MVP meeting involved the generation of a sample dashboard. Rather than a dashboard you may be familiar with, i.e., our cloud dashboard GUI, this dashboard is a simple text file that keeps track of received and processed WGS samples. This file incorporates data from seven different sources:
 
-1. A fileile containing a list of all received samples from Personalis. This table was generated in Neo4j with the following query:
+1. A file containing a list of all received samples from Personalis. This table was generated in Neo4j with the following query:
 
 ```
 MATCH (n:PersonalisSequencing)<-[:WAS_USED_BY]-(s:Sample)
 RETURN DISTINCT s.sample AS sample
 ```
 
-2. a File containing a list of samples that have been processed in our variant calling ($5 GATK) pipeline. This table was generated in Neo4j with the following query:
+2. A file containing a list of samples that have been processed in our variant calling ($5 GATK) pipeline. This table was generated in Neo4j with the following query:
 
 ```
 MATCH (n:PersonalisSequencing)<-[:WAS_USED_BY]-(s:Sample)<-[:GENERATED]-(:Person)-[:HAS_BIOLOGICAL_OME]->(:Genome)-[:HAS_VARIANT_CALLS]->(v:Merged:Vcf)
 RETURN DISTINCT s.sample AS sample
 ```
 
-3. Table containing a list of samples that have undergone QC. An additional column specifying whether a sample has passed, failed, or is missing QC info (NA) is also included. This file was generated with a Pyhton script(see below)
+3. A table containing a list of samples that have undergone QC. An additional column specifying whether a sample has passed, failed, or is missing QC info (NA) is also included. This file was generated with a Pyhton script (see below)
 
 4. A table of aggregated gVCF files. This table is stored as a Variant Dataset (VDS).
 
-5. Table of samples that have passed population QC thresholds. This table is in a Hail Matrix Table (MT) format.
+5. A table of samples that have passed population QC thresholds. This table is in a Hail Matrix Table (MT) format.
 
 6. A final table of samples from Stanford before sending off to DACS. Samples such as technical duplicates are removed prior to table generation. This table is in MT format.
 
@@ -45,7 +45,7 @@ The files are merged together to keep track of where a sample is at each step an
 I have generated the Stanford portion of the dashboard using two Python scripts. The first creates the QC info table (Table 3) and the second outputs the sample dashboard of all samples in the Stanford Google Cloud environment. While originally written without Secret Manager and validated for functionality, I have since worked to incorporate Secret Manager into both of these scripts before pushing to Git.
 
 ## Configuring Secret Manager
-Before beginning, please make sure you have Secret Manager installed on the machine that will be running your scripts. If this is running on a Dataproc cluster, you will need to install it on both the cluster and the machine you are submitting the job from.
+Before beginning, please make sure you have Secret Manager installed on the machine that will be running your scripts. If this is running on a Dataproc cluster, you may need to install it on both the cluster and the machine you are submitting the job from.
 
 ```
 pip install google-cloud-secret-manager
@@ -60,7 +60,7 @@ env_variables:
   FILE2: 'gs://path/file2.txt'
 ```
 
-After you have created your YAML, you can store it, and your working project, to your environment.
+After you have created your YAML file, you can store it and your working project in your environment.
 
 ```
 gcloud secrets versions add my-yaml-config --data-file=/PATH/TO/YAML/file_key.yaml
