@@ -19,8 +19,8 @@ One task I recently received at our in-person MVP meeting involved the generatio
 1. A file containing a list of all received samples from Personalis. This table was generated in Neo4j with the following query:
 
 ```
-MATCH (n:PersonalisSequencing)<-[:WAS_USED_BY]-(s:Sample)
-RETURN DISTINCT s.sample AS sample
+MATCH (n:PersonalisSequencing)
+RETURN DISTINCT n.sample AS sample
 ```
 
 2. A file containing a list of samples that have been processed in our variant calling ($5 GATK) pipeline. This table was generated in Neo4j with the following query:
