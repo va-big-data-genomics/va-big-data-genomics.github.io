@@ -107,7 +107,7 @@ FILE = config['env_variables']['FILE']
 FILE2 = config['env_variables']['FILE2']
 ```
 
-As mentioned above, both scripts written to generate a table of QC stat information and the sample dashboard used these steps to allow paths to be specified with Secret Manager. Both files are currently available to review on our Git repo at [create_aggregation_qc_dashboard_section](https://github.com/a-big-data-genomics/mvp-wgs-snp-indel-release/blob/main/SNPs-Indels/data_release_2023/SCRIPTS/create_aggregation_qc_dashboard_section_correct_cutoffs.py) and [create_sample_dashboard](https://github.com/a-big-data-genomics/mvp-wgs-snp-indel-release/blob/main/SNPs-Indels/data_release_2023/SCRIPTS/create_sample_dashboard.py).
+As mentioned above, both scripts written to generate a table of QC stat information and the sample dashboard used these steps to allow paths to be specified with Secret Manager. Both files are currently available to review on our Git repo at [create_aggregation_qc_dashboard_section](https://github.com/va-big-data-genomics/mvp-wgs-snp-indel-release/blob/main/SNPs-Indels/data_release_2023/SCRIPTS/create_aggregation_qc_dashboard_section_correct_cutoffs.py) and [create_sample_dashboard](https://github.com/va-big-data-genomics/mvp-wgs-snp-indel-release/blob/main/SNPs-Indels/data_release_2023/SCRIPTS/create_sample_dashboard.py).
 
 ## Conclusion
 While I have successfully incorporated Secret Manager into these scripts, I have yet to get these to run in Dataproc. The main reason for this is the complex nature of installing packages on the Dataproc image. I am currently working with ScalSec to make sure it is added to our FedRamp Dataproc image that we are currently testing, so this feature will be available in our new environment.
